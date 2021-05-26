@@ -1,0 +1,40 @@
+.index--section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.index--card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.name--header-card {
+    color: var(--color1);
+    font-size: 30px;
+}
+
+.index--header-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.index--header-card img {
+    width: 200px;
+    clip-path: ellipse(50% 38%);
+}
+
+.index--body-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
