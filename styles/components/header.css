@@ -11,13 +11,13 @@ header img {
     width: 20vw;
     height: auto;
     margin-left: 50px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 .header {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
@@ -26,7 +26,6 @@ header img {
 
 nav {
     margin-top: 50px;
-    /* position: absolute; */
 }
 
 .nav-tag {
@@ -57,6 +56,14 @@ h1 {
     color: var(--color1);
 }
 
+@media screen and (max-width: 1156px) {
+    h1 {
+        width: 28.5vw;
+        font-size: 25px;
+        right: 0px;
+    }
+}
+
 @media screen and (max-width: 1013px) {
     .header {
         position: absolute;
@@ -69,6 +76,7 @@ h1 {
         left: 5px;
         top: 15px;
         width: 250px;
+        margin-top: 25px;
     }
     h1 {
         position: absolute;
@@ -86,6 +94,7 @@ h1 {
         left: 1px;
         top: 15px;
         margin-left: 5px;
+        margin-top: 20px;
     }
     h1 {
         right: 20px;
