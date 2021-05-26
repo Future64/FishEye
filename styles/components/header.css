@@ -7,11 +7,20 @@ header {
     width: 70vw;
 }
 
+header a {
+    width: auto;
+    height: auto;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
 header img {
     width: 20vw;
     height: auto;
     margin-left: 50px;
     margin-top: 0px;
+    z-index: 1000;
+    max-width: 300px;
 }
 
 .header {
@@ -21,11 +30,10 @@ header img {
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
-    /* margin-top: 25px; */
 }
 
 nav {
-    margin-top: 50px;
+    margin-top: 45px;
 }
 
 .nav-tag {
@@ -45,6 +53,7 @@ h1 {
     position: fixed;
     display: block;
     right: 35px;
+    height: 40px;
     top: 23px;
     flex-wrap: wrap;
     font-style: normal;
@@ -54,6 +63,13 @@ h1 {
     margin-left: 10px;
     margin-top: 25px;
     color: var(--color1);
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1533px) {
+    header img {
+        margin-top: 18px;
+    }
 }
 
 @media screen and (max-width: 1156px) {
@@ -102,7 +118,6 @@ h1 {
     }
     nav {
         margin-top: 25px;
-        /* position: absolute; */
     }
 }
 
