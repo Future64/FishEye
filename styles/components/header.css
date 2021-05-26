@@ -50,8 +50,59 @@ h1 {
     flex-wrap: wrap;
     font-style: normal;
     font-weight: normal;
-    font-size: 36px;
+    font-size: 30px;
     width: 25vw;
     margin-left: 10px;
     margin-top: 25px;
+    color: var(--color1);
+}
+
+@media screen and (max-width: 1013px) {
+    .header {
+        position: absolute;
+        top: 70px;
+        left: 15vw;
+        max-width: 65vw;
+    }
+    header img {
+        position: fixed;
+        left: 5px;
+        top: 15px;
+        width: 250px;
+    }
+    h1 {
+        position: absolute;
+        display: inline-block;
+        right: 80px;
+        font-size: 20px;
+        top: 40px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    header img {
+        width: 180px;
+        left: 1px;
+        top: 15px;
+        margin-left: 5px;
+    }
+    h1 {
+        right: 20px;
+        top: 25px;
+    }
+    nav {
+        margin-top: 25px;
+        /* position: absolute; */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 13px;
+        top: 30px;
+    }
+    header img {
+        margin-left: 0;
+    }
 }
