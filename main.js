@@ -65,7 +65,7 @@ fetch('/data/photographers.json')
                 }
             }
 
-            // Assigner la variable url pour les chemins des la photos de profils
+            // Assigner la variable url pour les chemins des photos de profils
             photoProfil.src = url
 
             // Afficher les informations dans les DomElements
