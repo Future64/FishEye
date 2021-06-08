@@ -14,6 +14,11 @@
     }
 }
 
+.containerCard {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
 .index--card {
     display: flex;
     flex-direction: column;
@@ -55,9 +60,31 @@
     align-content: center;
 }
 
-.index--header-card img {
-    width: 250px;
+
+/* .index--header-card img {
+    width: 270px;
+} */
+
+.photoProfil0 {
+    width: 270px;
     clip-path: ellipse(50% 38%);
+}
+
+.photoProfil1,
+.photoProfil2,
+.photoProfil3 {
+    width: 270px;
+    clip-path: ellipse(50% 40%);
+}
+
+.photoProfil4 {
+    width: 270px;
+    clip-path: ellipse(50% 33%);
+}
+
+.photoProfil5 {
+    width: 380px;
+    clip-path: ellipse(35% 50%);
 }
 
 .index--body-card {
