@@ -22,7 +22,7 @@ fetch('/data/photographers.json')
             const citationBodyCard = document.createElement('p')
             const priceBodyCard = document.createElement('p')
 
-            // Création des ID et classes 
+            // Création des ID et classes pour les DomElements
             containerCard.id = 'photographe' + i
             containerCard.className = "containerCard"
             indexCard.className = "index--card"
@@ -37,7 +37,7 @@ fetch('/data/photographers.json')
             //Initialisation de la variable url
             let url = ""
 
-            //Initialisation 
+            // Création du tableau réunissant les chemins relatifs au photos de Profils
             const photoProfilArray = [
                 "./medias/photoProfil/Portrait_Nora.jpg",
                 "./medias/photoProfil/Architecture_Horseshoe.jpg",
@@ -48,9 +48,8 @@ fetch('/data/photographers.json')
             ]
 
 
-            // Boucle pour assigner la photo de profil à chaque cards
+            // Boucle du tableau pour assigner la photo de profil à chaque cards
             for (let j = 0; j < photoProfilArray.length; j++) {
-
                 if (obj.photographers[i] == obj.photographers[0]) {
                     url = photoProfilArray[0]
                 } else if (obj.photographers[i] == obj.photographers[1]) {
@@ -88,6 +87,7 @@ fetch('/data/photographers.json')
             indexBodyCard.append(priceBodyCard)
         }
     })
+
 
 /**°°°°°°°°°°°°   FUNCTION   °°°°°°°°°°°°°°°°°°°°°°°° */
 
