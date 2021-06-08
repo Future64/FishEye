@@ -1,0 +1,96 @@
+.index--section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 60px;
+}
+
+@media screen and (max-width: 857px) {
+    .index--section {
+        flex-wrap: no-wrap;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.containerCard {
+    margin-right: 30px;
+    margin-left: 20px;
+}
+
+.index--card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 30px;
+}
+
+.name--header-card {
+    color: var(--color2);
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.location--body-card {
+    color: var(--color1);
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.citation--body-card {
+    color: black;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+
+.price--body-card {
+    color: var(--color4);
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.index--header-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.photoProfil0 {
+    width: 270px;
+    clip-path: ellipse(50% 38%);
+}
+
+.photoProfil1,
+.photoProfil2,
+.photoProfil3 {
+    width: 270px;
+    clip-path: ellipse(50% 40%);
+}
+
+.photoProfil4 {
+    width: 270px;
+    clip-path: ellipse(50% 33%);
+}
+
+.photoProfil5 {
+    width: 380px;
+    clip-path: ellipse(35% 50%);
+}
+
+.index--body-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.index--footer-card {
+    display: flex;
+    justify-content: space-around;
+}

@@ -30,22 +30,22 @@
         {
             "name": "Tracy Galindo",
             "id": 82,
-            " city": "Montreal",
-            " country": "Canada",
+            "city": "Montreal",
+            "country": "Canada",
             "tags": [
                 "art",
                 "fashion",
                 "events"
             ],
             "tagline": "Photographe freelance",
-            " price": 500,
+            "price": 500,
             "portrait": "TracyGalindo.jpg"
         },
         {
             "name": "Nabeel Bradford",
             "id": 527,
             "city": "Mexico City",
-            " country": "Mexico",
+            "country": "Mexico",
             "tags": [
                 "travel",
                 "portrait"

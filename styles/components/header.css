@@ -1,0 +1,135 @@
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    width: 70vw;
+}
+
+header a {
+    width: auto;
+    height: auto;
+    /* margin-right: 30px; */
+    cursor: pointer;
+}
+
+header img {
+    width: 20vw;
+    height: auto;
+    margin-left: 50px;
+    margin-top: 0px;
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+nav {
+    margin-top: 45px;
+}
+
+.nav-tag {
+    border: solid 1px;
+    border-color: var(--color4);
+    border-radius: 15px;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    margin: 4px;
+    text-decoration: none;
+    color: var(--color1);
+    font-weight: bold;
+}
+
+h1 {
+    position: fixed;
+    display: block;
+    right: 35px;
+    height: 40px;
+    top: 23px;
+    flex-wrap: wrap;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    width: 25vw;
+    margin-left: 10px;
+    margin-top: 25px;
+    color: var(--color1);
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1533px) {
+    header img {
+        margin-top: 18px;
+    }
+}
+
+@media screen and (max-width: 1156px) {
+    h1 {
+        width: 28.5vw;
+        font-size: 25px;
+        right: 0px;
+    }
+}
+
+@media screen and (max-width: 1013px) {
+    main {
+        margin-top: 15vh;
+    }
+    .header {
+        position: absolute;
+        top: 70px;
+        left: 15vw;
+        max-width: 65vw;
+    }
+    header img {
+        position: fixed;
+        left: 5px;
+        top: 15px;
+        width: 250px;
+        margin-top: 25px;
+    }
+    h1 {
+        position: absolute;
+        display: inline-block;
+        right: 80px;
+        font-size: 20px;
+        top: 40px;
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    header img {
+        width: 180px;
+        left: 1px;
+        top: 15px;
+        margin-left: 5px;
+        margin-top: 20px;
+    }
+    h1 {
+        right: 20px;
+        top: 25px;
+    }
+    nav {
+        margin-top: 25px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    h1 {
+        font-size: 13px;
+        top: 30px;
+    }
+    header img {
+        margin-left: 0;
+    }
+}
