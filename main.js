@@ -1,5 +1,5 @@
 // Méthode de Récuperation de l'objet avec le chemin
-fetch('/data/photographers.json')
+fetch('/data/bigData.json')
     // demander de retouner l'objet au format Json
     .then((response) => {
         return response.json()
