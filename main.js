@@ -22,6 +22,9 @@ fetch('/data/bigData.json')
             const citationBodyCard = document.createElement('p')
             const priceBodyCard = document.createElement('p')
 
+            const navTags = document.createElement('nav')
+            const tag = document.createElement('a')
+
             // Création des ID et classes pour les DomElements
             containerCard.id = 'photographe' + i
             containerCard.className = "containerCard"
@@ -33,6 +36,8 @@ fetch('/data/bigData.json')
             locationBodyCard.className = "location--body-card"
             citationBodyCard.className = "citation--body-card"
             priceBodyCard.className = "price--body-card"
+            navTags.className = "navTags"
+            tag.className = "nav-tag"
 
             //Initialisation de la variable url
             let url = ""
@@ -65,7 +70,7 @@ fetch('/data/bigData.json')
                 }
             }
 
-            // Assigner la variable url pour les chemins des photos de profils
+            // Assigne la variable url pour les chemins des photos de profils
             photoProfil.src = url
 
             // Afficher les informations dans les DomElements
@@ -74,6 +79,7 @@ fetch('/data/bigData.json')
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
             priceBodyCard.innerHTML = obj.photographers[i].price + "€"
+            tag.innerHTML = obj.photographers[i].tags
 
             // Attacher les DomElements entre eux
             section.append(containerCard)
@@ -85,6 +91,8 @@ fetch('/data/bigData.json')
             indexBodyCard.append(locationBodyCard)
             indexBodyCard.append(citationBodyCard)
             indexBodyCard.append(priceBodyCard)
+            indexBodyCard.append(navTags)
+            navTags.append(tag)
         }
     })
 
