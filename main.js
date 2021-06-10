@@ -23,10 +23,13 @@ fetch('/data/bigData.json')
             const citationBodyCard = createDomElement("citation--body-card", "p")
             const priceBodyCard = createDomElement("price--body-card", "p")
             const navTags = createDomElement("navTags", "nav")
-            const tag = createDomElement("nav-tag", "a")
+            const tagElement = createDomElement("nav-tag", "a")
+
 
             //Initialisation de la variable url
             let url = ""
+
+            let tagArray = obj.photographers[i].tags
 
             // Création du tableau réunissant les chemins relatifs au photos de Profils
             const photoProfilArray = [
@@ -39,22 +42,31 @@ fetch('/data/bigData.json')
             ]
 
 
-            // Boucle du tableau pour assigner la photo de profil à chaque cards
+            // Boucle du tableau pour assigner le chemin de chaques
+            // photos de profils à chaques cards
             for (let j = 0; j < photoProfilArray.length; j++) {
-                if (obj.photographers[i] == obj.photographers[0]) {
-                    url = photoProfilArray[0]
-                } else if (obj.photographers[i] == obj.photographers[1]) {
-                    url = photoProfilArray[1]
-                } else if (obj.photographers[i] == obj.photographers[2]) {
-                    url = photoProfilArray[2]
-                } else if (obj.photographers[i] == obj.photographers[3]) {
-                    url = photoProfilArray[3]
-                } else if (obj.photographers[i] == obj.photographers[4]) {
-                    url = photoProfilArray[4]
-                } else if (obj.photographers[i] == obj.photographers[5]) {
-                    url = photoProfilArray[5]
+                switch (obj.photographers[i]) {
+                    case obj.photographers[0]:
+                        url = photoProfilArray[0]
+                        break
+                    case obj.photographers[1]:
+                        url = photoProfilArray[1]
+                        break
+                    case obj.photographers[2]:
+                        url = photoProfilArray[2]
+                        break
+                    case obj.photographers[3]:
+                        url = photoProfilArray[3]
+                        break
+                    case obj.photographers[4]:
+                        url = photoProfilArray[4]
+                        break
+                    case obj.photographers[5]:
+                        url = photoProfilArray[5]
+                        break
                 }
             }
+
 
             // Assigne la variable url pour les chemins des photos de profils
             photoProfil.src = url
@@ -65,7 +77,13 @@ fetch('/data/bigData.json')
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
             priceBodyCard.innerHTML = obj.photographers[i].price + "€"
-            tag.innerHTML = obj.photographers[i].tags
+
+            // Tentative de boucle sur le tableau tagArray puis afficher les tags
+            // Ca ne marche pas !!!! :(
+            for (let t = 0; t < tagArray.length; t++) {
+                tagElement.innerHTML = tagArray[t]
+                console.log(tagArray)
+            }
 
             // Attacher les DomElements entre eux
             section.append(containerCard)
@@ -78,7 +96,7 @@ fetch('/data/bigData.json')
             indexBodyCard.append(citationBodyCard)
             indexBodyCard.append(priceBodyCard)
             indexBodyCard.append(navTags)
-            navTags.append(tag)
+            navTags.append(tagElement)
 
 
         }
