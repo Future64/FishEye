@@ -60,26 +60,32 @@
     align-content: center;
 }
 
-.photoProfil0 {
+
+/* .photoCard {
+    position: relative;
+} */
+
+#photoProfil0 {
     width: 270px;
     clip-path: ellipse(50% 38%);
 }
 
-.photoProfil1,
-.photoProfil2,
-.photoProfil3 {
+#photoProfil1,
+#photoProfil2,
+#photoProfil3 {
     width: 270px;
     clip-path: ellipse(50% 40%);
 }
 
-.photoProfil4 {
+#photoProfil4 {
     width: 270px;
     clip-path: ellipse(50% 33%);
 }
 
-.photoProfil5 {
+#photoProfil5 {
     width: 380px;
     clip-path: ellipse(35% 50%);
+    margin-bottom: 50px;
 }
 
 .index--body-card {
@@ -90,7 +96,7 @@
     align-content: center;
 }
 
-.index--footer-card {
+#index--footer-card {
     display: flex;
     justify-content: space-around;
 }
