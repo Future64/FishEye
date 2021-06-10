@@ -8,36 +8,22 @@ fetch('/data/bigData.json')
     .then((obj) => {
         for (let i = 0; i < obj.photographers.length; i++) {
 
-            // selection de la balise Hml
+
+            // selection de la balise Hml avec sa classe
             const section = document.querySelector(".index--section")
 
-            // Creation des DomElements
-            const containerCard = document.createElement('div')
-            const indexCard = document.createElement('div')
-            const headerCard = document.createElement('div')
-            const photoProfil = document.createElement('img')
-            const nameHeader = document.createElement('p')
-            const indexBodyCard = document.createElement('div')
-            const locationBodyCard = document.createElement('p')
-            const citationBodyCard = document.createElement('p')
-            const priceBodyCard = document.createElement('p')
-
-            const navTags = document.createElement('nav')
-            const tag = document.createElement('a')
-
-            // Création des ID et classes pour les DomElements
-            containerCard.id = 'photographe' + i
-            containerCard.className = "containerCard"
-            indexCard.className = "index--card"
-            headerCard.className = "index--header-card"
-            photoProfil.className = "photoProfil" + i
-            nameHeader.className = "name--header-card"
-            indexBodyCard.className = "index--body-card"
-            locationBodyCard.className = "location--body-card"
-            citationBodyCard.className = "citation--body-card"
-            priceBodyCard.className = "price--body-card"
-            navTags.className = "navTags"
-            tag.className = "nav-tag"
+            // Creation des DomElements et des ID et classes pour les DomElements
+            const containerCard = createDomElement("containerCard", "div", "photographe" + i)
+            const indexCard = createDomElement("index--card", "div")
+            const headerCard = createDomElement("index--header-card", "div")
+            const photoProfil = createDomElement("photoProfil" + i, "img")
+            const nameHeader = createDomElement("name--header-card", "p")
+            const indexBodyCard = createDomElement("index--body-card", "div")
+            const locationBodyCard = createDomElement("location--body-card", "p")
+            const citationBodyCard = createDomElement("citation--body-card", "p")
+            const priceBodyCard = createDomElement("price--body-card", "p")
+            const navTags = createDomElement("navTags", "nav")
+            const tag = createDomElement("nav-tag", "a")
 
             //Initialisation de la variable url
             let url = ""
@@ -93,6 +79,8 @@ fetch('/data/bigData.json')
             indexBodyCard.append(priceBodyCard)
             indexBodyCard.append(navTags)
             navTags.append(tag)
+
+
         }
     })
 
@@ -100,8 +88,9 @@ fetch('/data/bigData.json')
 /**°°°°°°°°°°°°   FUNCTION   °°°°°°°°°°°°°°°°°°°°°°°° */
 
 // Créer un DOM Element
-const createDomElement = (className, DomElem) => {
+const createDomElement = (className, DomElem, ID) => {
     const elm = document.createElement(DomElem)
-    div.classList.add(className)
+    elm.classList.add(className)
+    elm.id = ID
     return elm
 }
