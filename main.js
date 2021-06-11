@@ -41,7 +41,6 @@ fetch('/data/bigData.json')
                 "./medias/photoProfil/Travel_Tower.jpg"
             ]
 
-
             // Boucle du tableau pour assigner le chemin de chaques
             // photos de profils à chaques cards
             for (let j = 0; j < photoProfilArray.length; j++) {
