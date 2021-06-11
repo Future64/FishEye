@@ -15,7 +15,7 @@ fetch('data/bigData.json')
             const containerCard = createDomElement("containerCard", "div", "photographe" + i)
             const indexCard = createDomElement("index--card", "div")
             const headerCard = createDomElement("index--header-card", "div")
-            const photoProfil = createDomElement("photoProfil" + i, "img")
+            const photoProfil = createDomElement("photoProfil" + i, "div")
             const nameHeader = createDomElement("name--header-card", "p")
             const indexBodyCard = createDomElement("index--body-card", "div")
             const locationBodyCard = createDomElement("location--body-card", "p")
@@ -31,7 +31,10 @@ fetch('data/bigData.json')
             let tagArray = obj.photographers[i].tags
 
             // Assigne la variable url pour les chemins des photos de profils
-            photoProfil.src = url
+            // photoProfil.style.background = "url('url')"
+            photoProfil.style.cssText += `background-image:url($'{url})`
+            photoProfil.style.backgroundSize = "cover"
+            // photoProfil.src = url
 
             
             // Boucle de récpération et de création des l'élements tag 
