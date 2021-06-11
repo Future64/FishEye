@@ -97,8 +97,6 @@ fetch('/data/bigData.json')
             indexBodyCard.append(priceBodyCard)
             indexBodyCard.append(navTags)
             navTags.append(tagElement)
-
-
         }
     })
 
