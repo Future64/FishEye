@@ -15,28 +15,27 @@ fetch('data/bigData.json')
             const containerCard = createDomElement("containerCard", "div", "photographe" + i)
             const indexCard = createDomElement("index--card", "div")
             const headerCard = createDomElement("index--header-card", "div")
-            const photoProfil = createDomElement("photoProfil" + i, "div")
+            const photoProfil = createDomElement("photoProfil", "div", "photoProfil" + i)
             const nameHeader = createDomElement("name--header-card", "p")
             const indexBodyCard = createDomElement("index--body-card", "div")
             const locationBodyCard = createDomElement("location--body-card", "p")
             const citationBodyCard = createDomElement("citation--body-card", "p")
             const priceBodyCard = createDomElement("price--body-card", "p")
-            const navTags = createDomElement("navTags", "nav")
-            
+            const navTags = createDomElement("navTags", "nav", "navTagsCard")
+
 
             //Initialisation de la variable url
             let url = "./medias/PhotographersID-Photos/" + obj.photographers[i].portrait
 
-            //Récpération tablea des tags dans le json
+            //Récpération tableau des tags dans le json
             let tagArray = obj.photographers[i].tags
 
             // Assigne la variable url pour les chemins des photos de profils
             // photoProfil.style.background = "url('url')"
-            photoProfil.style.cssText += `background-image:url($'{url})`
+            photoProfil.style.backgroundImage = `url(${url})`
             photoProfil.style.backgroundSize = "cover"
-            // photoProfil.src = url
 
-            
+
             // Boucle de récpération et de création des l'élements tag 
             for (let t = 0; t < tagArray.length; t++) {
                 let tag = createDomElement("nav-tag", "a")
@@ -44,9 +43,9 @@ fetch('data/bigData.json')
                 console.log(tagArray)
                 navTags.append(tag)
             }
-                
+
             // Afficher les informations dans les DomElements
-            photoProfil.innerHTML = url
+            photoProfil.innerHTML = ""
             nameHeader.innerHTML = obj.photographers[i].name
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
