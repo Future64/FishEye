@@ -29,8 +29,6 @@ fetch('data/bigData.json')
 /**°°°°°°°°°°°°   2de Methode fetch  °°°°°°°°°°°°°°°°°°°°°°°° */
 /**‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡‡*/
 
-<<<<<<< HEAD
-=======
 // Méthode de Récuperation de l'objet avec le chemin
 fetch('data/bigData.json')
     // demander de retouner l'objet au format Json
@@ -41,7 +39,6 @@ fetch('data/bigData.json')
     .then((obj) => {
         for (let i = 0; i < obj.photographers.length; i++) {
 
->>>>>>> c6acf3cafa2ab9b6ddbe22431e266a91300b21ab
             // Selection de la balise Hml avec sa classe
             const section = document.querySelector(".index--section")
 
@@ -56,36 +53,14 @@ fetch('data/bigData.json')
             const locationBodyCard = createDomElement("location--body-card", "p")
             const citationBodyCard = createDomElement("citation--body-card", "p")
             const priceBodyCard = createDomElement("price--body-card", "p")
-<<<<<<< HEAD
-            const navTags = createDomElement("navTags", "nav")
-            
-=======
             const navTags = createDomElement("navTags", "nav", "navTagsCard")
 
             // Ajout d'attribut au DomElement
             headerCardLink.setAttribute("href", "#")
->>>>>>> c6acf3cafa2ab9b6ddbe22431e266a91300b21ab
 
             //Initialisation de la variable url
             let url = "./medias/PhotographersID-Photos/" + obj.photographers[i].portrait
 
-<<<<<<< HEAD
-            //Récpération tablea des tags dans le json
-            let tagArray = obj.photographers[i].tags
-
-            // Assigne la variable url pour les chemins des photos de profils
-            photoProfil.src = url
-
-            
-            // Boucle de récpération et de création des l'élements tag 
-            for (let t = 0; t < tagArray.length; t++) {
-                let tag = createDomElement("nav-tag", "a")
-                tag.innerHTML += tagArray[t]
-                console.log(tagArray)
-                navTags.append(tag)
-            }
-                
-=======
             //Récpération tableau des tags dans le json
             let tagArray = obj.photographers[i].tags
 
@@ -103,17 +78,12 @@ fetch('data/bigData.json')
                 navTags.append(tag)
             }
 
->>>>>>> c6acf3cafa2ab9b6ddbe22431e266a91300b21ab
             // Afficher les informations dans les DomElements
             photoProfil.innerHTML = ""
             nameHeader.innerHTML = obj.photographers[i].name
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
-<<<<<<< HEAD
-            priceBodyCard.innerHTML = obj.photographers[i].price + "€"
-=======
             priceBodyCard.innerHTML = obj.photographers[i].price + "€/jour"
->>>>>>> c6acf3cafa2ab9b6ddbe22431e266a91300b21ab
 
             // Attacher les DomElements entre eux
             section.append(containerCard)
