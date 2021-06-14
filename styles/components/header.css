@@ -91,7 +91,7 @@ h1 {
         max-width: 65vw;
     }
     header img {
-        position: fixed;
+        position: absolute;
         left: 5px;
         top: 15px;
         width: 250px;

@@ -6,17 +6,20 @@
     margin-top: 60px;
 }
 
-@media screen and (max-width: 857px) {
+@media screen and (max-width: 1013px) {
     .index--section {
         flex-wrap: no-wrap;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
+    }
+    .containerCard {
+        margin-top: 25px;
     }
 }
 
 .containerCard {
-    margin-right: 30px;
-    margin-left: 20px;
+    width: 30%;
 }
 
 .index--card {

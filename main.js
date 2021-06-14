@@ -39,7 +39,7 @@ fetch('data/bigData.json')
     .then((obj) => {
         for (let i = 0; i < obj.photographers.length; i++) {
 
-            // Selection de la balise Hml avec sa classe
+            // Selection de la balise Html avec sa classe
             const section = document.querySelector(".index--section")
 
             // Creation des DomElements et des ID et classes pour les DomElements
