@@ -1,5 +1,32 @@
+/**°°°°°°°°°°°°   1ere Methode fetch  °°°°°°°°°°°°°°°°°°°°°°°° */
+
 // Méthode de Récuperation de l'objet avec le chemin
-fetch('/data/bigData.json')
+fetch('data/bigData.json')
+    // demander de retouner l'objet au format Json
+    .then((response) => {
+        return response.json()
+    })
+    // Fonction de récupération et d'utilisation des informations du Json
+    .then((obj) => {
+        // Selection de la balise Hml avec sa classe
+        const headerNavTags = document.querySelector(".navTags")
+        const navTagArray = [obj.photographers[0].tags[0], obj.photographers[2].tags[0], obj.photographers[2].tags[1], obj.photographers[1].tags[1], obj.photographers[0].tags[2], obj.photographers[1].tags[0], obj.photographers[0].tags[3], obj.photographers[0].tags[1]]
+
+        // Boucle de récpération et de création des l'élements nav-tag 
+        for (let n = 0; n < navTagArray.length; n++) {
+            const headerLink = createDomElement("nav-tag", "a")
+            headerLink.id = "#" + navTagArray[n]
+            headerLink.setAttribute("href", "#")
+            headerLink.ariaLabel = ("Tag " + navTagArray[n])
+            headerLink.innerHTML += navTagArray[n]
+            headerNavTags.append(headerLink)
+        }
+    })
+
+/**°°°°°°°°°°°°   2de Methode fetch  °°°°°°°°°°°°°°°°°°°°°°°° */
+
+// Méthode de Récuperation de l'objet avec le chemin
+fetch('data/bigData.json')
     // demander de retouner l'objet au format Json
     .then((response) => {
         return response.json()
@@ -8,94 +35,64 @@ fetch('/data/bigData.json')
     .then((obj) => {
         for (let i = 0; i < obj.photographers.length; i++) {
 
-
-            // selection de la balise Hml avec sa classe
+            // Selection de la balise Hml avec sa classe
             const section = document.querySelector(".index--section")
 
             // Creation des DomElements et des ID et classes pour les DomElements
             const containerCard = createDomElement("containerCard", "div", "photographe" + i)
             const indexCard = createDomElement("index--card", "div")
+            const headerCardLink = createDomElement("index--header-card-link", "a")
             const headerCard = createDomElement("index--header-card", "div")
-            const photoProfil = createDomElement("photoProfil" + i, "img")
+            const photoProfil = createDomElement("photoProfil", "div", "photoProfil" + i)
             const nameHeader = createDomElement("name--header-card", "p")
             const indexBodyCard = createDomElement("index--body-card", "div")
             const locationBodyCard = createDomElement("location--body-card", "p")
             const citationBodyCard = createDomElement("citation--body-card", "p")
             const priceBodyCard = createDomElement("price--body-card", "p")
-            const navTags = createDomElement("navTags", "nav")
-            const tagElement = createDomElement("nav-tag", "a")
+            const navTags = createDomElement("navTags", "nav", "navTagsCard")
 
+            // Ajout d'attribut au DomElement
+            headerCardLink.setAttribute("href", "#")
 
             //Initialisation de la variable url
-            let url = ""
+            let url = "./medias/PhotographersID-Photos/" + obj.photographers[i].portrait
 
+            //Récpération tableau des tags dans le json
             let tagArray = obj.photographers[i].tags
 
-            // Création du tableau réunissant les chemins relatifs au photos de Profils
-            const photoProfilArray = [
-                "./medias/photoProfil/Portrait_Nora.jpg",
-                "./medias/photoProfil/Architecture_Horseshoe.jpg",
-                "./medias/photoProfil/Fashion_Urban_Jungle.jpg",
-                "./medias/photoProfil/Travel_Outdoor_Baths.jpg",
-                "./medias/photoProfil/Fashion_Melody_Red_on_Stripes.jpg",
-                "./medias/photoProfil/Travel_Tower.jpg"
-            ]
+            // Assigne la variable url pour les chemins des photos de profils
+            photoProfil.style.backgroundImage = `url(${url})`
+            photoProfil.style.backgroundSize = "cover"
 
-            // Boucle du tableau pour assigner le chemin de chaques
-            // photos de profils à chaques cards
-            for (let j = 0; j < photoProfilArray.length; j++) {
-                switch (obj.photographers[i]) {
-                    case obj.photographers[0]:
-                        url = photoProfilArray[0]
-                        break
-                    case obj.photographers[1]:
-                        url = photoProfilArray[1]
-                        break
-                    case obj.photographers[2]:
-                        url = photoProfilArray[2]
-                        break
-                    case obj.photographers[3]:
-                        url = photoProfilArray[3]
-                        break
-                    case obj.photographers[4]:
-                        url = photoProfilArray[4]
-                        break
-                    case obj.photographers[5]:
-                        url = photoProfilArray[5]
-                        break
-                }
+            // Boucle de récpération et de création des l'élements tag 
+            for (let t = 0; t < tagArray.length; t++) {
+                let tag = createDomElement("nav-tag", "a")
+                tag.id = "#" + tagArray[t]
+                tag.setAttribute("href", "#")
+                tag.ariaLabel = ("Tag " + tagArray[t])
+                tag.innerHTML += tagArray[t]
+                navTags.append(tag)
             }
 
-
-            // Assigne la variable url pour les chemins des photos de profils
-            photoProfil.src = url
-
             // Afficher les informations dans les DomElements
-            photoProfil.innerHTML = url
+            photoProfil.innerHTML = ""
             nameHeader.innerHTML = obj.photographers[i].name
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
             priceBodyCard.innerHTML = obj.photographers[i].price + "€"
 
-            // Tentative de boucle sur le tableau tagArray puis afficher les tags
-            // Ca ne marche pas !!!! :(
-            for (let t = 0; t < tagArray.length; t++) {
-                tagElement.innerHTML = tagArray[t]
-                console.log(tagArray)
-            }
-
             // Attacher les DomElements entre eux
             section.append(containerCard)
             containerCard.append(indexCard)
             containerCard.append(indexBodyCard)
-            indexCard.append(headerCard)
+            indexCard.append(headerCardLink)
+            headerCardLink.append(headerCard)
             headerCard.append(photoProfil)
             headerCard.append(nameHeader)
             indexBodyCard.append(locationBodyCard)
             indexBodyCard.append(citationBodyCard)
             indexBodyCard.append(priceBodyCard)
             indexBodyCard.append(navTags)
-            navTags.append(tagElement)
         }
     })
 
@@ -103,9 +100,8 @@ fetch('/data/bigData.json')
 /**°°°°°°°°°°°°   FUNCTION   °°°°°°°°°°°°°°°°°°°°°°°° */
 
 // Créer un DOM Element
-const createDomElement = (className, DomElem, ID) => {
+const createDomElement = (className, DomElem) => {
     const elm = document.createElement(DomElem)
     elm.classList.add(className)
-    elm.id = ID
     return elm
 }
