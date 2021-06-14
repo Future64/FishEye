@@ -34,8 +34,9 @@
 
 .name--header-card {
     color: var(--color2);
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 .location--body-card {
@@ -46,13 +47,13 @@
 
 .citation--body-card {
     color: black;
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 12px;
 }
 
 .price--body-card {
     color: var(--color4);
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 15px;
 }
 
@@ -65,11 +66,12 @@
 }
 
 .photoProfil {
-    height: 250px;
-    width: 250px;
+    height: 13rem;
+    width: 13rem;
     overflow: hidden;
     border-radius: 50%;
     margin-bottom: 30px;
+    box-shadow: 0 0 10px rgba(165, 165, 165, 0.461);
 }
 
 .nav-tag {

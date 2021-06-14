@@ -20,7 +20,7 @@ fetch('data/bigData.json')
             headerLink.id = "#" + navTagArray[n]
             headerLink.setAttribute("href", "#")
             headerLink.ariaLabel = ("Tag " + navTagArray[n])
-            headerLink.innerHTML += navTagArray[n]
+            headerLink.innerHTML += "#" + navTagArray[n]
             headerNavTags.append(headerLink)
         }
     })
@@ -74,7 +74,7 @@ fetch('data/bigData.json')
                 tag.id = "#" + tagArray[t]
                 tag.setAttribute("href", "#")
                 tag.ariaLabel = ("Tag " + tagArray[t])
-                tag.innerHTML += tagArray[t]
+                tag.innerHTML += "#" + tagArray[t]
                 navTags.append(tag)
             }
 
@@ -83,7 +83,7 @@ fetch('data/bigData.json')
             nameHeader.innerHTML = obj.photographers[i].name
             locationBodyCard.innerHTML = obj.photographers[i].city + ", " + obj.photographers[i].country
             citationBodyCard.innerHTML = obj.photographers[i].tagline
-            priceBodyCard.innerHTML = obj.photographers[i].price + "€"
+            priceBodyCard.innerHTML = obj.photographers[i].price + "€/jour"
 
             // Attacher les DomElements entre eux
             section.append(containerCard)
