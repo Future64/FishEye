@@ -50,7 +50,7 @@ header nav {
 }
 
 h1 {
-    position: fixed;
+    position: absolute;
     display: block;
     right: 35px;
     height: 40px;
