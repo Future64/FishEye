@@ -22,7 +22,7 @@ const init = async() => {
         const navTags = createDomElement("navTags", "nav", "navTagsCard")
 
         // Ajout d'attribut au DomElement
-        headerCardLink.setAttribute("href", "#")
+        headerCardLink.setAttribute("href", "./photographe.html")
 
         //Initialisation de la variable url
         let url = "./medias/PhotographersID-Photos/" + data.photographers[i].portrait

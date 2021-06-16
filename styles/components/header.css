@@ -23,6 +23,13 @@ header img {
     max-width: 300px;
 }
 
+.logoPhotographe {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    margin-left: 50px;
+}
+
 .header {
     display: flex;
     flex-direction: row;
