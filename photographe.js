@@ -5,7 +5,6 @@ const initPhotograph = async() => {
 
     console.log(data.photographers[0])
 
-
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
@@ -26,22 +25,11 @@ const initPhotograph = async() => {
     const dropdownDate = createDomElement("dropdownDate", "a")
     const dropdownTitle = createDomElement("dropdownTitle", "a")
     const spanArrowDown = createDomElement("fas", "i")
-    const mediaZone = createDomElement("mediaZone", "div")
-    const mediaCard = createDomElement("mediaCard", "div")
-    const mediaLink = createDomElement("mediaLink", "a")
-    const mediaImage = createDomElement("mediaImage", "img")
-    const mediaInfo = createDomElement("mediaInfo", "div")
-    const mediaTitle = createDomElement("mediaTitle", "h2")
-    const mediaPrice = createDomElement("mediaPrice", "span")
-    const mediaLike = createDomElement("mediaLike", "div")
-    const mediaNbLike = createDomElement("mediaNbLike", "span")
-    const mediaHeart = createDomElement("mediaHeart", "i")
-
-    spanArrowDown.classList.add("fa-chevron-down");
+    const mediaZoneContainer = createDomElement("mediaZoneContainer", "div")
 
     //Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
-    let urlImage = "./medias/Tracy/" + data.media[0].image
+
 
     //Récpération tableau des tags dans le json
     let tagArray = data.photographers[0].tags
@@ -60,7 +48,7 @@ const initPhotograph = async() => {
         navTagsPhotograph.append(tag)
     }
 
-    mediaImage.setAttribute("src", urlImage)
+
 
     // Afficher les informations dans les DomElements
     photoProfilPhotograh.innerHTML = ""
@@ -71,10 +59,8 @@ const initPhotograph = async() => {
     dropdownBtn.innerHTML = "Popularité"
     dropdownDate.innerHTML = "Date"
     dropdownTitle.innerHTML = "Titre"
-    mediaTitle.innerHTML = data.media[0].title
-    mediaPrice.innerHTML = data.media[0].price + " €"
-    mediaNbLike.innerHTML = data.media[0].likes
-        // mediaImage.innerHTML = ""
+
+    // mediaImage.innerHTML = ""
     console.log(data.media[0].title)
         // priceBodyCard.innerHTML = data.photographers[i].price + "€/jour"
 
@@ -82,7 +68,8 @@ const initPhotograph = async() => {
     sectionPhotograph.append(containerCardPhotograph)
     sectionPhotograph.append(photoProfilPhotograh)
     sectionPhotograph.append(sortZone)
-    sectionPhotograph.append(mediaZone)
+    sectionPhotograph.append(mediaZoneContainer)
+
     containerCardPhotograph.append(indexCardPhotograph)
     indexCardPhotograph.append(photoProfilPhotograh)
     containerCardPhotograph.append(indexBodyCardPhotograph)
@@ -97,15 +84,47 @@ const initPhotograph = async() => {
     dropdownContainer.append(dropdownContent)
     dropdownContent.append(dropdownDate)
     dropdownContent.append(dropdownTitle)
-    mediaZone.append(mediaCard)
-    mediaCard.append(mediaLink)
-    mediaCard.append(mediaInfo)
-    mediaLink.append(mediaImage)
-    mediaInfo.append(mediaTitle)
-    mediaInfo.append(mediaPrice)
-    mediaInfo.append(mediaLike)
-    mediaLike.append(mediaNbLike)
-    mediaLike.append(mediaHeart)
+
+
+
+
+    for (let i = 0; i < data.media.length; i++) {
+        const mediaZone = createDomElement("mediaZone", "div")
+        const mediaCard = createDomElement("mediaCard", "div")
+        const mediaLink = createDomElement("mediaLink", "a")
+        const mediaImage = createDomElement("mediaImage", "img")
+        const mediaInfo = createDomElement("mediaInfo", "div")
+        const mediaTitle = createDomElement("mediaTitle", "h2")
+        const mediaPrice = createDomElement("mediaPrice", "span")
+        const mediaLike = createDomElement("mediaLike", "div")
+        const mediaNbLike = createDomElement("mediaNbLike", "span")
+        const mediaHeart = createDomElement("far", "i")
+
+
+        let urlImage = "./medias/Tracy/" + data.media[i].image
+
+        spanArrowDown.classList.add("fa-chevron-down");
+        mediaHeart.classList.add("fa-heart");
+
+        mediaImage.setAttribute("src", urlImage)
+
+        mediaTitle.innerHTML = data.media[i].title
+        mediaPrice.innerHTML = data.media[i].price + " €"
+        mediaNbLike.innerHTML = data.media[i].likes
+
+
+        mediaZoneContainer.append(mediaZone)
+        mediaZone.append(mediaCard)
+        mediaCard.append(mediaLink)
+        mediaCard.append(mediaInfo)
+        mediaLink.append(mediaImage)
+        mediaInfo.append(mediaTitle)
+            // mediaInfo.append()
+        mediaInfo.append(mediaLike)
+        mediaLike.append(mediaPrice)
+        mediaLike.append(mediaNbLike)
+        mediaLike.append(mediaHeart)
+    }
 }
 
 initPhotograph()
