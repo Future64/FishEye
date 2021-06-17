@@ -13,7 +13,24 @@ body {
 
 a:link {
     text-decoration: none;
+}
+
+.navTags a:link {
     font-weight: 500;
     font-size: 14px;
     font-weight: bold;
+}
+
+.navTags-photograph a:link {
+    font-size: 12px;
+    padding: 1px 5px;
+}
+
+.photoProfil-photograph {
+    height: 13rem;
+    width: 13rem;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 0px;
+    box-shadow: 0 0 10px rgb(165 165 165 / 46%);
 }
