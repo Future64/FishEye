@@ -8,6 +8,7 @@ const initPhotograph = async() => {
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
+    // Creation des DomElements et des classes pour les DomElements
     const containerCardPhotograph = createDomElement("containerCardPhotograph", "div")
     const indexCardPhotograph = createDomElement("index--card-photograph", "div")
     const photographInfo = createDomElement("photographInfo", "div")
@@ -47,6 +48,8 @@ const initPhotograph = async() => {
     dropdownBtn.addEventListener("click", () => {
         display(dropdownContent, spanArrowUp, spanArrowDown)
     })
+
+
 
     // Assigne la variable url pour les chemins des photos de profils
     photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
@@ -112,17 +115,27 @@ const initPhotograph = async() => {
         const mediaLike = createDomElement("mediaLike", "div")
         const mediaNbLike = createDomElement("mediaNbLike", "span")
         const mediaHeart = createDomElement("far", "i")
+        const mediaHeart2 = createDomElement("fas", "i")
 
         let urlImage = "./medias/Tracy/" + data.media[i].image
 
         mediaHeart.classList.add("fa-heart");
+        mediaHeart2.classList.add("fa-heart");
+
+        mediaHeart.style.display = 'block'
+        mediaHeart2.style.display = 'none'
+        const nbLikeInt = parseInt(data.media[i].likes, 10)
 
         mediaImage.setAttribute("src", urlImage)
 
         mediaTitle.innerHTML = data.media[i].title
         mediaPrice.innerHTML = data.media[i].price + " €"
-        mediaNbLike.innerHTML = data.media[i].likes
-
+        mediaNbLike.innerHTML = nbLikeInt
+        parseInt(mediaNbLike)
+        console.log(mediaNbLike)
+        mediaLike.addEventListener("click", () => {
+            display2(mediaHeart, mediaHeart2, nbLikeInt)
+        })
 
         mediaZoneContainer.append(mediaZone)
         mediaZone.append(mediaCard)
@@ -134,7 +147,8 @@ const initPhotograph = async() => {
         mediaInfo.append(mediaLike)
         mediaLike.append(mediaPrice)
         mediaLike.append(mediaNbLike)
-        mediaLike.append(mediaHeart)
+        mediaLike.append(mediaHeart, mediaHeart2)
+            // mediaLike.append()
     }
 }
 
@@ -144,15 +158,27 @@ initPhotograph()
 /************************************************/
 /**************** FONCTION **********************/
 
-const display = (ifClose, launch1, ifClose2) => {
-    if (ifClose.style.display == 'none') {
-        launch(ifClose)
-        close(ifClose2)
-        launch(launch1)
+const display = (firstElt, secondtElt, thirdtElt) => {
+    if (firstElt.style.display == 'none') {
+        launch(firstElt)
+        close(thirdtElt)
+        launch(secondtElt)
     } else {
-        close(ifClose)
-        launch(ifClose2)
-        close(launch1)
+        close(firstElt)
+        launch(thirdtElt)
+        close(secondtElt)
+    }
+}
+
+const display2 = (firstElt, secondtElt, int) => {
+    if (firstElt.style.display == 'block') {
+        close(firstElt)
+        launch(secondtElt)
+        int + 1
+    } else {
+        close(secondtElt)
+        launch(firstElt)
+        int - 1
     }
 }
 
