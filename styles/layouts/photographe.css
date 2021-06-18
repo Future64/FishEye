@@ -17,7 +17,7 @@
     justify-content: center;
     align-content: center;
     left: 50px;
-    width: 90vw;
+    width: 80vw;
 }
 
 .containerCardPhotograph {
@@ -101,6 +101,11 @@
     color: var(--color1);
 }
 
+.mediaPrice,
+.mediaLike {
+    font-weight: 500;
+}
+
 .mediaInfo {
     display: flex;
     flex-direction: row;
@@ -121,10 +126,16 @@
     margin-left: 5px;
 }
 
-.dropdownBtn {
-    align-items: center;
+.dropdownContainer {
+    position: absolute;
+    left: 10vw;
+}
+
+.dropdownDate {
+    /* align-items: center; */
     background: #901c1c;
-    border: none;
+    /* border: none; */
+    border: .5px solid var(--color3);
     border-radius: 5px;
     color: #fff;
     display: flex;
@@ -133,8 +144,34 @@
     justify-content: flex-start;
     left: 11rem;
     padding: .625rem 1.25rem;
-    position: absolute;
-    top: 25.6rem;
-    width: 10rem;
-    margin: 15px 0;
+}
+
+.dropdownTitle {
+    background: #901c1c;
+    /* border: none; */
+    border: .5px solid var(--color3);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    font-size: 1rem;
+    font-weight: 500;
+    justify-content: flex-start;
+    left: 11rem;
+    padding: .625rem 1.25rem;
+}
+
+.dropdownBtn {
+    align-items: center;
+    background: #901c1c;
+    /* border: none; */
+    border: .5px solid var(--color3);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    font-size: 1rem;
+    font-weight: 500;
+    justify-content: flex-start;
+    left: 11rem;
+    padding: .625rem 1.25rem;
+    cursor: pointer;
 }

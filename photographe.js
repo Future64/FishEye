@@ -20,8 +20,10 @@ const initPhotograph = async() => {
     const sortZone = createDomElement("sortZone", "div")
     const spanSort = createDomElement("spanSort", "span")
     const dropdownContainer = createDomElement("dropdownContainer", "div")
-    const dropdownBtn = createDomElement("dropdownBtn", "button")
-    const dropdownContent = createDomElement("dropdownContent", "div")
+    const dropdownBtn = createDomElement("dropdownBtn", "div")
+
+    let dropdownContent = createDomElement("dropdownContent", "div")
+    dropdownContent.style.display = 'none'
     const dropdownDate = createDomElement("dropdownDate", "a")
     const dropdownTitle = createDomElement("dropdownTitle", "a")
     const spanArrowDown = createDomElement("fas", "i")
@@ -48,7 +50,26 @@ const initPhotograph = async() => {
         navTagsPhotograph.append(tag)
     }
 
+    dropdownBtn.addEventListener("click", () => {
+        displayDropdown()
+    })
 
+    const displayDropdown = () => {
+        if (dropdownContent.style.display = 'none') {
+            launchDropdown()
+        } else {
+            closeDropdown()
+        }
+    }
+
+    const closeDropdown = () => {
+        dropdownContent.style.display = 'none'
+    }
+
+
+    const launchDropdown = () => {
+        dropdownContent.style.display = 'block'
+    }
 
     // Afficher les informations dans les DomElements
     photoProfilPhotograh.innerHTML = ""
