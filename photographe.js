@@ -21,20 +21,32 @@ const initPhotograph = async() => {
     const spanSort = createDomElement("spanSort", "span")
     const dropdownContainer = createDomElement("dropdownContainer", "div")
     const dropdownBtn = createDomElement("dropdownBtn", "div")
-
-    let dropdownContent = createDomElement("dropdownContent", "div")
-    dropdownContent.style.display = 'none'
+    const dropdownContent = createDomElement("dropdownContent", "div")
     const dropdownDate = createDomElement("dropdownDate", "a")
     const dropdownTitle = createDomElement("dropdownTitle", "a")
     const spanArrowDown = createDomElement("fas", "i")
+    const spanArrowUp = createDomElement("fas", "i")
     const mediaZoneContainer = createDomElement("mediaZoneContainer", "div")
 
-    //Initialisation de la variable url
+    // Ajout de class
+    spanArrowDown.classList.add("fa-chevron-down");
+    spanArrowUp.classList.add("fa-chevron-up");
+
+    // Affichage par défault
+    dropdownContent.style.display = 'none'
+    spanArrowDown.style.display = 'block'
+    spanArrowUp.style.display = 'none'
+
+    // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
 
-
-    //Récpération tableau des tags dans le json
+    // Récpération tableau des tags dans le json
     let tagArray = data.photographers[0].tags
+
+    // Events
+    dropdownBtn.addEventListener("click", () => {
+        display(dropdownContent, spanArrowUp, spanArrowDown)
+    })
 
     // Assigne la variable url pour les chemins des photos de profils
     photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
@@ -50,26 +62,7 @@ const initPhotograph = async() => {
         navTagsPhotograph.append(tag)
     }
 
-    dropdownBtn.addEventListener("click", () => {
-        displayDropdown()
-    })
 
-    const displayDropdown = () => {
-        if (dropdownContent.style.display = 'none') {
-            launchDropdown()
-        } else {
-            closeDropdown()
-        }
-    }
-
-    const closeDropdown = () => {
-        dropdownContent.style.display = 'none'
-    }
-
-
-    const launchDropdown = () => {
-        dropdownContent.style.display = 'block'
-    }
 
     // Afficher les informations dans les DomElements
     photoProfilPhotograh.innerHTML = ""
@@ -102,11 +95,10 @@ const initPhotograph = async() => {
     sortZone.append(dropdownContainer)
     dropdownContainer.append(dropdownBtn)
     dropdownBtn.append(spanArrowDown)
+    dropdownBtn.append(spanArrowUp)
     dropdownContainer.append(dropdownContent)
     dropdownContent.append(dropdownDate)
     dropdownContent.append(dropdownTitle)
-
-
 
 
     for (let i = 0; i < data.media.length; i++) {
@@ -121,10 +113,8 @@ const initPhotograph = async() => {
         const mediaNbLike = createDomElement("mediaNbLike", "span")
         const mediaHeart = createDomElement("far", "i")
 
-
         let urlImage = "./medias/Tracy/" + data.media[i].image
 
-        spanArrowDown.classList.add("fa-chevron-down");
         mediaHeart.classList.add("fa-heart");
 
         mediaImage.setAttribute("src", urlImage)
@@ -149,3 +139,27 @@ const initPhotograph = async() => {
 }
 
 initPhotograph()
+
+
+/************************************************/
+/**************** FONCTION **********************/
+
+const display = (ifClose, launch1, ifClose2) => {
+    if (ifClose.style.display == 'none') {
+        launch(ifClose)
+        close(ifClose2)
+        launch(launch1)
+    } else {
+        close(ifClose)
+        launch(ifClose2)
+        close(launch1)
+    }
+}
+
+const close = (elt) => {
+    elt.style.display = 'none'
+}
+
+const launch = (elt) => {
+    elt.style.display = 'block'
+}
