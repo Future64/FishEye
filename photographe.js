@@ -28,6 +28,13 @@ const initPhotograph = async() => {
     const spanArrowDown = createDomElement("fas", "i")
     const spanArrowUp = createDomElement("fas", "i")
     const mediaZoneContainer = createDomElement("mediaZoneContainer", "div")
+    const likeAndPriceBottom = createDomElement("likeAndPriceBottom", "div")
+    const likeAndPriceBox = createDomElement("likeAndPriceBox", "div")
+    const likeAndPriceZoneLike = createDomElement("likeAndPriceZoneLike", "div")
+    const likeAndPriceZonePrice = createDomElement("likeAndPriceZonePrice", "div")
+    const likeAndPriceLike = createDomElement("likeAndPriceLike", "span")
+    const likeAndPriceHeart = createDomElement("fas", "i")
+    const likeAndPricePrice = createDomElement("likeAndPricePrice", "span")
 
     // Ajout de class
     spanArrowDown.classList.add("fa-chevron-down");
@@ -37,6 +44,9 @@ const initPhotograph = async() => {
     dropdownContent.style.display = 'none'
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
+
+
+    likeAndPriceHeart.classList.add("fa-heart")
 
     // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
@@ -76,6 +86,8 @@ const initPhotograph = async() => {
     dropdownBtn.innerHTML = "Popularité"
     dropdownDate.innerHTML = "Date"
     dropdownTitle.innerHTML = "Titre"
+    likeAndPriceLike.innerHTML = "680"
+    likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
 
     // mediaImage.innerHTML = ""
     console.log(data.media[0].title)
@@ -86,6 +98,7 @@ const initPhotograph = async() => {
     sectionPhotograph.append(photoProfilPhotograh)
     sectionPhotograph.append(sortZone)
     sectionPhotograph.append(mediaZoneContainer)
+    sectionPhotograph.append(likeAndPriceBottom)
 
     containerCardPhotograph.append(indexCardPhotograph)
     indexCardPhotograph.append(photoProfilPhotograh)
@@ -102,6 +115,13 @@ const initPhotograph = async() => {
     dropdownContainer.append(dropdownContent)
     dropdownContent.append(dropdownDate)
     dropdownContent.append(dropdownTitle)
+
+    likeAndPriceBottom.append(likeAndPriceBox)
+    likeAndPriceBox.append(likeAndPriceZoneLike)
+    likeAndPriceBox.append(likeAndPriceZonePrice)
+    likeAndPriceZoneLike.append(likeAndPriceLike)
+    likeAndPriceZoneLike.append(likeAndPriceHeart)
+    likeAndPriceZonePrice.append(likeAndPricePrice)
 
 
     for (let i = 0; i < data.media.length; i++) {

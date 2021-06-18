@@ -124,6 +124,11 @@
     margin-left: 5px;
 }
 
+.fa-chevron-down,
+.fa-chevron-up {
+    margin-left: 20px;
+}
+
 .mediaNbLike {
     margin-left: 8px;
 }
@@ -146,6 +151,11 @@
     justify-content: flex-start;
     left: 11rem;
     padding: .625rem 1.25rem;
+}
+
+.dropdownDate:hover,
+.dropdownTitle:hover {
+    opacity: 0.83;
 }
 
 .dropdownTitle {
@@ -182,4 +192,35 @@
 .far,
 .fas {
     cursor: pointer;
+}
+
+.likeAndPriceBottom {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    bottom: 0;
+    right: 50px;
+    width: 21rem;
+    background: #db8876;
+    height: 70px;
+    border-radius: .3125rem;
+}
+
+.likeAndPriceBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.likeAndPriceLike,
+.likeAndPriceHeart,
+.likeAndPricePrice {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.likeAndPriceZoneLike {
+    margin-right: 105px;
 }
