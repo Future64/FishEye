@@ -16,8 +16,8 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    left: 50px;
-    width: 80vw;
+    left: 8%;
+    /* width: 80vw; */
 }
 
 .containerCardPhotograph {
@@ -91,6 +91,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    width: 70vw;
 }
 
 .mediaTitle,
