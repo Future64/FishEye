@@ -3,9 +3,32 @@ import { initCache, createDomElement } from './tools.js'
 const initPhotograph = async() => {
     const data = await initCache()
 
-    console.log(data.photographers[0])
+    const mediaTracy = [
+        [data.media[0].image, data.media[1].image, data.media[2].image, data.media[3].image, data.media[4].image, data.media[5].image, data.media[6].image, data.media[7].image, data.media[8].image, data.media[9].image]
+    ]
 
-    // Selection de la balise Html avec sa classe
+    const mediaRhode = [
+        [data.media[10].image, data.media[11].image, data.media[12].image, data.media[13].image, data.media[14].image, data.media[15].image, data.media[16].image, data.media[17].image, data.media[18].image]
+    ]
+
+    const mediaNabeel = [
+        [data.media[19].image, data.media[20].image, data.media[21].image, data.media[22].image, data.media[23].image, data.media[24].image, data.media[25].image, data.media[26].image, data.media[27].image]
+    ]
+
+    const mediaMimi = [
+        [data.media[28].image, data.media[29].image, data.media[30].image, data.media[31].image, data.media[32].image, data.media[33].image, data.media[34].image, data.media[35].image, data.media[36].image, data.media[37].image]
+    ]
+
+    const mediaMarcel = [
+        [data.media[38].image, data.media[39].image, data.media[40].image, data.media[41].image, data.media[42].image, data.media[43].image, data.media[44].image, data.media[45].image, data.media[46].image, data.media[47].image]
+    ]
+
+    const mediaEllie = [
+        [data.media[48].image, data.media[49].image, data.media[50].image, data.media[51].image, data.media[52].image, data.media[53].image, data.media[54].image, data.media[55].image, data.media[56].image, data.media[57].image, data.media[58].image]
+    ]
+
+    console.log(data.media)
+        // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
     // Creation des DomElements et des classes pour les DomElements
@@ -45,11 +68,14 @@ const initPhotograph = async() => {
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
 
+    // let urlImage = ""
 
     likeAndPriceHeart.classList.add("fa-heart")
 
     // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
+
+
 
     // Récpération tableau des tags dans le json
     let tagArray = data.photographers[0].tags
@@ -89,10 +115,6 @@ const initPhotograph = async() => {
     likeAndPriceLike.innerHTML = "680"
     likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
 
-    // mediaImage.innerHTML = ""
-    console.log(data.media[0].title)
-        // priceBodyCard.innerHTML = data.photographers[i].price + "€/jour"
-
     // Attacher les DomElements entre eux
     sectionPhotograph.append(containerCardPhotograph)
     sectionPhotograph.append(photoProfilPhotograh)
@@ -124,7 +146,8 @@ const initPhotograph = async() => {
     likeAndPriceZonePrice.append(likeAndPricePrice)
 
 
-    for (let i = 0; i < data.media.length; i++) {
+    const createMedia = (urlImage, i, title, price, nblike) => {
+
         const mediaZone = createDomElement("mediaZone", "div")
         const mediaCard = createDomElement("mediaCard", "div")
         const mediaLink = createDomElement("mediaLink", "a")
@@ -137,24 +160,24 @@ const initPhotograph = async() => {
         const mediaHeart = createDomElement("far", "i")
         const mediaHeart2 = createDomElement("fas", "i")
 
-        let urlImage = "./medias/Tracy/" + data.media[i].image
+
+
+
 
         mediaHeart.classList.add("fa-heart");
         mediaHeart2.classList.add("fa-heart");
 
         mediaHeart.style.display = 'block'
         mediaHeart2.style.display = 'none'
-        const nbLikeInt = parseInt(data.media[i].likes, 10)
 
         mediaImage.setAttribute("src", urlImage)
 
-        mediaTitle.innerHTML = data.media[i].title
-        mediaPrice.innerHTML = data.media[i].price + " €"
-        mediaNbLike.innerHTML = nbLikeInt
-        parseInt(mediaNbLike)
-        console.log(mediaNbLike)
+        mediaTitle.innerHTML = title
+        mediaPrice.innerHTML = price + " €"
+        mediaNbLike.innerHTML = nblike
+
         mediaLike.addEventListener("click", () => {
-            display2(mediaHeart, mediaHeart2, nbLikeInt)
+            display2(mediaHeart, mediaHeart2)
         })
 
         mediaZoneContainer.append(mediaZone)
@@ -169,6 +192,20 @@ const initPhotograph = async() => {
         mediaLike.append(mediaNbLike)
         mediaLike.append(mediaHeart, mediaHeart2)
             // mediaLike.append()
+
+    }
+
+
+    for (let i = 0; i < data.media.length; i++) {
+        let urlImage = ""
+        for (let t = 0; t < mediaMimi.length; t++) {
+
+            urlImage = "./medias/Mimi/" + mediaMimi[t][i]
+        }
+
+
+        const nbLikeInt = parseInt(data.media[i].likes, 10)
+        createMedia(urlImage, [i], data.media[i].title, data.media[i].price, nbLikeInt)
     }
 }
 
@@ -190,15 +227,15 @@ const display = (firstElt, secondtElt, thirdtElt) => {
     }
 }
 
-const display2 = (firstElt, secondtElt, int) => {
+const display2 = (firstElt, secondtElt) => {
     if (firstElt.style.display == 'block') {
         close(firstElt)
         launch(secondtElt)
-        int + 1
+            // int + 1
     } else {
         close(secondtElt)
         launch(firstElt)
-        int - 1
+            // int - 1
     }
 }
 

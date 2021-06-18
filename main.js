@@ -1,6 +1,6 @@
 import { initCache, createHeader, createDomElement } from './tools.js'
 
-const init = async() => {
+const initMain = async() => {
     const data = await initCache()
     createHeader(data)
 
@@ -22,7 +22,7 @@ const init = async() => {
         const navTags = createDomElement("navTags", "nav", "navTagsCard")
 
         // Ajout d'attribut au DomElement
-        headerCardLink.setAttribute("href", "./photographe.html")
+        headerCardLink.setAttribute("href", "./photographe.html?id=" + data.photographers[i].id)
 
         //Initialisation de la variable url
         let url = "./medias/PhotographersID-Photos/" + data.photographers[i].portrait
@@ -66,4 +66,4 @@ const init = async() => {
     }
 }
 
-init()
+initMain()
