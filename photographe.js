@@ -1,6 +1,7 @@
-import { initCache, createDomElement } from './tools.js'
+import { initCache, createDomElement, display, displayHeart, launch } from './tools.js'
 
-const initPhotograph = async() => {
+
+export const initPhotograph = async() => {
     const data = await initCache()
 
     const mediaTracy = [
@@ -29,18 +30,21 @@ const initPhotograph = async() => {
 
     console.log(data.media)
         // Selection de la balise Html avec sa classe
+
     const sectionPhotograph = document.querySelector('.photographe--section')
 
     // Creation des DomElements et des classes pour les DomElements
     const containerCardPhotograph = createDomElement("containerCardPhotograph", "div")
+    const mainPhotograph = document.querySelector('.mainPhotograph')
     const indexCardPhotograph = createDomElement("index--card-photograph", "div")
-    const photographInfo = createDomElement("photographInfo", "div")
+
     const photoProfilPhotograh = createDomElement("photoProfil-photograph", "div")
     const nameHeaderPhotograph = createDomElement("name--header-card-photograph", "p")
     const indexBodyCardPhotograph = createDomElement("index--body-card-photograph", "div")
     const locationBodyCardPhotograph = createDomElement("location--body-card-photograph", "p")
     const citationBodyCardPhotograph = createDomElement("citation--body-card", "p")
     const navTagsPhotograph = createDomElement("navTags-photograph", "nav")
+    const contactMe = createDomElement("contactMe", "div")
     const sortZone = createDomElement("sortZone", "div")
     const spanSort = createDomElement("spanSort", "span")
     const dropdownContainer = createDomElement("dropdownContainer", "div")
@@ -59,14 +63,32 @@ const initPhotograph = async() => {
     const likeAndPriceHeart = createDomElement("fas", "i")
     const likeAndPricePrice = createDomElement("likeAndPricePrice", "span")
 
+    const formPage = createDomElement("formPage", "div")
+    const formContainer = createDomElement("formContainer", "div")
+    const form = createDomElement("formContainer", "form")
+    const formHeader = createDomElement("formHeader", "div")
+    const formH1 = createDomElement("formH1", "h1")
+    const formClose = createDomElement("formClose", "div")
+    const formCloseIcone = createDomElement("fas", "i")
+
+
+
+
+    const displayForm = () => {
+        formPage.style.display = "block"
+    }
+
     // Ajout de class
     spanArrowDown.classList.add("fa-chevron-down");
     spanArrowUp.classList.add("fa-chevron-up");
+    formCloseIcone.classList.add("fa-times");
 
     // Affichage par défault
     dropdownContent.style.display = 'none'
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
+    formPage.style.display = "none"
+
 
     // let urlImage = ""
 
@@ -85,6 +107,18 @@ const initPhotograph = async() => {
         display(dropdownContent, spanArrowUp, spanArrowDown)
     })
 
+    contactMe.addEventListener("click", () => {
+        launch(formPage)
+    })
+
+    formClose.addEventListener("click", () => {
+        closeForm(formPage)
+    })
+
+    const closeForm = (truc) => {
+        truc.style.display = "none"
+    }
+
 
 
     // Assigne la variable url pour les chemins des photos de profils
@@ -98,114 +132,127 @@ const initPhotograph = async() => {
         tag.setAttribute("href", "#")
         tag.ariaLabel = ("Tag " + tagArray[t])
         tag.innerHTML += "#" + tagArray[t]
+
         navTagsPhotograph.append(tag)
     }
 
 
 
-    // Afficher les informations dans les DomElements
-    photoProfilPhotograh.innerHTML = ""
-    nameHeaderPhotograph.innerHTML = data.photographers[0].name
-    locationBodyCardPhotograph.innerHTML = data.photographers[0].city + ", " + data.photographers[0].country
-    citationBodyCardPhotograph.innerHTML = data.photographers[0].tagline
-    spanSort.innerHTML = "Trier par"
-    dropdownBtn.innerHTML = "Popularité"
-    dropdownDate.innerHTML = "Date"
-    dropdownTitle.innerHTML = "Titre"
-    likeAndPriceLike.innerHTML = "680"
-    likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
-
-    // Attacher les DomElements entre eux
-    sectionPhotograph.append(containerCardPhotograph)
-    sectionPhotograph.append(photoProfilPhotograh)
-    sectionPhotograph.append(sortZone)
-    sectionPhotograph.append(mediaZoneContainer)
-    sectionPhotograph.append(likeAndPriceBottom)
-
-    containerCardPhotograph.append(indexCardPhotograph)
-    indexCardPhotograph.append(photoProfilPhotograh)
-    containerCardPhotograph.append(indexBodyCardPhotograph)
-    indexBodyCardPhotograph.append(nameHeaderPhotograph)
-    indexBodyCardPhotograph.append(locationBodyCardPhotograph)
-    indexBodyCardPhotograph.append(citationBodyCardPhotograph)
-    indexBodyCardPhotograph.append(navTagsPhotograph)
-    sortZone.append(spanSort)
-    sortZone.append(dropdownContainer)
-    dropdownContainer.append(dropdownBtn)
-    dropdownBtn.append(spanArrowDown)
-    dropdownBtn.append(spanArrowUp)
-    dropdownContainer.append(dropdownContent)
-    dropdownContent.append(dropdownDate)
-    dropdownContent.append(dropdownTitle)
-
-    likeAndPriceBottom.append(likeAndPriceBox)
-    likeAndPriceBox.append(likeAndPriceZoneLike)
-    likeAndPriceBox.append(likeAndPriceZonePrice)
-    likeAndPriceZoneLike.append(likeAndPriceLike)
-    likeAndPriceZoneLike.append(likeAndPriceHeart)
-    likeAndPriceZonePrice.append(likeAndPricePrice)
-
-
-    const createMedia = (urlImage, i, title, price, nblike) => {
-
-        const mediaZone = createDomElement("mediaZone", "div")
-        const mediaCard = createDomElement("mediaCard", "div")
-        const mediaLink = createDomElement("mediaLink", "a")
-        const mediaImage = createDomElement("mediaImage", "img")
-        const mediaInfo = createDomElement("mediaInfo", "div")
-        const mediaTitle = createDomElement("mediaTitle", "h2")
-        const mediaPrice = createDomElement("mediaPrice", "span")
-        const mediaLike = createDomElement("mediaLike", "div")
-        const mediaNbLike = createDomElement("mediaNbLike", "span")
-        const mediaHeart = createDomElement("far", "i")
-        const mediaHeart2 = createDomElement("fas", "i")
-
-
-
-
-
-        mediaHeart.classList.add("fa-heart");
-        mediaHeart2.classList.add("fa-heart");
-
-        mediaHeart.style.display = 'block'
-        mediaHeart2.style.display = 'none'
-
-        mediaImage.setAttribute("src", urlImage)
-
-        mediaTitle.innerHTML = title
-        mediaPrice.innerHTML = price + " €"
-        mediaNbLike.innerHTML = nblike
-
-        mediaLike.addEventListener("click", () => {
-            display2(mediaHeart, mediaHeart2)
-        })
-
-        mediaZoneContainer.append(mediaZone)
-        mediaZone.append(mediaCard)
-        mediaCard.append(mediaLink)
-        mediaCard.append(mediaInfo)
-        mediaLink.append(mediaImage)
-        mediaInfo.append(mediaTitle)
-            // mediaInfo.append()
-        mediaInfo.append(mediaLike)
-        mediaLike.append(mediaPrice)
-        mediaLike.append(mediaNbLike)
-        mediaLike.append(mediaHeart, mediaHeart2)
-            // mediaLike.append()
-
-    }
-
 
     for (let i = 0; i < data.media.length; i++) {
+
+        const likeBottom = data.media[i].likes * data.media[i].likes
+            // Afficher les informations dans les DomElements
+        photoProfilPhotograh.innerHTML = ""
+        nameHeaderPhotograph.innerHTML = data.photographers[0].name
+        locationBodyCardPhotograph.innerHTML = data.photographers[0].city + ", " + data.photographers[0].country
+        citationBodyCardPhotograph.innerHTML = data.photographers[0].tagline
+        contactMe.innerHTML = "Contactez moi"
+        spanSort.innerHTML = "Trier par"
+        dropdownBtn.innerHTML = "Popularité"
+        dropdownDate.innerHTML = "Date"
+        dropdownTitle.innerHTML = "Titre"
+        likeAndPriceLike.innerHTML = likeBottom
+        likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
+        formH1.innerHTML = "Contactez-moi " + data.photographers[0].name
+
+        // Attacher les DomElements entre eux
+        formPage.append(formContainer)
+        mainPhotograph.append(formPage)
+        formContainer.append(form)
+        form.append(formHeader)
+        formHeader.append(formH1)
+        formHeader.append(formClose)
+        formClose.append(formCloseIcone)
+        sectionPhotograph.append(containerCardPhotograph)
+        sectionPhotograph.append(contactMe)
+        sectionPhotograph.append(photoProfilPhotograh)
+        sectionPhotograph.append(sortZone)
+        sectionPhotograph.append(mediaZoneContainer)
+        sectionPhotograph.append(likeAndPriceBottom)
+        containerCardPhotograph.append(indexCardPhotograph)
+        indexCardPhotograph.append(photoProfilPhotograh)
+        containerCardPhotograph.append(indexBodyCardPhotograph)
+        indexBodyCardPhotograph.append(nameHeaderPhotograph)
+        indexBodyCardPhotograph.append(locationBodyCardPhotograph)
+        indexBodyCardPhotograph.append(citationBodyCardPhotograph)
+        indexBodyCardPhotograph.append(navTagsPhotograph)
+        sortZone.append(spanSort)
+        sortZone.append(dropdownContainer)
+        dropdownContainer.append(dropdownBtn)
+        dropdownBtn.append(spanArrowDown)
+        dropdownBtn.append(spanArrowUp)
+        dropdownContainer.append(dropdownContent)
+        dropdownContent.append(dropdownDate)
+        dropdownContent.append(dropdownTitle)
+        likeAndPriceBottom.append(likeAndPriceBox)
+        likeAndPriceBox.append(likeAndPriceZoneLike)
+        likeAndPriceBox.append(likeAndPriceZonePrice)
+        likeAndPriceZoneLike.append(likeAndPriceLike)
+        likeAndPriceZoneLike.append(likeAndPriceHeart)
+        likeAndPriceZonePrice.append(likeAndPricePrice)
+
+
+
+
+        // Fonction qui permet d'afficher les médias
+        const createMedia = (urlImage, i, title, price, nblike) => {
+
+            const mediaZone = createDomElement("mediaZone", "div")
+            const mediaCard = createDomElement("mediaCard", "div")
+            const mediaLink = createDomElement("mediaLink", "a")
+            const mediaImage = createDomElement("mediaImage", "img")
+            const mediaInfo = createDomElement("mediaInfo", "div")
+            const mediaTitle = createDomElement("mediaTitle", "h2")
+            const mediaPrice = createDomElement("mediaPrice", "span")
+            const mediaLike = createDomElement("mediaLike", "div")
+            const mediaNbLike = createDomElement("mediaNbLike", "span")
+            const mediaHeart = createDomElement("far", "i")
+            const mediaHeart2 = createDomElement("fas", "i")
+
+
+            const nnL = parseInt(mediaNbLike.value)
+            mediaHeart.classList.add("fa-heart");
+            mediaHeart2.classList.add("fa-heart");
+
+            mediaHeart.style.display = 'block'
+            mediaHeart2.style.display = 'none'
+
+            mediaImage.setAttribute("src", urlImage)
+
+            mediaTitle.innerHTML = title
+            mediaPrice.innerHTML = price + " €"
+            mediaNbLike.innerHTML = nblike
+
+            mediaLike.addEventListener("click", () => {
+                displayHeart(mediaHeart, mediaHeart2, nnL)
+            })
+            console.log(nnL)
+
+            mediaZoneContainer.append(mediaZone)
+            mediaZone.append(mediaCard)
+            mediaCard.append(mediaLink)
+            mediaCard.append(mediaInfo)
+            mediaLink.append(mediaImage)
+            mediaInfo.append(mediaTitle)
+                // mediaInfo.append()
+            mediaInfo.append(mediaLike)
+            mediaLike.append(mediaPrice)
+            mediaLike.append(mediaNbLike)
+            mediaLike.append(mediaHeart, mediaHeart2)
+        }
+
+        // Boucle sur la la fonction createMedia
+
         let urlImage = ""
+
         for (let t = 0; t < mediaMimi.length; t++) {
 
             urlImage = "./medias/Mimi/" + mediaMimi[t][i]
+            const nbLikeInt = parseInt(data.media[i].likes, 10)
+            createMedia(urlImage, [i], data.media[i].title, data.media[i].price, nbLikeInt)
         }
 
-
-        const nbLikeInt = parseInt(data.media[i].likes, 10)
-        createMedia(urlImage, [i], data.media[i].title, data.media[i].price, nbLikeInt)
     }
 }
 
@@ -214,35 +261,3 @@ initPhotograph()
 
 /************************************************/
 /**************** FONCTION **********************/
-
-const display = (firstElt, secondtElt, thirdtElt) => {
-    if (firstElt.style.display == 'none') {
-        launch(firstElt)
-        close(thirdtElt)
-        launch(secondtElt)
-    } else {
-        close(firstElt)
-        launch(thirdtElt)
-        close(secondtElt)
-    }
-}
-
-const display2 = (firstElt, secondtElt) => {
-    if (firstElt.style.display == 'block') {
-        close(firstElt)
-        launch(secondtElt)
-            // int + 1
-    } else {
-        close(secondtElt)
-        launch(firstElt)
-            // int - 1
-    }
-}
-
-const close = (elt) => {
-    elt.style.display = 'none'
-}
-
-const launch = (elt) => {
-    elt.style.display = 'block'
-}

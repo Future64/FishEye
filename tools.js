@@ -44,3 +44,35 @@ export const createHeader = (obj) => {
         headerNavTags.append(headerLink)
     }
 }
+
+export const display = (firstElt, secondtElt, thirdtElt) => {
+    if (firstElt.style.display == 'none') {
+        launch(firstElt)
+        closeWindow(thirdtElt)
+        launch(secondtElt)
+    } else {
+        closeWindow(firstElt)
+        launch(thirdtElt)
+        close(secondtElt)
+    }
+}
+
+export const displayHeart = (firstElt, secondtElt, mainLike) => {
+    if (firstElt.style.display == 'block') {
+        closeWindow(firstElt)
+        launch(secondtElt)
+        mainLike++
+    } else {
+        closeWindow(secondtElt)
+        launch(firstElt)
+        mainLike--
+    }
+}
+
+export const closeWindow = (elt) => {
+    elt.style.display = 'none'
+}
+
+export const launch = (elt) => {
+    elt.style.display = 'block'
+}
