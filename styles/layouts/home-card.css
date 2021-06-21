@@ -36,6 +36,10 @@
 }
 
 .name--header-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     color: var(--color2);
     font-size: 30px;
     margin-bottom: 10px;
