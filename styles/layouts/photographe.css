@@ -396,7 +396,7 @@ form {
         width: 83vw;
     }
     .mediaImage {
-        position: relative;
+        /* position: relative; */
         border-radius: .3125rem;
         height: 11.875rem;
         object-fit: cover;
@@ -419,6 +419,9 @@ form {
     }
     .formH1 {
         left: 0px;
+    }
+    .mediaImage {
+        position: relative;
     }
 }
 
