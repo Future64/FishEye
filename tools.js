@@ -53,7 +53,7 @@ export const display = (firstElt, secondtElt, thirdtElt) => {
     } else {
         closeWindow(firstElt)
         launch(thirdtElt)
-        close(secondtElt)
+        closeWindow(secondtElt)
     }
 }
 

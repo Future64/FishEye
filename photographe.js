@@ -28,16 +28,13 @@ export const initPhotograph = async() => {
         [data.media[48].image, data.media[49].image, data.media[50].image, data.media[51].image, data.media[52].image, data.media[53].image, data.media[54].image, data.media[55].image, data.media[56].image, data.media[57].image, data.media[58].image]
     ]
 
-    console.log(data.media)
-        // Selection de la balise Html avec sa classe
-
+    // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
     // Creation des DomElements et des classes pour les DomElements
     const containerCardPhotograph = createDomElement("containerCardPhotograph", "div")
     const mainPhotograph = document.querySelector('.mainPhotograph')
     const indexCardPhotograph = createDomElement("index--card-photograph", "div")
-
     const photoProfilPhotograh = createDomElement("photoProfil-photograph", "div")
     const nameHeaderPhotograph = createDomElement("name--header-card-photograph", "p")
     const indexBodyCardPhotograph = createDomElement("index--body-card-photograph", "div")
@@ -62,10 +59,9 @@ export const initPhotograph = async() => {
     const likeAndPriceLike = createDomElement("likeAndPriceLike", "span")
     const likeAndPriceHeart = createDomElement("fas", "i")
     const likeAndPricePrice = createDomElement("likeAndPricePrice", "span")
-
     const formPage = createDomElement("formPage", "div")
     const formContainer = createDomElement("formContainer", "div")
-    const form = createDomElement("formContainer", "form")
+    const form = createDomElement("form", "form")
     const formHeader = createDomElement("formHeader", "div")
     const formH1 = createDomElement("formH1", "h1")
     const formClose = createDomElement("formClose", "div")
@@ -93,7 +89,9 @@ export const initPhotograph = async() => {
     spanArrowDown.classList.add("fa-chevron-down");
     spanArrowUp.classList.add("fa-chevron-up");
     formCloseIcone.classList.add("fa-times");
+    likeAndPriceHeart.classList.add("fa-heart")
 
+    // Ajout des attributs
     formFirstLabel.setAttribute("for", "formFirstInput")
     formLastLabel.setAttribute("for", "formLastInput")
     formEmailLabel.setAttribute("for", "formEmailInput")
@@ -114,17 +112,12 @@ export const initPhotograph = async() => {
     spanArrowUp.style.display = 'none'
     formPage.style.display = "none"
 
-    // let urlImage = ""
-
-    likeAndPriceHeart.classList.add("fa-heart")
-
     // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
 
-
-
     // Récpération tableau des tags dans le json
     let tagArray = data.photographers[0].tags
+
 
     // Events
     dropdownBtn.addEventListener("click", () => {
@@ -149,6 +142,8 @@ export const initPhotograph = async() => {
     photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
     photoProfilPhotograh.style.backgroundSize = "cover"
 
+
+
     // Boucle de récpération et de création des l'élements tag 
     for (let t = 0; t < tagArray.length; t++) {
         let tag = createDomElement("nav-tag", "a")
@@ -159,7 +154,6 @@ export const initPhotograph = async() => {
 
         navTagsPhotograph.append(tag)
     }
-
 
 
 
@@ -235,8 +229,6 @@ export const initPhotograph = async() => {
         likeAndPriceZonePrice.append(likeAndPricePrice)
 
 
-
-
         // Fonction qui permet d'afficher les médias
         const createMedia = (urlImage, i, title, price, nblike) => {
 
@@ -252,8 +244,8 @@ export const initPhotograph = async() => {
             const mediaHeart = createDomElement("far", "i")
             const mediaHeart2 = createDomElement("fas", "i")
 
-
             const nnL = parseInt(mediaNbLike.value)
+
             mediaHeart.classList.add("fa-heart");
             mediaHeart2.classList.add("fa-heart");
 

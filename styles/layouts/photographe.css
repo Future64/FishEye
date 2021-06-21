@@ -257,6 +257,10 @@
 
 .formPage {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
     left: 0;
     z-index: 1000;
     height: 100vh;
@@ -265,7 +269,7 @@
 }
 
 .formContainer {
-    position: absolute;
+    position: fixed;
     top: 100px;
     left: 25%;
     right: 25%;
@@ -273,6 +277,7 @@
     height: 60vh;
     width: 600px;
     background-color: #db8876;
+    border-radius: .3rem;
 }
 
 .formHeader {
@@ -289,6 +294,7 @@
     line-height: 50px;
     margin: 0;
     color: black;
+    margin-left: 35px;
 }
 
 .formClose {
@@ -313,30 +319,34 @@
 .formFirstBox {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 70px;
+    margin-left: 35px;
 }
 
 .formLastBox {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    margin-left: 35px;
 }
 
 .formEmailBox {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    margin-left: 35px;
 }
 
 .formMsgBox {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
+    margin-left: 35px;
 }
 
 .formMsgInput {
-    height: 80px;
-    width: 550px;
+    height: 120px;
+    width: 520px;
     border-radius: .3rem;
     border: none;
     font-size: 20px;
@@ -345,7 +355,7 @@
 .formFirstInput,
 .formLastInput,
 .formEmailInput {
-    width: 550px;
+    width: 520px;
     height: 35px;
     border-radius: .3rem;
     border: none;
@@ -376,4 +386,5 @@
     cursor: pointer;
     font-size: 20px;
     margin-top: 50px;
+    margin-left: 35px;
 }

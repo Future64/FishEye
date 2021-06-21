@@ -7,7 +7,9 @@
     --color4: #525252;
 }
 
-body {
+body,
+input,
+textarea {
     font-family: 'DM Sans', sans-serif;
 }
 

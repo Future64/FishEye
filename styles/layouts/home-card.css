@@ -81,6 +81,11 @@
     cursor: pointer;
 }
 
+.nav-tag:hover {
+    background-color: var(--color1);
+    color: white;
+}
+
 .index--body-card {
     display: flex;
     flex-direction: column;
