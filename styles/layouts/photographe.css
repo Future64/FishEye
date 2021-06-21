@@ -238,7 +238,7 @@
 
 .contactMe {
     position: absolute;
-    top: 2%;
+    top: 150px;
     left: 40%;
     background: #901c1c;
     border: .5px solid var(--color3);
@@ -299,4 +299,60 @@
 .fa-times {
     color: white;
     font-size: 30px;
+}
+
+
+/* form {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 350px;
+} */
+
+.formFirstBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.formLastBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formEmailBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formMsgBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.formMsgInput {
+    height: 80px;
+    width: 300px;
+    border-radius: .3rem;
+    border: none;
+}
+
+.formFirstInput,
+.formLastInput,
+.formEmailInput {
+    width: 300px;
+    height: 30px;
+    border-radius: .3rem;
+    border: none;
+}
+
+.formFirstLabel,
+.formLastLabel,
+.formEmailLabel,
+.formMsgLabel {
+    font-size: 30px;
+    margin-bottom: 10px;
 }

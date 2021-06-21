@@ -70,8 +70,18 @@ export const initPhotograph = async() => {
     const formH1 = createDomElement("formH1", "h1")
     const formClose = createDomElement("formClose", "div")
     const formCloseIcone = createDomElement("fas", "i")
-
-
+    const formFirstBox = createDomElement("formFirstBox", "div")
+    const formFirstLabel = createDomElement("formFirstLabel", "label")
+    const formFirstInput = createDomElement("formFirstInput", "input")
+    const formLastBox = createDomElement("formLastBox", "div")
+    const formLastLabel = createDomElement("formLastLabel", "label")
+    const formLastInput = createDomElement("formLastInput", "input")
+    const formEmailBox = createDomElement("formEmailBox", "div")
+    const formEmailLabel = createDomElement("formEmailLabel", "label")
+    const formEmailInput = createDomElement("formEmailInput", "input")
+    const formMsgBox = createDomElement("formEmailBox", "div")
+    const formMsgLabel = createDomElement("formEmailLabel", "label")
+    const formMsgInput = createDomElement("formEmailInput", "input")
 
 
     const displayForm = () => {
@@ -83,12 +93,25 @@ export const initPhotograph = async() => {
     spanArrowUp.classList.add("fa-chevron-up");
     formCloseIcone.classList.add("fa-times");
 
+    formFirstLabel.setAttribute("for", "formFirstInput")
+    formLastLabel.setAttribute("for", "formLastInput")
+    formEmailLabel.setAttribute("for", "formEmailInput")
+    formMsgLabel.setAttribute("for", "formMsgInput")
+    formFirstInput.setAttribute("placeholder", "Prénom")
+    formFirstInput.setAttribute("id", "formFirstInput")
+    formLastInput.setAttribute("placeholder", "Nom")
+    formLastInput.setAttribute("id", "formLastInput")
+    formEmailInput.setAttribute("placeholder", "Email")
+    formEmailInput.setAttribute("id", "formEmailInput")
+    formMsgInput.setAttribute("placeholder", "Votre message...")
+    formMsgInput.setAttribute("id", "formMsgInput")
+
+
     // Affichage par défault
     dropdownContent.style.display = 'none'
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
     formPage.style.display = "none"
-
 
     // let urlImage = ""
 
@@ -115,8 +138,8 @@ export const initPhotograph = async() => {
         closeForm(formPage)
     })
 
-    const closeForm = (truc) => {
-        truc.style.display = "none"
+    const closeForm = (Elt) => {
+        Elt.style.display = "none"
     }
 
 
@@ -155,12 +178,28 @@ export const initPhotograph = async() => {
         likeAndPriceLike.innerHTML = likeBottom
         likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
         formH1.innerHTML = "Contactez-moi " + data.photographers[0].name
+        formFirstLabel.innerHTML = "Prénom"
+        formLastLabel.innerHTML = "Nom"
+        formEmailLabel.innerHTML = "Email"
+        formMsgLabel.innerHTML = "Votre message"
 
         // Attacher les DomElements entre eux
-        formPage.append(formContainer)
         mainPhotograph.append(formPage)
+        formPage.append(formContainer)
         formContainer.append(form)
         form.append(formHeader)
+        form.append(formFirstBox)
+        form.append(formLastBox)
+        form.append(formEmailBox)
+        form.append(formMsgBox)
+        formFirstBox.append(formFirstLabel)
+        formLastBox.append(formLastLabel)
+        formEmailBox.append(formEmailLabel)
+        formMsgBox.append(formMsgLabel)
+        formFirstBox.append(formFirstInput)
+        formLastBox.append(formLastInput)
+        formEmailBox.append(formEmailInput)
+        formMsgBox.append(formMsgInput)
         formHeader.append(formH1)
         formHeader.append(formClose)
         formClose.append(formCloseIcone)
