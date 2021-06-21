@@ -181,6 +181,7 @@ export const initPhotograph = async() => {
         formValidBtn.innerHTML = "Envoyer"
 
         // Attacher les DomElements entre eux
+        mainPhotograph.append(contactMe)
         mainPhotograph.append(formPage)
         formPage.append(formContainer)
         formContainer.append(form)
@@ -202,7 +203,6 @@ export const initPhotograph = async() => {
         formHeader.append(formClose)
         formClose.append(formCloseIcone)
         sectionPhotograph.append(containerCardPhotograph)
-        sectionPhotograph.append(contactMe)
         sectionPhotograph.append(photoProfilPhotograh)
         sectionPhotograph.append(sortZone)
         sectionPhotograph.append(mediaZoneContainer)
