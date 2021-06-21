@@ -81,7 +81,8 @@ export const initPhotograph = async() => {
     const formEmailInput = createDomElement("formEmailInput", "input")
     const formMsgBox = createDomElement("formEmailBox", "div")
     const formMsgLabel = createDomElement("formEmailLabel", "label")
-    const formMsgInput = createDomElement("formEmailInput", "input")
+    const formMsgInput = createDomElement("formMsgInput", "textarea")
+    const formValidBtn = createDomElement("formValidBtn", "button")
 
 
     const displayForm = () => {
@@ -182,6 +183,7 @@ export const initPhotograph = async() => {
         formLastLabel.innerHTML = "Nom"
         formEmailLabel.innerHTML = "Email"
         formMsgLabel.innerHTML = "Votre message"
+        formValidBtn.innerHTML = "Envoyer"
 
         // Attacher les DomElements entre eux
         mainPhotograph.append(formPage)
@@ -192,6 +194,7 @@ export const initPhotograph = async() => {
         form.append(formLastBox)
         form.append(formEmailBox)
         form.append(formMsgBox)
+        form.append(formValidBtn)
         formFirstBox.append(formFirstLabel)
         formLastBox.append(formLastLabel)
         formEmailBox.append(formEmailLabel)

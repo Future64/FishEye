@@ -288,6 +288,7 @@
     font-size: 40px;
     line-height: 50px;
     margin: 0;
+    color: black;
 }
 
 .formClose {
@@ -335,18 +336,20 @@
 
 .formMsgInput {
     height: 80px;
-    width: 300px;
+    width: 550px;
     border-radius: .3rem;
     border: none;
+    font-size: 20px;
 }
 
 .formFirstInput,
 .formLastInput,
 .formEmailInput {
-    width: 300px;
-    height: 30px;
+    width: 550px;
+    height: 35px;
     border-radius: .3rem;
     border: none;
+    font-size: 20px;
 }
 
 .formFirstLabel,
@@ -355,4 +358,22 @@
 .formMsgLabel {
     font-size: 30px;
     margin-bottom: 10px;
+}
+
+.formValidBtn {
+    /* position: absolute;
+    bottom: 60px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #901c1c;
+    border: .5px solid var(--color3);
+    border-radius: 5px;
+    border: none;
+    padding: 25px 90px;
+    color: #fff;
+    width: 110px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 50px;
 }
