@@ -1,9 +1,10 @@
 import { initCache, createDomElement, display, displayHeart, launch } from './tools.js'
-
+// import { initMedia } from './media.js'
 
 export const initPhotograph = async() => {
     const data = await initCache()
 
+    // Tableau de récupération des images pour les assigner aux photographes
     const mediaTracy = [
         [data.media[0].image, data.media[1].image, data.media[2].image, data.media[3].image, data.media[4].image, data.media[5].image, data.media[6].image, data.media[7].image, data.media[8].image, data.media[9].image]
     ]
@@ -27,6 +28,8 @@ export const initPhotograph = async() => {
     const mediaEllie = [
         [data.media[48].image, data.media[49].image, data.media[50].image, data.media[51].image, data.media[52].image, data.media[53].image, data.media[54].image, data.media[55].image, data.media[56].image, data.media[57].image, data.media[58].image]
     ]
+
+
 
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
@@ -155,8 +158,6 @@ export const initPhotograph = async() => {
         navTagsPhotograph.append(tag)
     }
 
-
-
     for (let i = 0; i < data.media.length; i++) {
 
         const likeBottom = data.media[i].likes * data.media[i].likes
@@ -231,7 +232,7 @@ export const initPhotograph = async() => {
 
         // Fonction qui permet d'afficher les médias
         const createMedia = (urlImage, i, title, price, nblike) => {
-
+            // Creation des DomElements et des classes pour les DomElements
             const mediaZone = createDomElement("mediaZone", "div")
             const mediaCard = createDomElement("mediaCard", "div")
             const mediaLink = createDomElement("mediaLink", "a")
@@ -246,30 +247,34 @@ export const initPhotograph = async() => {
 
             const nnL = parseInt(mediaNbLike.value)
 
+            // Ajout de class
             mediaHeart.classList.add("fa-heart");
             mediaHeart2.classList.add("fa-heart");
 
+            // Affichage par defaut
             mediaHeart.style.display = 'block'
             mediaHeart2.style.display = 'none'
 
+            // Ajout d'atributs
             mediaImage.setAttribute("src", urlImage)
 
+            // Afficher les informations dans les DomElements
             mediaTitle.innerHTML = title
             mediaPrice.innerHTML = price + " €"
             mediaNbLike.innerHTML = nblike
 
+            // Event
             mediaLike.addEventListener("click", () => {
                 displayHeart(mediaHeart, mediaHeart2, nnL)
             })
-            console.log(nnL)
 
+            // Attacher les DomElements entre eux
             mediaZoneContainer.append(mediaZone)
             mediaZone.append(mediaCard)
             mediaCard.append(mediaLink)
             mediaCard.append(mediaInfo)
             mediaLink.append(mediaImage)
             mediaInfo.append(mediaTitle)
-                // mediaInfo.append()
             mediaInfo.append(mediaLike)
             mediaLike.append(mediaPrice)
             mediaLike.append(mediaNbLike)
@@ -286,8 +291,9 @@ export const initPhotograph = async() => {
             const nbLikeInt = parseInt(data.media[i].likes, 10)
             createMedia(urlImage, [i], data.media[i].title, data.media[i].price, nbLikeInt)
         }
-
     }
+
+
 }
 
 initPhotograph()
