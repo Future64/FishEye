@@ -91,8 +91,7 @@ export const initPhotograph = async() => {
 
 
 
-    // Récpération tableau des tags dans le json
-    let tagArray = data.photographers[0].tags
+
 
 
     // Events
@@ -119,11 +118,13 @@ export const initPhotograph = async() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const photographID = urlParams.get('id')
+        // Récpération tableau des tags dans le json
 
 
     // fonction de création du header
     const createHeader = (data) => {
-        console.log(data)
+
+        const tagArray = data.tags
 
         nameHeaderPhotograph.innerHTML = data.name
         locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
@@ -132,6 +133,7 @@ export const initPhotograph = async() => {
 
         // Boucle de récpération et de création des l'élements tag 
         for (let t = 0; t < tagArray.length; t++) {
+            console.log(tagArray[t])
             let tag = createDomElement("nav-tag", "a")
             tag.id = "#" + tagArray[t]
             tag.setAttribute("href", "#")
@@ -178,7 +180,7 @@ export const initPhotograph = async() => {
 
 
     for (let i = 0; i < data.photographers.length; i++) {
-        console.log(data.photographers[i].name)
+
         const likeBottom = data.media[i].likes * data.media[i].likes
             // Afficher les informations dans les DomElements
         photoProfilPhotograh.innerHTML = ""
