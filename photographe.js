@@ -128,6 +128,7 @@ export const initPhotograph = async() => {
         nameHeaderPhotograph.innerHTML = data.name
         locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
         citationBodyCardPhotograph.innerHTML = data.tagline
+        formH1.innerHTML = "Contactez-moi " + data.name
 
         // Boucle de récpération et de création des l'élements tag 
         for (let t = 0; t < tagArray.length; t++) {
@@ -176,8 +177,8 @@ export const initPhotograph = async() => {
 
 
 
-    console.log(data.photographers.length)
     for (let i = 0; i < data.photographers.length; i++) {
+        console.log(data.photographers[i].name)
         const likeBottom = data.media[i].likes * data.media[i].likes
             // Afficher les informations dans les DomElements
         photoProfilPhotograh.innerHTML = ""
@@ -189,7 +190,7 @@ export const initPhotograph = async() => {
         dropdownTitle.innerHTML = "Titre"
         likeAndPriceLike.innerHTML = likeBottom
         likeAndPricePrice.innerHTML = data.price + " €/jour"
-        formH1.innerHTML = "Contactez-moi " + data.name
+
         formFirstLabel.innerHTML = "Prénom"
         formLastLabel.innerHTML = "Nom"
         formEmailLabel.innerHTML = "Email"
