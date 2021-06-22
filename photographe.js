@@ -57,6 +57,7 @@ export const initPhotograph = async() => {
     const formValidBtn = createDomElement("formValidBtn", "button")
 
 
+
     const displayForm = () => {
         formPage.style.display = "block"
     }
@@ -119,6 +120,7 @@ export const initPhotograph = async() => {
     const urlParams = new URLSearchParams(queryString)
     const photographID = urlParams.get('id')
 
+
     // fonction de création du header
     const createHeader = (data) => {
         console.log(data)
@@ -174,8 +176,8 @@ export const initPhotograph = async() => {
 
 
 
-    for (let i = 0; i < data.length; i++) {
-
+    console.log(data.photographers.length)
+    for (let i = 0; i < data.photographers.length; i++) {
         const likeBottom = data.media[i].likes * data.media[i].likes
             // Afficher les informations dans les DomElements
         photoProfilPhotograh.innerHTML = ""
@@ -301,7 +303,7 @@ export const initPhotograph = async() => {
 
         // urlImage = "./medias/Mimi/" + mediaMimi[t][i]
         const nbLikeInt = parseInt(data.likes, 10)
-        createMedia(urlImage, [i], data.title, data.price, nbLikeInt)
+        createMedia(urlImage, i, data.title, data.price, nbLikeInt)
 
         // for (let t = 0; t < mediaMimi.length; t++) {
 
