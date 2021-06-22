@@ -109,6 +109,27 @@ export const initPhotograph = async() => {
         Elt.style.display = "none"
     }
 
+    const pathEllie = "./medias/Ellie-Rose/"
+    const pathMarcel = "./medias/Marcel/"
+    const pathMimi = "./medias/Mimi/"
+    const pathNabeel = "./medias/Nabeel/"
+    const pathRhode = "./medias/Rhode/"
+    const pathTracy = "./medias/Tracy/"
+
+    // tentative de récupération des images dans le tableau imageData
+    let imageData = []
+        // imageData.push(data.media)
+
+    for (let i = 0; i < data.media.length; i++) {
+        // console.log(data.media)
+        imageData.push(data.media[i].image)
+            // for (let j = 0; j < data.media[i].image.length; j++) {
+
+        //     console.log(data.media[j].image + " " + data.media[j].photographerId)
+        // }
+    }
+
+
 
 
     // =====================================
@@ -125,7 +146,7 @@ export const initPhotograph = async() => {
     const createHeader = (data) => {
 
         tagArray = data.tags
-        console.log(data.tags)
+            // console.log(data.tags)
 
         nameHeaderPhotograph.innerHTML = data.name
         locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
@@ -156,13 +177,13 @@ export const initPhotograph = async() => {
     const displayPhotos = (id) => {
         // permet de stocker les bonnes lignes de photos
         let photos = []
-        console.log(photos)
+            // console.log(photos)
 
-        for (let i = 0; i < data.media.lenght; i++) {
+        for (let i = 0; i < imageData.lenght; i++) {
 
-            photos.push = data[i].image
-            console.log(photos)
-            if (photographID == photographImage[i]) {}
+            imageData.push(data.media)
+            console.log(imageData)
+                // if (photographID == photographImage[i]) {}
         }
 
         photos.forEach(photo => {
@@ -307,8 +328,9 @@ export const initPhotograph = async() => {
 
         // Boucle sur la fonction createMedia
         for (let t = 0; t < data.media.length; t++) {
-            urlImage = "./medias/Mimi/" + data.media[t][i]
-            createMedia(urlImage, i, data.title, data.price, nbLikeInt)
+            // console.log(data.media.image)
+            // urlImage = "./medias/Mimi/" + data.media[t][i]
+            createMedia(urlImage, i, data.media.title, data.media.price, nbLikeInt)
 
         }
     }
