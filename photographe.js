@@ -56,7 +56,7 @@ export const initPhotograph = async() => {
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
 
-
+    let tagArray = []
 
     const displayForm = () => {
         formPage.style.display = "block"
@@ -118,13 +118,15 @@ export const initPhotograph = async() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const photographID = urlParams.get('id')
+    const photographImage = urlParams.get('image')
         // Récpération tableau des tags dans le json
-
 
     // fonction de création du header
     const createHeader = (data) => {
 
-        const tagArray = data.tags
+        tagArray = data.tags
+        console.log(data.tags)
+
 
         nameHeaderPhotograph.innerHTML = data.name
         locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
@@ -133,7 +135,7 @@ export const initPhotograph = async() => {
 
         // Boucle de récpération et de création des l'élements tag 
         for (let t = 0; t < tagArray.length; t++) {
-            console.log(tagArray[t])
+            // console.log(tagArray[t])
             let tag = createDomElement("nav-tag", "a")
             tag.id = "#" + tagArray[t]
             tag.setAttribute("href", "#")
@@ -156,7 +158,12 @@ export const initPhotograph = async() => {
         // permet de stocker les bonnes lignes de photos
         let photos = []
         for (let i = 0; i < data.media.lenght; i++) {
+            console.log(data.image)
 
+            if (photographID == photographImage[i]) {
+                photos = data.image
+                createMedia(urlImage, i, data.title, data.price, nbLikeInt)
+            }
         }
 
         photos.forEach(photo => {
@@ -306,7 +313,7 @@ export const initPhotograph = async() => {
 
         // urlImage = "./medias/Mimi/" + mediaMimi[t][i]
         const nbLikeInt = parseInt(data.likes, 10)
-        createMedia(urlImage, i, data.title, data.price, nbLikeInt)
+
 
         // for (let t = 0; t < mediaMimi.length; t++) {
 
