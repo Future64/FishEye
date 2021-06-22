@@ -15,7 +15,7 @@ export const initPhotograph = async() => {
     const nameHeaderPhotograph = createDomElement("name--header-card-photograph", "p")
     const indexBodyCardPhotograph = createDomElement("index--body-card-photograph", "div")
     const locationBodyCardPhotograph = createDomElement("location--body-card-photograph", "p")
-    const citationBodyCardPhotograph = createDomElement("citation--body-card", "p")
+    const citationBodyCardPhotograph = createDomElement("citation", "p")
     const navTagsPhotograph = createDomElement("navTags-photograph", "nav")
     const contactMe = createDomElement("contactMe", "div")
     const sortZone = createDomElement("sortZone", "div")

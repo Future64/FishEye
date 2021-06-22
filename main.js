@@ -21,6 +21,7 @@ const initMain = async() => {
         const priceBodyCard = createDomElement("price--body-card", "p")
         const navTags = createDomElement("navTags", "nav", "navTagsCard")
 
+        citationBodyCard.classList.add("citation");
         // Ajout d'attribut au DomElement
         headerCardLink.setAttribute("href", "./photographe.html?id=" + data.photographers[i].id)
 
