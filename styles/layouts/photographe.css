@@ -225,7 +225,7 @@
 .contactMe {
     position: absolute;
     top: 150px;
-    left: 40%;
+    left: 50%;
     background: #901c1c;
     border: .5px solid var(--color3);
     border-radius: 5px;
@@ -387,7 +387,7 @@ form {
     width: 110px;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: 35px;
 }
 

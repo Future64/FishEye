@@ -56,7 +56,9 @@ export const initPhotograph = async() => {
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
 
+    const nbLikeInt = parseInt(data.likes, 10)
     let tagArray = []
+    let urlImage = ""
 
     const displayForm = () => {
         formPage.style.display = "block"
@@ -90,10 +92,6 @@ export const initPhotograph = async() => {
     formPage.style.display = "none"
 
 
-
-
-
-
     // Events
     dropdownBtn.addEventListener("click", () => {
         display(dropdownContent, spanArrowUp, spanArrowDown)
@@ -111,6 +109,8 @@ export const initPhotograph = async() => {
         Elt.style.display = "none"
     }
 
+
+
     // =====================================
     // RECUPERATION DES DONNEES A AFFICHER
     // =====================================
@@ -126,7 +126,6 @@ export const initPhotograph = async() => {
 
         tagArray = data.tags
         console.log(data.tags)
-
 
         nameHeaderPhotograph.innerHTML = data.name
         locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
@@ -157,13 +156,13 @@ export const initPhotograph = async() => {
     const displayPhotos = (id) => {
         // permet de stocker les bonnes lignes de photos
         let photos = []
-        for (let i = 0; i < data.media.lenght; i++) {
-            console.log(data.image)
+        console.log(photos)
 
-            if (photographID == photographImage[i]) {
-                photos = data.image
-                createMedia(urlImage, i, data.title, data.price, nbLikeInt)
-            }
+        for (let i = 0; i < data.media.lenght; i++) {
+
+            photos.push = data[i].image
+            console.log(photos)
+            if (photographID == photographImage[i]) {}
         }
 
         photos.forEach(photo => {
@@ -177,7 +176,6 @@ export const initPhotograph = async() => {
 
         if (photographer.id == photographID) {
             createHeader(photographer)
-
             displayPhotos(photographID)
         } else {
 
@@ -307,21 +305,13 @@ export const initPhotograph = async() => {
             mediaLike.append(mediaHeart, mediaHeart2)
         }
 
-        // Boucle sur la la fonction createMedia
+        // Boucle sur la fonction createMedia
+        for (let t = 0; t < data.media.length; t++) {
+            urlImage = "./medias/Mimi/" + data.media[t][i]
+            createMedia(urlImage, i, data.title, data.price, nbLikeInt)
 
-        let urlImage = ""
-
-        // urlImage = "./medias/Mimi/" + mediaMimi[t][i]
-        const nbLikeInt = parseInt(data.likes, 10)
-
-
-        // for (let t = 0; t < mediaMimi.length; t++) {
-
-
-        // }
+        }
     }
-
-
 }
 
 initPhotograph()
