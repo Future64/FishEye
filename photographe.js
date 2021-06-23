@@ -329,7 +329,7 @@ export const initPhotograph = async() => {
             mediaLike.append(mediaHeart, mediaHeart2)
         }
 
-
+        // Déclaration de la fonction createMedia
         createMedia(urlImage, data.media.title, data.media.price, nbLikeInt)
     }
 }
