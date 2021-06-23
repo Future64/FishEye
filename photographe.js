@@ -164,33 +164,32 @@ export const initPhotograph = async() => {
     // fonction qui va creer et ajouter les photos dans le Dom
     const displayPhotos = (id) => {
         // permet de stocker les bonnes lignes de photos
-        
-            // console.log(photos)
-
             for (let i = 0; i < data.media.length; i++) {
-           
                 if (data.media[i].photographerId == id){
-                    
                     photos.push(data.media[i].image)
-                    console.log(urlImage)
-                    if (id == 930){
-                        urlImage = pathEllie + data.media[i].image
-                    } else if (id == 195){
-                        urlImage = pathMarcel + data.media[i].image
-                    } else if (id == 243){
-                        urlImage = pathMimi + data.media[i].image
-                    } else if (id == 527){
-                        urlImage = pathNabeel + data.media[i].image
-                    } else if (id == 925){
-                        urlImage = pathRhode + data.media[i].image
-                    } else if (id == 82){
-                        urlImage = pathTracy + data.media[i].image
-                    } else {
-                        console.log("Error Bordel !!!")
+                    const transformPhotos = new Set(photos)
+                    const newPhotosArray = [...transformPhotos]
                 }
-                console.log(urlImage)
             }
-        }
+
+            for (let j = 0; j < photos.length; j++) {
+                console.log(urlImage)
+                if (id == 930){
+                    urlImage = pathEllie + photos[j]
+                } else if (id == 195){
+                    urlImage = pathMarcel + photos[j]
+                } else if (id == 243){
+                    urlImage = pathMimi + photos[j]
+                } else if (id == 527){
+                    urlImage = pathNabeel + photos[j]
+                } else if (id == 925){
+                    urlImage = pathRhode + photos[j]
+                } else if (id == 82){
+                    urlImage = pathTracy + photos[j]
+                } else {
+                    console.log("Error")
+                }
+            }
 
         photos.forEach(photo => {
 
@@ -223,7 +222,7 @@ export const initPhotograph = async() => {
         dropdownDate.innerHTML = "Date"
         dropdownTitle.innerHTML = "Titre"
         likeAndPriceLike.innerHTML = likeBottom
-        likeAndPricePrice.innerHTML = data.price + " €/jour"
+        likeAndPricePrice.innerHTML = data.media.price + " €/jour"
 
         formFirstLabel.innerHTML = "Prénom"
         formLastLabel.innerHTML = "Nom"
@@ -282,7 +281,7 @@ export const initPhotograph = async() => {
 
 
         // Fonction qui permet d'afficher les médias
-        const createMedia = (urlImage, i, title, price, nblike) => {
+        const createMedia = (urlImage, title, price, nblike) => {
             // Creation des DomElements et des classes pour les DomElements
             const mediaZone = createDomElement("mediaZone", "div")
             const mediaCard = createDomElement("mediaCard", "div")
@@ -332,13 +331,8 @@ export const initPhotograph = async() => {
             mediaLike.append(mediaHeart, mediaHeart2)
         }
 
-        // Boucle sur la fonction createMedia
-        for (let t = 0; t < data.media.length; t++) {
-            // console.log(data.media.image)
-            // urlImage = "./medias/Mimi/" + data.media[t][i]
-            createMedia(urlImage, i, data.media.title, data.media.price, nbLikeInt)
 
-        }
+        createMedia(urlImage, data.media.title, data.media.price, nbLikeInt)
     }
 }
 
