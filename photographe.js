@@ -208,8 +208,6 @@ export const initPhotograph = async() => {
         }
     })
 
-
-
     for (let i = 0; i < data.photographers.length; i++) {
 
         const likeBottom = data.media[i].likes * data.media[i].likes
