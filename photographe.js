@@ -117,20 +117,8 @@ export const initPhotograph = async() => {
     const pathTracy = "./medias/Tracy/"
 
     // tentative de récupération des images dans le tableau imageData
-    let imageData = []
-        // imageData.push(data.media)
-
-    for (let i = 0; i < data.media.length; i++) {
-        // console.log(data.media)
-        imageData.push(data.media[i].image)
-            // for (let j = 0; j < data.media[i].image.length; j++) {
-
-        //     console.log(data.media[j].image + " " + data.media[j].photographerId)
-        // }
-    }
-
-
-
+    // imageData.push(data.media)
+    let photos = []
 
     // =====================================
     // RECUPERATION DES DONNEES A AFFICHER
@@ -176,14 +164,32 @@ export const initPhotograph = async() => {
     // fonction qui va creer et ajouter les photos dans le Dom
     const displayPhotos = (id) => {
         // permet de stocker les bonnes lignes de photos
-        let photos = []
+        
             // console.log(photos)
 
-        for (let i = 0; i < imageData.lenght; i++) {
-
-            imageData.push(data.media)
-            console.log(imageData)
-                // if (photographID == photographImage[i]) {}
+            for (let i = 0; i < data.media.length; i++) {
+           
+                if (data.media[i].photographerId == id){
+                    
+                    photos.push(data.media[i].image)
+                    console.log(urlImage)
+                    if (id == 930){
+                        urlImage = pathEllie + data.media[i].image
+                    } else if (id == 195){
+                        urlImage = pathMarcel + data.media[i].image
+                    } else if (id == 243){
+                        urlImage = pathMimi + data.media[i].image
+                    } else if (id == 527){
+                        urlImage = pathNabeel + data.media[i].image
+                    } else if (id == 925){
+                        urlImage = pathRhode + data.media[i].image
+                    } else if (id == 82){
+                        urlImage = pathTracy + data.media[i].image
+                    } else {
+                        console.log("Error Bordel !!!")
+                }
+                console.log(urlImage)
+            }
         }
 
         photos.forEach(photo => {
@@ -193,7 +199,7 @@ export const initPhotograph = async() => {
 
     // Init de la récupération des data
     // on boucle sur data.photographer
-    data.photographers.forEach(photographer => {
+    data.photographers.forEach(photographer => {    
 
         if (photographer.id == photographID) {
             createHeader(photographer)
@@ -337,7 +343,3 @@ export const initPhotograph = async() => {
 }
 
 initPhotograph()
-
-
-/************************************************/
-/**************** FONCTION **********************/
