@@ -59,6 +59,9 @@ export const initPhotograph = async() => {
     const nbLikeInt = parseInt(data.likes, 10)
     let tagArray = []
     let urlImage = ""
+    let title = ""
+    let price = ""
+    let likeInt = ""
 
     const displayForm = () => {
         formPage.style.display = "block"
@@ -116,6 +119,8 @@ export const initPhotograph = async() => {
     const pathRhode = "./medias/Rhode/"
     const pathTracy = "./medias/Tracy/"
 
+
+
     // tentative de récupération des images dans le tableau imageData
     // imageData.push(data.media)
     let photos = []
@@ -162,18 +167,22 @@ export const initPhotograph = async() => {
 
 
     // fonction qui va creer et ajouter les photos dans le Dom
-    const displayPhotos = (id) => {
+    const displayMedia = (id) => {
         // permet de stocker les bonnes lignes de photos
         for (let i = 0; i < data.media.length; i++) {
             if (data.media[i].photographerId == id) {
                 photos.push(data.media[i].image)
                 const transformPhotos = new Set(photos)
-                const newPhotosArray = [...transformPhotos]
+                var newPhotosArray = [...transformPhotos]
+                title = data.media[i].title
+                price = data.media[i].price
+                likeInt = data.media[i].likes
             }
         }
 
+        // Boucle sur photos et assigne le bon chemin relatif pour les medias
         for (let j = 0; j < photos.length; j++) {
-            console.log(urlImage)
+            console.log(photos[j])
             if (id == 930) {
                 urlImage = pathEllie + photos[j]
             } else if (id == 195) {
@@ -187,13 +196,9 @@ export const initPhotograph = async() => {
             } else if (id == 82) {
                 urlImage = pathTracy + photos[j]
             } else {
-                console.log("Error")
+                console.log("Error photos !")
             }
         }
-
-        photos.forEach(photo => {
-
-        })
     }
 
     // Init de la récupération des data
@@ -202,18 +207,18 @@ export const initPhotograph = async() => {
 
         if (photographer.id == photographID) {
             createHeader(photographer)
-            displayPhotos(photographID)
+            displayMedia(photographID)
         } else {
-
+            console.log("Error photographe!")
         }
     })
 
     for (let i = 0; i < data.photographers.length; i++) {
 
         const likeBottom = data.media[i].likes * data.media[i].likes
-            // Afficher les informations dans les DomElements
-        photoProfilPhotograh.innerHTML = ""
 
+        // Afficher les informations dans les DomElements
+        photoProfilPhotograh.innerHTML = ""
         contactMe.innerHTML = "Contactez moi"
         spanSort.innerHTML = "Trier par"
         dropdownBtn.innerHTML = "Popularité"
@@ -330,8 +335,9 @@ export const initPhotograph = async() => {
         }
 
         // Déclaration de la fonction createMedia
-        createMedia(urlImage, data.media.title, data.media.price, nbLikeInt)
+        createMedia(urlImage, title, price, likeInt)
     }
+
 }
 
 initPhotograph()
