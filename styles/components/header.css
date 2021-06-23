@@ -127,7 +127,12 @@ h1 {
         top: 25px;
     }
     nav {
-        margin-top: 25px;
+        /* margin-top: 25px; */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
     }
 }
 

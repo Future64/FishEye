@@ -1,34 +1,7 @@
 import { initCache, createDomElement, display, displayHeart, launch } from './tools.js'
-// import { initMedia } from './media.js'
 
 export const initPhotograph = async() => {
     const data = await initCache()
-
-    // Tableau de récupération des images pour les assigner aux photographes
-    const mediaTracy = [
-        [data.media[0].image, data.media[1].image, data.media[2].image, data.media[3].image, data.media[4].image, data.media[5].image, data.media[6].image, data.media[7].image, data.media[8].image, data.media[9].image]
-    ]
-
-    const mediaRhode = [
-        [data.media[10].image, data.media[11].image, data.media[12].image, data.media[13].image, data.media[14].image, data.media[15].image, data.media[16].image, data.media[17].image, data.media[18].image]
-    ]
-
-    const mediaNabeel = [
-        [data.media[19].image, data.media[20].image, data.media[21].image, data.media[22].image, data.media[23].image, data.media[24].image, data.media[25].image, data.media[26].image, data.media[27].image]
-    ]
-
-    const mediaMimi = [
-        [data.media[28].image, data.media[29].image, data.media[30].image, data.media[31].image, data.media[32].image, data.media[33].image, data.media[34].image, data.media[35].image, data.media[36].image, data.media[37].image]
-    ]
-
-    const mediaMarcel = [
-        [data.media[38].image, data.media[39].image, data.media[40].image, data.media[41].image, data.media[42].image, data.media[43].image, data.media[44].image, data.media[45].image, data.media[46].image, data.media[47].image]
-    ]
-
-    const mediaEllie = [
-        [data.media[48].image, data.media[49].image, data.media[50].image, data.media[51].image, data.media[52].image, data.media[53].image, data.media[54].image, data.media[55].image, data.media[56].image, data.media[57].image, data.media[58].image]
-    ]
-
 
 
     // Selection de la balise Html avec sa classe
@@ -42,7 +15,7 @@ export const initPhotograph = async() => {
     const nameHeaderPhotograph = createDomElement("name--header-card-photograph", "p")
     const indexBodyCardPhotograph = createDomElement("index--body-card-photograph", "div")
     const locationBodyCardPhotograph = createDomElement("location--body-card-photograph", "p")
-    const citationBodyCardPhotograph = createDomElement("citation--body-card", "p")
+    const citationBodyCardPhotograph = createDomElement("citation", "p")
     const navTagsPhotograph = createDomElement("navTags-photograph", "nav")
     const contactMe = createDomElement("contactMe", "div")
     const sortZone = createDomElement("sortZone", "div")
@@ -83,6 +56,12 @@ export const initPhotograph = async() => {
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
 
+    const nbLikeInt = parseInt(data.likes, 10)
+    let tagArray = []
+    let urlImage = ""
+    let title = ""
+    let price = ""
+    let likeInt = ""
 
     const displayForm = () => {
         formPage.style.display = "block"
@@ -115,12 +94,6 @@ export const initPhotograph = async() => {
     spanArrowUp.style.display = 'none'
     formPage.style.display = "none"
 
-    // Initialisation de la variable url
-    let urlPortrait = "./medias/PhotographersID-Photos/" + data.photographers[0].portrait
-
-    // Récpération tableau des tags dans le json
-    let tagArray = data.photographers[0].tags
-
 
     // Events
     dropdownBtn.addEventListener("click", () => {
@@ -139,41 +112,121 @@ export const initPhotograph = async() => {
         Elt.style.display = "none"
     }
 
+    const pathEllie = "./medias/Ellie-Rose/"
+    const pathMarcel = "./medias/Marcel/"
+    const pathMimi = "./medias/Mimi/"
+    const pathNabeel = "./medias/Nabeel/"
+    const pathRhode = "./medias/Rhode/"
+    const pathTracy = "./medias/Tracy/"
 
 
-    // Assigne la variable url pour les chemins des photos de profils
-    photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
-    photoProfilPhotograh.style.backgroundSize = "cover"
 
+    // tentative de récupération des images dans le tableau imageData
+    // imageData.push(data.media)
+    let photos = []
 
+    // =====================================
+    // RECUPERATION DES DONNEES A AFFICHER
+    // =====================================
+    // fonction de creation du header
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    const photographID = urlParams.get('id')
+    const photographImage = urlParams.get('image')
+        // Récpération tableau des tags dans le json
 
-    // Boucle de récpération et de création des l'élements tag 
-    for (let t = 0; t < tagArray.length; t++) {
-        let tag = createDomElement("nav-tag", "a")
-        tag.id = "#" + tagArray[t]
-        tag.setAttribute("href", "#")
-        tag.ariaLabel = ("Tag " + tagArray[t])
-        tag.innerHTML += "#" + tagArray[t]
+    // fonction de création du header
+    const createHeader = (data) => {
 
-        navTagsPhotograph.append(tag)
+        tagArray = data.tags
+            // console.log(data.tags)
+
+        nameHeaderPhotograph.innerHTML = data.name
+        locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
+        citationBodyCardPhotograph.innerHTML = data.tagline
+        formH1.innerHTML = "Contactez-moi " + data.name
+
+        // Boucle de récpération et de création des l'élements tag 
+        for (let t = 0; t < tagArray.length; t++) {
+            // console.log(tagArray[t])
+            let tag = createDomElement("nav-tag", "a")
+            tag.id = "#" + tagArray[t]
+            tag.setAttribute("href", "#")
+            tag.ariaLabel = ("Tag " + tagArray[t])
+            tag.innerHTML += "#" + tagArray[t]
+
+            navTagsPhotograph.append(tag)
+        }
+
+        // Initialisation de la variable url
+        let urlPortrait = "./medias/PhotographersID-Photos/" + data.portrait
+            // Assigne la variable url pour les chemins des photos de profils
+        photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
+        photoProfilPhotograh.style.backgroundSize = "cover"
     }
 
-    for (let i = 0; i < data.media.length; i++) {
+
+    // fonction qui va creer et ajouter les photos dans le Dom
+    const displayMedia = (id) => {
+        // permet de stocker les bonnes lignes de photos
+        for (let i = 0; i < data.media.length; i++) {
+            if (data.media[i].photographerId == id) {
+                photos.push(data.media[i].image)
+                const transformPhotos = new Set(photos)
+                var newPhotosArray = [...transformPhotos]
+                title = data.media[i].title
+                price = data.media[i].price
+                likeInt = data.media[i].likes
+            }
+        }
+
+        // Boucle sur photos et assigne le bon chemin relatif pour les medias
+        for (let j = 0; j < photos.length; j++) {
+            console.log(photos[j])
+            if (id == 930) {
+                urlImage = pathEllie + photos[j]
+            } else if (id == 195) {
+                urlImage = pathMarcel + photos[j]
+            } else if (id == 243) {
+                urlImage = pathMimi + photos[j]
+            } else if (id == 527) {
+                urlImage = pathNabeel + photos[j]
+            } else if (id == 925) {
+                urlImage = pathRhode + photos[j]
+            } else if (id == 82) {
+                urlImage = pathTracy + photos[j]
+            } else {
+                console.log("Error photos !")
+            }
+        }
+    }
+
+    // Init de la récupération des data
+    // on boucle sur data.photographer
+    data.photographers.forEach(photographer => {
+
+        if (photographer.id == photographID) {
+            createHeader(photographer)
+            displayMedia(photographID)
+        } else {
+            console.log("Error photographe!")
+        }
+    })
+
+    for (let i = 0; i < data.photographers.length; i++) {
 
         const likeBottom = data.media[i].likes * data.media[i].likes
-            // Afficher les informations dans les DomElements
+
+        // Afficher les informations dans les DomElements
         photoProfilPhotograh.innerHTML = ""
-        nameHeaderPhotograph.innerHTML = data.photographers[0].name
-        locationBodyCardPhotograph.innerHTML = data.photographers[0].city + ", " + data.photographers[0].country
-        citationBodyCardPhotograph.innerHTML = data.photographers[0].tagline
         contactMe.innerHTML = "Contactez moi"
         spanSort.innerHTML = "Trier par"
         dropdownBtn.innerHTML = "Popularité"
         dropdownDate.innerHTML = "Date"
         dropdownTitle.innerHTML = "Titre"
         likeAndPriceLike.innerHTML = likeBottom
-        likeAndPricePrice.innerHTML = data.photographers[0].price + " €/jour"
-        formH1.innerHTML = "Contactez-moi " + data.photographers[0].name
+        likeAndPricePrice.innerHTML = data.media.price + " €/jour"
+
         formFirstLabel.innerHTML = "Prénom"
         formLastLabel.innerHTML = "Nom"
         formEmailLabel.innerHTML = "Email"
@@ -231,7 +284,7 @@ export const initPhotograph = async() => {
 
 
         // Fonction qui permet d'afficher les médias
-        const createMedia = (urlImage, i, title, price, nblike) => {
+        const createMedia = (urlImage, title, price, nblike) => {
             // Creation des DomElements et des classes pour les DomElements
             const mediaZone = createDomElement("mediaZone", "div")
             const mediaCard = createDomElement("mediaCard", "div")
@@ -281,23 +334,10 @@ export const initPhotograph = async() => {
             mediaLike.append(mediaHeart, mediaHeart2)
         }
 
-        // Boucle sur la la fonction createMedia
-
-        let urlImage = ""
-
-        for (let t = 0; t < mediaMimi.length; t++) {
-
-            urlImage = "./medias/Mimi/" + mediaMimi[t][i]
-            const nbLikeInt = parseInt(data.media[i].likes, 10)
-            createMedia(urlImage, [i], data.media[i].title, data.media[i].price, nbLikeInt)
-        }
+        // Déclaration de la fonction createMedia
+        createMedia(urlImage, title, price, likeInt)
     }
-
 
 }
 
 initPhotograph()
-
-
-/************************************************/
-/**************** FONCTION **********************/

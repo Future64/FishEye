@@ -42,6 +42,13 @@
     margin-bottom: 25px;
 }
 
+.citation {
+    color: var(--color1);
+    font-size: 15px;
+    margin-bottom: 12px;
+    /* text-align: center; */
+}
+
 .sortZone {
     display: flex;
     flex-direction: row;
@@ -225,7 +232,7 @@
 .contactMe {
     position: absolute;
     top: 150px;
-    left: 40%;
+    left: 50%;
     background: #901c1c;
     border: .5px solid var(--color3);
     border-radius: 5px;
@@ -387,7 +394,7 @@ form {
     width: 110px;
     cursor: pointer;
     font-size: 20px;
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: 35px;
 }
 
@@ -455,6 +462,12 @@ form {
         top: 94vh;
         padding-top: 12px;
         height: 15px;
+    }
+    .navTags-photograph {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
 }
 

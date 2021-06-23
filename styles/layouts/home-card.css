@@ -14,7 +14,7 @@
         align-items: center;
     }
     .containerCard {
-        margin-top: 25px;
+        margin-top: 75px;
     }
 }
 
@@ -44,18 +44,21 @@
     font-size: 30px;
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .location--body-card {
     color: var(--color1);
     font-size: 20px;
     margin-bottom: 12px;
+    text-align: center;
 }
 
 .citation--body-card {
     color: black;
     font-size: 15px;
     margin-bottom: 12px;
+    text-align: center;
 }
 
 .price--body-card {
