@@ -76,6 +76,9 @@ export const initPhotograph = async() => {
 
     // Initialisation des variables qui reçevrons des données de data.media
     let photos = []
+    let photosFiltered = []
+    let videos = []
+    let videosFiltered = []
     let tagArray = []
     let urlImage = ""
     let title = []
@@ -134,8 +137,8 @@ export const initPhotograph = async() => {
 
         if (photographer.id == photographID) {
             createHeaderPH(photographer, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh, tagArray, navTagsPhotograph)
-            displayMedia(photographID, data.media, photos, title, price, likeInt)
-            pathAnddisplayMedia(photos, photographID, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer)
+            displayMedia(photographID, data.media, photos, photosFiltered, videosFiltered, videos, title, price, likeInt)
+            pathAnddisplayMedia(photosFiltered, videosFiltered, photographID, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer)
         } else {
             console.log("Error photographer!")
         }

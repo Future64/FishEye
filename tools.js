@@ -118,6 +118,7 @@ export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer)
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
     const mediaImage = createDomElement("mediaImage", "img")
+    const mediaVideo = createDomElement("mediaImage", "video")
     const mediaInfo = createDomElement("mediaInfo", "div")
     const mediaTitle = createDomElement("mediaTitle", "h2")
     const mediaPrice = createDomElement("mediaPrice", "span")
@@ -138,6 +139,9 @@ export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer)
 
     // Ajout d'atributs
     mediaImage.setAttribute("src", urlImage)
+    mediaVideo.setAttribute("src", urlImage)
+
+    mediaVideo.setAttribute("type", "video/mp4")
 
     // Afficher les informations dans les DomElements
     mediaTitle.innerHTML = title
@@ -155,6 +159,7 @@ export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer)
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
     mediaLink.append(mediaImage)
+    mediaLink.append(mediaVideo)
     mediaInfo.append(mediaTitle)
     mediaInfo.append(mediaLike)
     mediaLike.append(mediaPrice)
@@ -164,29 +169,54 @@ export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer)
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const pathAnddisplayMedia = (photos, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer) => {
-    // Boucle sur photos et assigne le bon chemin relatif pour les medias
-    for (let j = 0; j < photos.length; j++) {
+export const pathAnddisplayMedia = (photosFiltered, videosFiltered, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer) => {
+    // Boucle sur photosFilter et assigne le bon chemin relatif pour les medias
+    for (let j = 0; j < photosFiltered.length; j++) {
         if (id == 930) {
-            urlImage = pathEllie + photos[j]
+            urlImage = pathEllie + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else if (id == 195) {
-            urlImage = pathMarcel + photos[j]
+            urlImage = pathMarcel + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else if (id == 243) {
-            urlImage = pathMimi + photos[j]
+            urlImage = pathMimi + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else if (id == 527) {
-            urlImage = pathNabeel + photos[j]
+            urlImage = pathNabeel + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else if (id == 925) {
-            urlImage = pathRhode + photos[j]
+            urlImage = pathRhode + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else if (id == 82) {
-            urlImage = pathTracy + photos[j]
+            urlImage = pathTracy + photosFiltered[j]
             createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
         } else {
             console.log("Error photos !")
+        }
+    }
+
+    // Boucle sur videosFilter et assigne le bon chemin relatif pour les medias
+    for (let j = 0; j < videosFiltered.length; j++) {
+        if (id == 930) {
+            urlImage = pathEllie + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else if (id == 195) {
+            urlImage = pathMarcel + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else if (id == 243) {
+            urlImage = pathMimi + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else if (id == 527) {
+            urlImage = pathNabeel + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else if (id == 925) {
+            urlImage = pathRhode + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else if (id == 82) {
+            urlImage = pathTracy + videosFiltered[j]
+            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
+        } else {
+            console.log("Error videos !")
         }
     }
 }
@@ -215,19 +245,31 @@ export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBod
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // fonction qui va creer et ajouter les photos dans le Dom
-export const displayMedia = (id, jsonMedia, photos, title, price, likeInt) => {
+export const displayMedia = (id, jsonMedia, photos, photosFiltered, videosFiltered, videos, title, price, likeInt) => {
     // permet de stocker les bonnes lignes de photos
     for (let i = 0; i < jsonMedia.length; i++) {
         if (jsonMedia[i].photographerId == id) {
             photos.push(jsonMedia[i].image)
+            videos.push(jsonMedia[i].video)
+
+            photosFiltered = photos.filter(elmt => {
+                return elmt != null;
+            });
+
+            videosFiltered = videos.filter(elmt => {
+                return elmt != null;
+            });
 
             title = jsonMedia[i].title
             price = jsonMedia[i].price
             likeInt = jsonMedia[i].likes
 
-            console.log(title)
         }
+
+        console.log(videosFiltered)
+        console.log(photosFiltered)
     }
+
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
