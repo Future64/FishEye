@@ -3,7 +3,6 @@ import { initCache, createDomElement, display, displayHeart, launch } from './to
 export const initPhotograph = async() => {
     const data = await initCache()
 
-
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
@@ -177,12 +176,13 @@ export const initPhotograph = async() => {
                 title = data.media[i].title
                 price = data.media[i].price
                 likeInt = data.media[i].likes
+
             }
         }
 
         // Boucle sur photos et assigne le bon chemin relatif pour les medias
         for (let j = 0; j < photos.length; j++) {
-            console.log(photos[j])
+            console.log(photos)
             if (id == 930) {
                 urlImage = pathEllie + photos[j]
             } else if (id == 195) {
@@ -198,6 +198,54 @@ export const initPhotograph = async() => {
             } else {
                 console.log("Error photos !")
             }
+            // Creation des DomElements et des classes pour les DomElements
+            const mediaZone = createDomElement("mediaZone", "div")
+            const mediaCard = createDomElement("mediaCard", "div")
+            const mediaLink = createDomElement("mediaLink", "a")
+            const mediaImage = createDomElement("mediaImage", "img")
+            const mediaInfo = createDomElement("mediaInfo", "div")
+            const mediaTitle = createDomElement("mediaTitle", "h2")
+            const mediaPrice = createDomElement("mediaPrice", "span")
+            const mediaLike = createDomElement("mediaLike", "div")
+            const mediaNbLike = createDomElement("mediaNbLike", "span")
+            const mediaHeart = createDomElement("far", "i")
+            const mediaHeart2 = createDomElement("fas", "i")
+
+            const nnL = parseInt(mediaNbLike.value)
+
+            // Ajout de class
+            mediaHeart.classList.add("fa-heart");
+            mediaHeart2.classList.add("fa-heart");
+
+            // Affichage par defaut
+            mediaHeart.style.display = 'block'
+            mediaHeart2.style.display = 'none'
+
+            // Ajout d'atributs
+            mediaImage.setAttribute("src", urlImage)
+
+            // Afficher les informations dans les DomElements
+            mediaTitle.innerHTML = title
+            mediaPrice.innerHTML = price + " €"
+            mediaNbLike.innerHTML = likeInt
+
+            // Event
+            mediaLike.addEventListener("click", () => {
+                displayHeart(mediaHeart, mediaHeart2, nnL)
+            })
+
+
+            // Attacher les DomElements entre eux
+            mediaZoneContainer.append(mediaZone)
+            mediaZone.append(mediaCard)
+            mediaCard.append(mediaLink)
+            mediaCard.append(mediaInfo)
+            mediaLink.append(mediaImage)
+            mediaInfo.append(mediaTitle)
+            mediaInfo.append(mediaLike)
+            mediaLike.append(mediaPrice)
+            mediaLike.append(mediaNbLike)
+            mediaLike.append(mediaHeart, mediaHeart2)
         }
     }
 
@@ -209,7 +257,7 @@ export const initPhotograph = async() => {
             createHeader(photographer)
             displayMedia(photographID)
         } else {
-            console.log("Error photographe!")
+            console.log("Error photographer!")
         }
     })
 
@@ -281,61 +329,6 @@ export const initPhotograph = async() => {
         likeAndPriceZoneLike.append(likeAndPriceLike)
         likeAndPriceZoneLike.append(likeAndPriceHeart)
         likeAndPriceZonePrice.append(likeAndPricePrice)
-
-
-        // Fonction qui permet d'afficher les médias
-        const createMedia = (urlImage, title, price, nblike) => {
-            // Creation des DomElements et des classes pour les DomElements
-            const mediaZone = createDomElement("mediaZone", "div")
-            const mediaCard = createDomElement("mediaCard", "div")
-            const mediaLink = createDomElement("mediaLink", "a")
-            const mediaImage = createDomElement("mediaImage", "img")
-            const mediaInfo = createDomElement("mediaInfo", "div")
-            const mediaTitle = createDomElement("mediaTitle", "h2")
-            const mediaPrice = createDomElement("mediaPrice", "span")
-            const mediaLike = createDomElement("mediaLike", "div")
-            const mediaNbLike = createDomElement("mediaNbLike", "span")
-            const mediaHeart = createDomElement("far", "i")
-            const mediaHeart2 = createDomElement("fas", "i")
-
-            const nnL = parseInt(mediaNbLike.value)
-
-            // Ajout de class
-            mediaHeart.classList.add("fa-heart");
-            mediaHeart2.classList.add("fa-heart");
-
-            // Affichage par defaut
-            mediaHeart.style.display = 'block'
-            mediaHeart2.style.display = 'none'
-
-            // Ajout d'atributs
-            mediaImage.setAttribute("src", urlImage)
-
-            // Afficher les informations dans les DomElements
-            mediaTitle.innerHTML = title
-            mediaPrice.innerHTML = price + " €"
-            mediaNbLike.innerHTML = nblike
-
-            // Event
-            mediaLike.addEventListener("click", () => {
-                displayHeart(mediaHeart, mediaHeart2, nnL)
-            })
-
-            // Attacher les DomElements entre eux
-            mediaZoneContainer.append(mediaZone)
-            mediaZone.append(mediaCard)
-            mediaCard.append(mediaLink)
-            mediaCard.append(mediaInfo)
-            mediaLink.append(mediaImage)
-            mediaInfo.append(mediaTitle)
-            mediaInfo.append(mediaLike)
-            mediaLike.append(mediaPrice)
-            mediaLike.append(mediaNbLike)
-            mediaLike.append(mediaHeart, mediaHeart2)
-        }
-
-        // Déclaration de la fonction createMedia
-        createMedia(urlImage, title, price, likeInt)
     }
 
 }
