@@ -1,10 +1,17 @@
-import { initCache, createDomElement, display, displayHeart, launch } from './tools.js'
+import { initCache, createDomElement, display, displayHeart, launch, createMedia, pathAnddisplayMedia, createTag, createHeaderPH, displayMedia } from './tools.js'
 
 export const initPhotograph = async() => {
     const data = await initCache()
 
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
+
+    // =====================================
+    // RECUPERATION DES DONNEES A AFFICHER
+    const queryString = window.location.search
+    const urlParams = new URLSearchParams(queryString)
+    const photographID = urlParams.get('id')
+        // =====================================
 
     // Creation des DomElements et des classes pour les DomElements
     const containerCardPhotograph = createDomElement("containerCardPhotograph", "div")
@@ -55,16 +62,23 @@ export const initPhotograph = async() => {
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
 
+    // Initialisation des chemins relatifs des medias de chaques photographes
+    const pathEllie = "./medias/Ellie-Rose/"
+    const pathMarcel = "./medias/Marcel/"
+    const pathMimi = "./medias/Mimi/"
+    const pathNabeel = "./medias/Nabeel/"
+    const pathRhode = "./medias/Rhode/"
+    const pathTracy = "./medias/Tracy/"
+
     const nbLikeInt = parseInt(data.likes, 10)
+
+    // Initialisation des variables qui reçevrons des données de data.media
+    let photos = []
     let tagArray = []
     let urlImage = ""
-    let title = ""
-    let price = ""
-    let likeInt = ""
-
-    const displayForm = () => {
-        formPage.style.display = "block"
-    }
+    let title = []
+    let price = []
+    let likeInt = []
 
     // Ajout de class
     spanArrowDown.classList.add("fa-chevron-down");
@@ -86,13 +100,11 @@ export const initPhotograph = async() => {
     formMsgInput.setAttribute("placeholder", "Votre message...")
     formMsgInput.setAttribute("id", "formMsgInput")
 
-
     // Affichage par défault
     dropdownContent.style.display = 'none'
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
     formPage.style.display = "none"
-
 
     // Events
     dropdownBtn.addEventListener("click", () => {
@@ -111,151 +123,17 @@ export const initPhotograph = async() => {
         Elt.style.display = "none"
     }
 
-    const pathEllie = "./medias/Ellie-Rose/"
-    const pathMarcel = "./medias/Marcel/"
-    const pathMimi = "./medias/Mimi/"
-    const pathNabeel = "./medias/Nabeel/"
-    const pathRhode = "./medias/Rhode/"
-    const pathTracy = "./medias/Tracy/"
 
 
-
-    // tentative de récupération des images dans le tableau imageData
-    // imageData.push(data.media)
-    let photos = []
-
-    // =====================================
-    // RECUPERATION DES DONNEES A AFFICHER
-    // =====================================
-    // fonction de creation du header
-    const queryString = window.location.search
-    const urlParams = new URLSearchParams(queryString)
-    const photographID = urlParams.get('id')
-    const photographImage = urlParams.get('image')
-        // Récpération tableau des tags dans le json
-
-    // fonction de création du header
-    const createHeader = (data) => {
-
-        tagArray = data.tags
-            // console.log(data.tags)
-
-        nameHeaderPhotograph.innerHTML = data.name
-        locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
-        citationBodyCardPhotograph.innerHTML = data.tagline
-        formH1.innerHTML = "Contactez-moi " + data.name
-
-        // Boucle de récpération et de création des l'élements tag 
-        for (let t = 0; t < tagArray.length; t++) {
-            // console.log(tagArray[t])
-            let tag = createDomElement("nav-tag", "a")
-            tag.id = "#" + tagArray[t]
-            tag.setAttribute("href", "#")
-            tag.ariaLabel = ("Tag " + tagArray[t])
-            tag.innerHTML += "#" + tagArray[t]
-
-            navTagsPhotograph.append(tag)
-        }
-
-        // Initialisation de la variable url
-        let urlPortrait = "./medias/PhotographersID-Photos/" + data.portrait
-            // Assigne la variable url pour les chemins des photos de profils
-        photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
-        photoProfilPhotograh.style.backgroundSize = "cover"
-    }
-
-
-    // fonction qui va creer et ajouter les photos dans le Dom
-    const displayMedia = (id) => {
-        // permet de stocker les bonnes lignes de photos
-        for (let i = 0; i < data.media.length; i++) {
-            if (data.media[i].photographerId == id) {
-                photos.push(data.media[i].image)
-                const transformPhotos = new Set(photos)
-                var newPhotosArray = [...transformPhotos]
-                title = data.media[i].title
-                price = data.media[i].price
-                likeInt = data.media[i].likes
-
-            }
-        }
-
-        // Boucle sur photos et assigne le bon chemin relatif pour les medias
-        for (let j = 0; j < photos.length; j++) {
-            console.log(photos)
-            if (id == 930) {
-                urlImage = pathEllie + photos[j]
-            } else if (id == 195) {
-                urlImage = pathMarcel + photos[j]
-            } else if (id == 243) {
-                urlImage = pathMimi + photos[j]
-            } else if (id == 527) {
-                urlImage = pathNabeel + photos[j]
-            } else if (id == 925) {
-                urlImage = pathRhode + photos[j]
-            } else if (id == 82) {
-                urlImage = pathTracy + photos[j]
-            } else {
-                console.log("Error photos !")
-            }
-            // Creation des DomElements et des classes pour les DomElements
-            const mediaZone = createDomElement("mediaZone", "div")
-            const mediaCard = createDomElement("mediaCard", "div")
-            const mediaLink = createDomElement("mediaLink", "a")
-            const mediaImage = createDomElement("mediaImage", "img")
-            const mediaInfo = createDomElement("mediaInfo", "div")
-            const mediaTitle = createDomElement("mediaTitle", "h2")
-            const mediaPrice = createDomElement("mediaPrice", "span")
-            const mediaLike = createDomElement("mediaLike", "div")
-            const mediaNbLike = createDomElement("mediaNbLike", "span")
-            const mediaHeart = createDomElement("far", "i")
-            const mediaHeart2 = createDomElement("fas", "i")
-
-            const nnL = parseInt(mediaNbLike.value)
-
-            // Ajout de class
-            mediaHeart.classList.add("fa-heart");
-            mediaHeart2.classList.add("fa-heart");
-
-            // Affichage par defaut
-            mediaHeart.style.display = 'block'
-            mediaHeart2.style.display = 'none'
-
-            // Ajout d'atributs
-            mediaImage.setAttribute("src", urlImage)
-
-            // Afficher les informations dans les DomElements
-            mediaTitle.innerHTML = title
-            mediaPrice.innerHTML = price + " €"
-            mediaNbLike.innerHTML = likeInt
-
-            // Event
-            mediaLike.addEventListener("click", () => {
-                displayHeart(mediaHeart, mediaHeart2, nnL)
-            })
-
-
-            // Attacher les DomElements entre eux
-            mediaZoneContainer.append(mediaZone)
-            mediaZone.append(mediaCard)
-            mediaCard.append(mediaLink)
-            mediaCard.append(mediaInfo)
-            mediaLink.append(mediaImage)
-            mediaInfo.append(mediaTitle)
-            mediaInfo.append(mediaLike)
-            mediaLike.append(mediaPrice)
-            mediaLike.append(mediaNbLike)
-            mediaLike.append(mediaHeart, mediaHeart2)
-        }
-    }
 
     // Init de la récupération des data
     // on boucle sur data.photographer
     data.photographers.forEach(photographer => {
 
         if (photographer.id == photographID) {
-            createHeader(photographer)
-            displayMedia(photographID)
+            createHeaderPH(photographer, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh, tagArray, navTagsPhotograph)
+            displayMedia(photographID, data.media, photos, title, price, likeInt)
+            pathAnddisplayMedia(photos, photographID, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer)
         } else {
             console.log("Error photographer!")
         }
