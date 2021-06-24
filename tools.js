@@ -1,3 +1,7 @@
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+//                          TOUTES LES FONCTIONS DU PROJET
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
 // async = ON NE SAIT JAMAIS QUAND CA SE TERMINE !
 export const initCache = async() => {
     //quand on arrive sur le site, on check le localStorage !
@@ -22,6 +26,7 @@ export const initCache = async() => {
     return data
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Créer un DOM Element
 export const createDomElement = (className, DomElem) => {
@@ -30,6 +35,7 @@ export const createDomElement = (className, DomElem) => {
     return elm
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const createHeader = (obj) => {
     // Selection de la balise Hml avec sa classe
@@ -47,6 +53,7 @@ export const createHeader = (obj) => {
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const display = (firstElt, secondtElt, thirdtElt) => {
     if (firstElt.style.display == 'none') {
@@ -60,6 +67,7 @@ export const display = (firstElt, secondtElt, thirdtElt) => {
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const displayHeart = (firstElt, secondtElt, mainLike) => {
     if (firstElt.style.display == 'block') {
@@ -73,16 +81,19 @@ export const displayHeart = (firstElt, secondtElt, mainLike) => {
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const closeWindow = (elt) => {
     elt.style.display = 'none'
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const launch = (elt) => {
     elt.style.display = 'block'
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const createTag = (tagArray, navTagsPhotograph) => {
 
@@ -98,6 +109,7 @@ export const createTag = (tagArray, navTagsPhotograph) => {
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer) => {
 
@@ -150,6 +162,7 @@ export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer)
     mediaLike.append(mediaHeart, mediaHeart2)
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const pathAnddisplayMedia = (photos, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer) => {
     // Boucle sur photos et assigne le bon chemin relatif pour les medias
@@ -178,6 +191,7 @@ export const pathAnddisplayMedia = (photos, id, urlImage, pathEllie, pathMarcel,
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // fonction de création du header
 export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh) => {
@@ -198,6 +212,7 @@ export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBod
     photoProfilPhotograh.style.backgroundSize = "cover"
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // fonction qui va creer et ajouter les photos dans le Dom
 export const displayMedia = (id, jsonMedia, photos, title, price, likeInt) => {
@@ -214,3 +229,5 @@ export const displayMedia = (id, jsonMedia, photos, title, price, likeInt) => {
         }
     }
 }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/

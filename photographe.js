@@ -6,12 +6,14 @@ export const initPhotograph = async() => {
     // Selection de la balise Html avec sa classe
     const sectionPhotograph = document.querySelector('.photographe--section')
 
-    // =====================================
+    /* =====================================*/
+
     // RECUPERATION DES DONNEES A AFFICHER
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
     const photographID = urlParams.get('id')
-        // =====================================
+
+    /* =====================================*/
 
     // Creation des DomElements et des classes pour les DomElements
     const containerCardPhotograph = createDomElement("containerCardPhotograph", "div")
@@ -138,6 +140,8 @@ export const initPhotograph = async() => {
             console.log("Error photographer!")
         }
     })
+
+
 
     for (let i = 0; i < data.photographers.length; i++) {
 
