@@ -111,118 +111,6 @@ export const createTag = (tagArray, navTagsPhotograph) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const createMedia = (urlImage, title, price, likeInt, mediaZoneContainer) => {
-
-    // Creation des DomElements et des classes pour les DomElements
-    const mediaZone = createDomElement("mediaZone", "div")
-    const mediaCard = createDomElement("mediaCard", "div")
-    const mediaLink = createDomElement("mediaLink", "a")
-    const mediaImage = createDomElement("mediaImage", "img")
-    const mediaVideo = createDomElement("mediaImage", "video")
-    const mediaInfo = createDomElement("mediaInfo", "div")
-    const mediaTitle = createDomElement("mediaTitle", "h2")
-    const mediaPrice = createDomElement("mediaPrice", "span")
-    const mediaLike = createDomElement("mediaLike", "div")
-    const mediaNbLike = createDomElement("mediaNbLike", "span")
-    const mediaHeart = createDomElement("far", "i")
-    const mediaHeart2 = createDomElement("fas", "i")
-
-    const nnL = parseInt(mediaNbLike.value)
-
-    // Ajout de class
-    mediaHeart.classList.add("fa-heart");
-    mediaHeart2.classList.add("fa-heart");
-
-    // Affichage par defaut
-    mediaHeart.style.display = 'block'
-    mediaHeart2.style.display = 'none'
-
-    // Ajout d'atributs
-    mediaImage.setAttribute("src", urlImage)
-    mediaVideo.setAttribute("src", urlImage)
-
-    mediaVideo.setAttribute("type", "video/mp4")
-
-    // Afficher les informations dans les DomElements
-    mediaTitle.innerHTML = title
-    mediaPrice.innerHTML = price + " €"
-    mediaNbLike.innerHTML = likeInt
-
-    // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, nnL)
-    })
-
-    // Attacher les DomElements entre eux
-    mediaZoneContainer.append(mediaZone)
-    mediaZone.append(mediaCard)
-    mediaCard.append(mediaLink)
-    mediaCard.append(mediaInfo)
-    mediaLink.append(mediaImage)
-    mediaLink.append(mediaVideo)
-    mediaInfo.append(mediaTitle)
-    mediaInfo.append(mediaLike)
-    mediaLike.append(mediaPrice)
-    mediaLike.append(mediaNbLike)
-    mediaLike.append(mediaHeart, mediaHeart2)
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-export const pathAnddisplayMedia = (photosFiltered, videosFiltered, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer) => {
-    // Boucle sur photosFilter et assigne le bon chemin relatif pour les medias
-    for (let j = 0; j < photosFiltered.length; j++) {
-        if (id == 930) {
-            urlImage = pathEllie + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 195) {
-            urlImage = pathMarcel + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 243) {
-            urlImage = pathMimi + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 527) {
-            urlImage = pathNabeel + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 925) {
-            urlImage = pathRhode + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 82) {
-            urlImage = pathTracy + photosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else {
-            console.log("Error photos !")
-        }
-    }
-
-    // Boucle sur videosFilter et assigne le bon chemin relatif pour les medias
-    for (let j = 0; j < videosFiltered.length; j++) {
-        if (id == 930) {
-            urlImage = pathEllie + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 195) {
-            urlImage = pathMarcel + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 243) {
-            urlImage = pathMimi + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 527) {
-            urlImage = pathNabeel + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 925) {
-            urlImage = pathRhode + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else if (id == 82) {
-            urlImage = pathTracy + videosFiltered[j]
-            createMedia(urlImage, title, price, likeInt, mediaZoneContainer)
-        } else {
-            console.log("Error videos !")
-        }
-    }
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
 // fonction de création du header
 export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh) => {
 
@@ -242,33 +130,258 @@ export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBod
     photoProfilPhotograh.style.backgroundSize = "cover"
 }
 
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, mainPhotograph) => {
+
+    // Creation des DomElements et des classes pour les DomElements
+    const mediaZone = createDomElement("mediaZone", "div")
+    const mediaCard = createDomElement("mediaCard", "div")
+    const mediaLink = createDomElement("mediaLink", "a")
+    const mediaImage = createDomElement("mediaImage", "img")
+    const mediaVideo = createDomElement("mediaImage", "video")
+    const mediaInfo = createDomElement("mediaInfo", "div")
+        // const mediaTitle = createDomElement("mediaTitle", "h2")
+    const mediaPrice = createDomElement("mediaPrice", "span")
+    const mediaLike = createDomElement("mediaLike", "div")
+    const mediaNbLike = createDomElement("mediaNbLike", "span")
+    const mediaHeart = createDomElement("far", "i")
+    const mediaHeart2 = createDomElement("fas", "i")
+
+
+    const lightboxPage = createDomElement("lightboxPage", "div")
+    const lightboxContainer = createDomElement("lightboxContainer", "div")
+    const lightboxImg = createDomElement("lightboxImg", "img")
+    const lightboxPreviousBtn = createDomElement("fas", "i")
+    const lightboxNextBtn = createDomElement("fas", "i")
+    const lightboxClose = createDomElement("fas", "i")
+    const lightboxTitle = createDomElement("lightboxTitle", "div")
+
+    const nnL = parseInt(mediaNbLike.value)
+
+    // Ajout d'atributs
+    mediaImage.setAttribute("src", urlImage)
+    lightboxImg.setAttribute("src", urlImage)
+    mediaVideo.setAttribute("src", urlVideo)
+    mediaVideo.setAttribute("type", "video/mp4")
+    mediaVideo.controls = true
+
+
+    const checkURL = /\.(jpeg|jpg|gif|png)$/
+
+
+    // Ajout de class
+    mediaHeart.classList.add("fa-heart");
+    mediaHeart2.classList.add("fa-heart");
+
+    lightboxPreviousBtn.classList.add("fa-chevron-left")
+    lightboxNextBtn.classList.add("fa-chevron-right")
+    lightboxClose.classList.add("fa-times");
+    lightboxClose.classList.add("lightboxClose");
+
+    // Affichage par defaut
+    mediaHeart.style.display = 'block'
+    mediaHeart2.style.display = 'none'
+    lightboxPage.style.display = "none"
+
+    for (let j = 0; j < titleFiltered.length; j++) {
+        if (photographID == 930) {
+            titleFiltered[j]
+            mediaTitle.innerHTML = titleFiltered[j]
+            console.log(mediaTitle)
+        } else if (photographID == 195) {
+            titleFiltered[j]
+        } else if (photographID == 243) {
+            titleFiltered[j]
+        } else if (photographID == 527) {
+            titleFiltered[j]
+        } else if (photographID == 925) {
+            titleFiltered[j]
+        } else if (photographID == 82) {
+            titleFiltered[j]
+        } else {
+            console.log("Error title !")
+        }
+    }
+
+    // Afficher les informations dans les DomElements
+    // mediaTitle.innerHTML = titleFiltered
+    mediaPrice.innerHTML = price + " €"
+    mediaNbLike.innerHTML = likeInt
+
+    // Event
+    mediaLike.addEventListener("click", () => {
+        displayHeart(mediaHeart, mediaHeart2, nnL)
+    })
+
+    // Events
+    mediaLink.addEventListener("click", () => {
+        launch(lightboxPage)
+    })
+
+    // Events
+    lightboxClose.addEventListener("click", () => {
+        closeWindow(lightboxPage)
+    })
+
+    // Attacher les DomElements entre eux
+    mediaZoneContainer.append(mediaZone)
+    mediaZone.append(mediaCard)
+    mediaCard.append(mediaLink)
+    mediaCard.append(mediaInfo)
+    mediaLink.append(mediaImage)
+
+    if (mediaVideo == null) {
+        // mediaLink.remove(mediaVideo)
+        mediaLink.append(mediaVideo)
+        mediaInfo.remove(mediaTitle)
+    }
+
+    mediaInfo.append(mediaTitle)
+    mediaInfo.append(mediaLike)
+    mediaLike.append(mediaPrice)
+    mediaLike.append(mediaNbLike)
+    mediaLike.append(mediaHeart, mediaHeart2)
+
+    mainPhotograph.append(lightboxPage)
+    lightboxPage.append(lightboxContainer)
+    lightboxContainer.append(lightboxPreviousBtn)
+    lightboxContainer.append(lightboxImg)
+    lightboxContainer.append(lightboxNextBtn)
+    lightboxContainer.append(lightboxClose)
+    lightboxContainer.append(lightboxTitle)
+}
+
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // fonction qui va creer et ajouter les photos dans le Dom
-export const displayMedia = (id, jsonMedia, photos, photosFiltered, videosFiltered, videos, title, price, likeInt) => {
-    // permet de stocker les bonnes lignes de photos
-    for (let i = 0; i < jsonMedia.length; i++) {
-        if (jsonMedia[i].photographerId == id) {
-            photos.push(jsonMedia[i].image)
-            videos.push(jsonMedia[i].video)
+// export const displayMedia = (id, jsonMedia, photos, photosFiltered, videosFiltered, videos, title, price, likeInt) => {
+//     // permet de stocker les bonnes lignes de photos
+//     for (let i = 0; i < jsonMedia.length; i++) {
 
-            photosFiltered = photos.filter(elmt => {
-                return elmt != null;
-            });
+//         if (jsonMedia[i].photographerId == id) {
+//             photos.push(jsonMedia[i].image)
+//             photosFiltered = photos.filter(elmt => {
+//                 return elmt != null;
+//             });
 
-            videosFiltered = videos.filter(elmt => {
-                return elmt != null;
-            });
+//             videos.push(jsonMedia[i].video)
+//             videosFiltered = videos.filter(elmt => {
+//                 return elmt != null;
+//             });
 
-            title = jsonMedia[i].title
-            price = jsonMedia[i].price
-            likeInt = jsonMedia[i].likes
+//             title = jsonMedia[i].title
+//             price = jsonMedia[i].price
+//             likeInt = jsonMedia[i].likes
+//                 // console.log(photosFiltered)
+//         }
 
+//         // console.log(videosFiltered)
+//         // console.log(photosFiltered)
+//     }
+
+// }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const pathAnddisplayMedia = (
+    photographID,
+    photosFiltered,
+    videosFiltered,
+    id,
+    urlImage,
+    urlVideo,
+    pathEllie,
+    pathMarcel,
+    pathMimi,
+    pathNabeel,
+    pathRhode,
+    pathTracy,
+    mediaTitle,
+    titleFiltered,
+    price,
+    likeInt,
+    mediaZoneContainer,
+    lightboxPage
+) => {
+    // Boucle sur photosFilter et assigne le bon chemin relatif pour les medias
+    for (let j = 0; j < photosFiltered.length; j++) {
+        if (id == 930) {
+            urlImage = pathEllie + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 195) {
+            urlImage = pathMarcel + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 243) {
+            urlImage = pathMimi + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 527) {
+            urlImage = pathNabeel + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 925) {
+            urlImage = pathRhode + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 82) {
+            urlImage = pathTracy + photosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else {
+            console.log("Error photos !")
         }
-
-        console.log(videosFiltered)
-        console.log(photosFiltered)
     }
+
+    // Boucle sur videosFilter et assigne le bon chemin relatif pour les medias
+    for (let j = 0; j < videosFiltered.length; j++) {
+        if (id == 930) {
+            urlVideo = pathEllie + videosFiltered[j]
+            console.log(videosFiltered[j])
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 195) {
+            urlVideo = pathMarcel + videosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 243) {
+            urlVideo = pathMimi + videosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 527) {
+            urlVideo = pathNabeel + videosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 925) {
+            urlVideo = pathRhode + videosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else if (id == 82) {
+            urlVideo = pathTracy + videosFiltered[j]
+            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
+        } else {
+            console.log("Error videos !")
+        }
+    }
+
+    // for (let j = 0; j < titleFiltered.length; j++) {
+    //     if (id == 930) {
+    //         titleFiltered[j]
+    //             // createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //         mediaTitle.innerHTML = titleFiltered[j]
+    //         console.log(mediaTitle)
+    //     } else if (id == 195) {
+    //         titleFiltered[j]
+    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //     } else if (id == 243) {
+    //         titleFiltered[j]
+    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //     } else if (id == 527) {
+    //         titleFiltered[j]
+    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //     } else if (id == 925) {
+    //         titleFiltered[j]
+    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //     } else if (id == 82) {
+    //         titleFiltered[j]
+    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
+    //     } else {
+    //         console.log("Error title !")
+    //     }
+    // }
+
 
 }
 

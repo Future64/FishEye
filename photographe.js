@@ -1,4 +1,4 @@
-import { initCache, createDomElement, display, displayHeart, launch, createMedia, pathAnddisplayMedia, createTag, createHeaderPH, displayMedia } from './tools.js'
+import { initCache, createDomElement, display, displayHeart, launch, createMedia, pathAnddisplayMedia, createTag, createHeaderPH } from './tools.js'
 
 export const initPhotograph = async() => {
     const data = await initCache()
@@ -35,6 +35,7 @@ export const initPhotograph = async() => {
     const dropdownTitle = createDomElement("dropdownTitle", "a")
     const spanArrowDown = createDomElement("fas", "i")
     const spanArrowUp = createDomElement("fas", "i")
+
     const mediaZoneContainer = createDomElement("mediaZoneContainer", "div")
     const likeAndPriceBottom = createDomElement("likeAndPriceBottom", "div")
     const likeAndPriceBox = createDomElement("likeAndPriceBox", "div")
@@ -43,6 +44,8 @@ export const initPhotograph = async() => {
     const likeAndPriceLike = createDomElement("likeAndPriceLike", "span")
     const likeAndPriceHeart = createDomElement("fas", "i")
     const likeAndPricePrice = createDomElement("likeAndPricePrice", "span")
+    const mediaTitle = createDomElement("mediaTitle", "h2")
+
     const formPage = createDomElement("formPage", "div")
     const formContainer = createDomElement("formContainer", "div")
     const form = createDomElement("form", "form")
@@ -64,6 +67,15 @@ export const initPhotograph = async() => {
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
 
+    // const lightboxPage = createDomElement("lightboxPage", "div")
+    // const lightboxContainer = createDomElement("lightboxContainer", "div")
+    // const lightboxImg = createDomElement("lightboxImg", "img")
+    // const lightboxPreviousBtn = createDomElement("fas", "i")
+    // const lightboxNextBtn = createDomElement("fas", "i")
+    // const lightboxClose = createDomElement("fas", "i")
+    // const lightboxTitle = createDomElement("lightboxTitle", "div")
+
+
     // Initialisation des chemins relatifs des medias de chaques photographes
     const pathEllie = "./medias/Ellie-Rose/"
     const pathMarcel = "./medias/Marcel/"
@@ -72,24 +84,33 @@ export const initPhotograph = async() => {
     const pathRhode = "./medias/Rhode/"
     const pathTracy = "./medias/Tracy/"
 
+    const jsonMedia = data.media
+
     const nbLikeInt = parseInt(data.likes, 10)
 
     // Initialisation des variables qui reçevrons des données de data.media
-    let photos = []
-    let photosFiltered = []
-    let videos = []
-    let videosFiltered = []
+    var photos = []
+    var photosFiltered = []
+    var videos = []
+    var videosFiltered = []
     let tagArray = []
     let urlImage = ""
+    let urlVideo = ""
     let title = []
+    let titleFiltered = []
     let price = []
+    let priceFiltered = []
     let likeInt = []
+    let likeIntFiltered = []
 
     // Ajout de class
     spanArrowDown.classList.add("fa-chevron-down");
     spanArrowUp.classList.add("fa-chevron-up");
     formCloseIcone.classList.add("fa-times");
     likeAndPriceHeart.classList.add("fa-heart")
+        // lightboxPreviousBtn.classList.add("fa-chevron-left")
+        // lightboxPreviousBtn.classList.add("fa-chevron-right")
+        // lightboxClose.classList.add("fa-times");
 
     // Ajout des attributs
     formFirstLabel.setAttribute("for", "formFirstInput")
@@ -110,10 +131,15 @@ export const initPhotograph = async() => {
     spanArrowDown.style.display = 'block'
     spanArrowUp.style.display = 'none'
     formPage.style.display = "none"
+        // lightboxPage.style.display = "none"
 
     // Events
     dropdownBtn.addEventListener("click", () => {
-        display(dropdownContent, spanArrowUp, spanArrowDown)
+        display(
+            dropdownContent,
+            spanArrowUp,
+            spanArrowDown
+        )
     })
 
     contactMe.addEventListener("click", () => {
@@ -136,11 +162,86 @@ export const initPhotograph = async() => {
     data.photographers.forEach(photographer => {
 
         if (photographer.id == photographID) {
-            createHeaderPH(photographer, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh, tagArray, navTagsPhotograph)
-            displayMedia(photographID, data.media, photos, photosFiltered, videosFiltered, videos, title, price, likeInt)
-            pathAnddisplayMedia(photosFiltered, videosFiltered, photographID, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, title, price, likeInt, mediaZoneContainer)
+            createHeaderPH(
+                photographer,
+                tagArray,
+                nameHeaderPhotograph,
+                locationBodyCardPhotograph,
+                citationBodyCardPhotograph,
+                formH1,
+                navTagsPhotograph,
+                photoProfilPhotograh,
+                tagArray,
+                navTagsPhotograph
+            )
+
+            // displayMedia(
+            //     photographID,
+            //     jsonMedia,
+            //     photos,
+            //     photosFiltered,
+            //     videosFiltered,
+            //     videos,
+            //     title,
+            //     price,
+            //     likeInt
+            // )
+
+            // permet de stocker les bonnes lignes de photos
+            for (let i = 0; i < jsonMedia.length; i++) {
+
+                if (jsonMedia[i].photographerId == photographID) {
+                    photos.push(jsonMedia[i].image)
+                    photosFiltered = photos.filter(elmt => {
+                        return elmt != null;
+                    });
+
+                    title.push(jsonMedia[i].title)
+                        // titleFiltered.push(jsonMedia[i].title)
+                    titleFiltered = title.filter(elmt => {
+                        return elmt != null;
+                    });
+
+                    videos.push(jsonMedia[i].video)
+                    videosFiltered = videos.filter(elmt => {
+                        return elmt != null;
+                    });
+
+
+                    // title = jsonMedia[i].title
+                    price = jsonMedia[i].price
+                    likeInt = jsonMedia[i].likes
+                }
+
+                // console.log(titleFiltered)
+                // console.log(photosFiltered)
+            }
+
+
+            pathAnddisplayMedia(
+                photographID,
+                photosFiltered,
+                videosFiltered,
+                photographID,
+                urlImage,
+                urlVideo,
+                pathEllie,
+                pathMarcel,
+                pathMimi,
+                pathNabeel,
+                pathRhode,
+                pathTracy,
+                mediaTitle,
+                titleFiltered,
+                price,
+                likeInt,
+                mediaZoneContainer,
+                mainPhotograph
+            )
+
         } else {
-            console.log("Error photographer!")
+            console.error("Error photographer!")
+                // console.log(photosFiltered)
         }
     })
 
@@ -214,6 +315,14 @@ export const initPhotograph = async() => {
         likeAndPriceZoneLike.append(likeAndPriceLike)
         likeAndPriceZoneLike.append(likeAndPriceHeart)
         likeAndPriceZonePrice.append(likeAndPricePrice)
+
+        // mainPhotograph.append(lightboxPage)
+        // lightboxPage.append(lightboxContainer)
+        // lightboxContainer.append(lightboxImg)
+        // lightboxContainer.append(lightboxPreviousBtn)
+        // lightboxContainer.append(lightboxNextBtn)
+        // lightboxContainer.append(lightboxClose)
+        // lightboxContainer.append(lightboxTitle)
     }
 
 }

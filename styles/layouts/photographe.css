@@ -197,6 +197,11 @@
     cursor: pointer;
 }
 
+.far:hover,
+.fa-heart:hover {
+    transform: scale(1.1)
+}
+
 .likeAndPriceBottom {
     position: fixed;
     z-index: 15;
@@ -243,9 +248,10 @@
 }
 
 .contactMe:hover {
-    width: 125px;
+    /* width: 125px;
     height: auto;
-    font-size: 18px;
+    font-size: 18px; */
+    transform: scale(1.1);
 }
 
 .formPage {
@@ -420,6 +426,8 @@ form {
         z-index: 18;
         top: 95.5vh;
         bottom: 20px;
+        left: 50vw;
+        right: 50vw;
     }
     .likeAndPriceBottom {
         display: none;
@@ -472,3 +480,52 @@ form {
 }
 
 @media screen and (max-width: 830px) {}
+
+.lightboxPage {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.lightboxClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--color1);
+    font-size: 40px;
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+    color: var(--color1);
+    font-size: 40px;
+}
+
+.lightboxImg {
+    border-radius: .3125rem;
+    height: auto;
+    width: 90vw;
+    object-fit: cover;
+    margin-left: 0;
+    margin: 50px;
+}
+
+.lightboxPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.lightboxContainer {
+    position: absolute;
+    top: 30vh;
+    right: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
