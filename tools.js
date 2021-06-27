@@ -176,7 +176,9 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     mediaHeart2.classList.add("fa-heart");
 
     lightboxPreviousBtn.classList.add("fa-chevron-left")
+    lightboxPreviousBtn.classList.add("btnLightbox")
     lightboxNextBtn.classList.add("fa-chevron-right")
+    lightboxNextBtn.classList.add("btnLightbox")
     lightboxClose.classList.add("fa-times");
     lightboxClose.classList.add("lightboxClose");
 

@@ -496,21 +496,43 @@ form {
     right: 0;
     color: var(--color1);
     font-size: 40px;
+    margin-top: -70px;
 }
 
 .fa-chevron-right,
 .fa-chevron-left {
+    position: relative;
     color: var(--color1);
     font-size: 40px;
+    cursor: pointer;
+    z-index: 1500;
+}
+
+.fa-chevron-right {
+    right: 0;
+    margin-left: 50px;
+}
+
+.fa-chevron-left {
+    left: 0;
+    margin-right: 50px;
+}
+
+.fa-chevron-right:hover,
+.fa-chevron-left:hover,
+.lightboxClose:hover {
+    transform: scale(1.1);
 }
 
 .lightboxImg {
+    position: relative;
     border-radius: .3125rem;
-    height: auto;
-    width: 90vw;
+    height: 18.75rem;
+    width: 21.875rem;
     object-fit: cover;
     margin-left: 0;
     margin: 50px;
+    transform: scale(1.5);
 }
 
 .lightboxPage {
@@ -528,4 +550,6 @@ form {
     justify-content: center;
     align-items: center;
     align-content: center;
+    width: auto;
+    height: auto;
 }
