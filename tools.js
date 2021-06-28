@@ -159,7 +159,12 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     const lightboxTitle = createDomElement("lightboxTitle", "div")
 
     const nnL = parseInt(mediaNbLike.value)
+    const checkURL = /\.(jpeg|jpg|gif|png)$/
 
+    let imageIndex = 1
+    let translateX = 0
+
+    const btnLightbox = document.querySelectorAll('.btnLightbox');
     // Ajout d'atributs
     mediaImage.setAttribute("src", urlImage)
     lightboxImg.setAttribute("src", urlImage)
@@ -168,7 +173,6 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     mediaVideo.controls = true
 
 
-    const checkURL = /\.(jpeg|jpg|gif|png)$/
 
 
     // Ajout de class
@@ -191,7 +195,7 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
         if (photographID == 930) {
             titleFiltered[j]
             mediaTitle.innerHTML = titleFiltered[j]
-            console.log(mediaTitle)
+                // console.log(mediaTitle)
         } else if (photographID == 195) {
             titleFiltered[j]
         } else if (photographID == 243) {
@@ -206,6 +210,40 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
             console.log("Error title !")
         }
     }
+
+    // let nextImg = lightboxImg.nextSibling
+
+
+    // const next = (boucle, nextelmt) => {
+    //     for (let i = 1; i < boucle.length; i++) {
+    //         let elmt = nextelmt.id.nextSibling
+    //     }
+
+    // }
+
+    // lightboxNextBtn.addEventListener('click', (event) => {
+    //         next(lightboxPage, lightboxPage)
+    //         console.log(lightboxPage)
+    //     }
+
+    // // fonction qui fait marcher la lightBox
+    // btnLightbox.forEach(button => {
+    //     button.addEventListener('click', (event) => {
+    //         if (event.target.id === 'previous') {
+    //             if (imageIndex !== 1) {
+    //                 imageIndex--;
+    //                 translateX += 300;
+    //             }
+    //         } else {
+    //             if (imageIndex !== mediaImage.length) {
+    //                 imageIndex++;
+    //                 translateX -= 300;
+    //             }
+    //         }
+
+    //         lightboxImg.style.transform = `translateX(${translateX}px)`;
+    //     });
+    // });
 
     // Afficher les informations dans les DomElements
     // mediaTitle.innerHTML = titleFiltered
