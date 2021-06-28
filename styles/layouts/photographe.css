@@ -197,6 +197,11 @@
     cursor: pointer;
 }
 
+.far:hover,
+.fa-heart:hover {
+    transform: scale(1.1)
+}
+
 .likeAndPriceBottom {
     position: fixed;
     z-index: 15;
@@ -243,19 +248,21 @@
 }
 
 .contactMe:hover {
-    width: 125px;
+    /* width: 125px;
     height: auto;
-    font-size: 18px;
+    font-size: 18px; */
+    transform: scale(1.1);
 }
 
 .formPage {
     position: absolute;
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
     align-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; */
     left: 0;
+    right: 0;
     z-index: 1000;
     height: 100vh;
     width: 100%;
@@ -271,8 +278,8 @@
     align-items: center; */
     flex-wrap: wrap;
     top: 100px;
-    left: 25%;
-    right: 25%;
+    /* left: 30vw; */
+    right: 30vw;
     z-index: 1000;
     height: 800px;
     width: 600px;
@@ -398,6 +405,81 @@ form {
     margin-left: 35px;
 }
 
+.lightboxPage {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    background-color: white;
+    z-index: 100;
+}
+
+.lightboxClose {
+    position: relative;
+    top: -210px;
+    right: 25px;
+    color: var(--color1);
+    font-size: 40px;
+}
+
+.fa-chevron-right,
+.fa-chevron-left {
+    position: relative;
+    color: var(--color1);
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 1500;
+}
+
+.fa-chevron-right {
+    right: 0;
+    margin-left: 50px;
+}
+
+.fa-chevron-left {
+    left: 0;
+    margin-right: 50px;
+}
+
+.fa-chevron-right:hover,
+.fa-chevron-left:hover,
+.lightboxClose:hover {
+    transform: scale(1.1);
+}
+
+.lightboxImg {
+    position: relative;
+    border-radius: .3125rem;
+    height: 18.75rem;
+    width: 21.875rem;
+    object-fit: cover;
+    margin-left: 0;
+    margin: 50px;
+    /* transform: translateX(0);
+    transition: transform 0.25s; */
+    transform: scale(1.5);
+}
+
+.lightboxPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.lightboxContainer {
+    position: absolute;
+    top: 30vh;
+    right: 0vw;
+    left: 0vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: auto;
+    height: auto;
+}
+
 @media screen and (max-width: 1312px) {
     .mediaZoneContainer {
         width: 83vw;
@@ -408,6 +490,9 @@ form {
         height: 11.875rem;
         object-fit: cover;
         width: 20.9rem;
+    }
+    .formContainer {
+        right: 10vw;
     }
 }
 
@@ -420,6 +505,8 @@ form {
         z-index: 18;
         top: 95.5vh;
         bottom: 20px;
+        left: 42vw;
+        right: 50vw;
     }
     .likeAndPriceBottom {
         display: none;
@@ -430,6 +517,16 @@ form {
     .mediaImage {
         position: relative;
     }
+    .lightboxImg {
+        height: 13.75rem;
+        width: 15.875rem;
+    }
+    .lightboxClose {
+        position: relative;
+        top: -140px;
+        right: 25px;
+    }
+    .lightboxPage {}
 }
 
 @media screen and (max-width: 830px) {
@@ -462,6 +559,7 @@ form {
         top: 94vh;
         padding-top: 12px;
         height: 15px;
+        left: 36vw;
     }
     .navTags-photograph {
         display: flex;
@@ -469,6 +567,44 @@ form {
         justify-content: flex-start;
         flex-wrap: wrap;
     }
+    .lightboxImg {
+        height: 12.75rem;
+        width: 13.875rem;
+    }
+    .lightboxClose {
+        position: relative;
+        top: -125px;
+        right: 25px;
+    }
+    .fa-chevron-right {
+        right: 0;
+        margin-left: 15px;
+    }
+    .fa-chevron-left {
+        left: 0;
+        margin-right: 5px;
+    }
 }
 
-@media screen and (max-width: 830px) {}
+@media screen and (max-width: 637px) {
+    .lightboxImg {
+        height: 8.75rem;
+        width: 8.875rem;
+    }
+    .fa-chevron-right {
+        right: 0;
+        margin-left: 5px;
+        font-size: 25px;
+    }
+    .fa-chevron-left {
+        left: 0;
+        margin-right: -3px;
+        font-size: 25px;
+    }
+    .lightboxClose {
+        position: relative;
+        font-size: 25px;
+        top: -80px;
+        right: 25px;
+    }
+}
