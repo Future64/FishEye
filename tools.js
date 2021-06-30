@@ -55,29 +55,15 @@ export const createHeader = (obj) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const display = (firstElt, secondtElt, thirdtElt) => {
-    if (firstElt.style.display == 'none') {
-        launch(firstElt)
-        closeWindow(thirdtElt)
-        launch(secondtElt)
-    } else {
-        closeWindow(firstElt)
-        launch(thirdtElt)
-        closeWindow(secondtElt)
-    }
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-export const displayHeart = (firstElt, secondtElt, mainLike) => {
+export const displayHeart = (firstElt, secondtElt, nnL) => {
     if (firstElt.style.display == 'block') {
         closeWindow(firstElt)
         launch(secondtElt)
-        mainLike++
+        nnL++
     } else {
         closeWindow(secondtElt)
         launch(firstElt)
-        mainLike--
+        nnL--
     }
 }
 
@@ -95,10 +81,27 @@ export const launch = (elt) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const createTag = (tagArray, navTagsPhotograph) => {
+export const displayDropdown = (firstElt, secondtElt, thirdtElt) => {
+    if (firstElt.style.display == 'none') {
+        launch(firstElt)
+        closeWindow(thirdtElt)
+        launch(secondtElt)
+    } else {
+        closeWindow(firstElt)
+        launch(thirdtElt)
+        closeWindow(secondtElt)
+    }
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const createTag = (tagArray) => {
+
+    const navTagsPhotograph = document.querySelector(".navTags-photograph")
 
     // Boucle de récpération et de création des l'élements tag 
     for (let t = 0; t < tagArray.length; t++) {
+
         let tag = createDomElement("nav-tag", "a")
         tag.id = "#" + tagArray[t]
         tag.setAttribute("href", "#")
@@ -112,16 +115,20 @@ export const createTag = (tagArray, navTagsPhotograph) => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // fonction de création du header
-export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBodyCardPhotograph, citationBodyCardPhotograph, formH1, navTagsPhotograph, photoProfilPhotograh) => {
+export const createHeaderPH = (data, tagArray, urlImage) => {
 
-    tagArray = data.tags
+    const photoProfilPhotograh = document.querySelector(".photoProfil-photograph")
+    const nameHeaderPhotograph = document.querySelector(".name--header-card-photograph")
+    const locationBodyCardPhotograph = document.querySelector(".location--body-card-photograph")
+    const citationBodyCardPhotograph = document.querySelector(".citation")
 
+
+    photoProfilPhotograh.innerHTML = urlImage
     nameHeaderPhotograph.innerHTML = data.name
     locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
     citationBodyCardPhotograph.innerHTML = data.tagline
-    formH1.innerHTML = "Contactez-moi " + data.name
+        // formH1.innerHTML = "Contactez-moi " + data.name
 
-    createTag(tagArray, navTagsPhotograph)
 
     // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.portrait
@@ -130,19 +137,118 @@ export const createHeaderPH = (data, tagArray, nameHeaderPhotograph, locationBod
     photoProfilPhotograh.style.backgroundSize = "cover"
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const createSortZone = () => {
+    const sortZone = document.querySelector(".sortZone")
+    const spanSort = document.querySelector(".spanSort")
+    const dropdownContainer = document.querySelector(".dropdownContainer")
+    const dropdownBtn = document.querySelector(".dropdownBtn")
+    const dropdownContent = document.querySelector(".dropdownContent")
+    const dropdownDate = document.querySelector(".dropdownDate")
+    const dropdownTitle = document.querySelector(".dropdownTitle")
+    const spanArrowDown = document.querySelector(".fas fa-chevron-down")
+    const spanArrowUp = document.querySelector(".fas fa-chevron-up")
+
+    // Events
+    dropdownBtn.addEventListener("click", () => {
+        displayDropdown(dropdownContent, spanArrowUp, spanArrowDown)
+    })
+}
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, mainPhotograph) => {
+export const createForm = (mainPhotograph) => {
+
+    const contactMe = document.querySelector(".contactMe")
+
+    const formPage = createDomElement("formPage", "div")
+    const formContainer = createDomElement("formContainer", "div")
+    const form = createDomElement("form", "form")
+    const formHeader = createDomElement("formHeader", "div")
+    const formH1 = createDomElement("formH1", "h1")
+    const formClose = createDomElement("formClose", "div")
+    const formCloseIcone = createDomElement("fas", "i")
+    const formFirstBox = createDomElement("formFirstBox", "div")
+    const formFirstLabel = createDomElement("formFirstLabel", "label")
+    const formFirstInput = createDomElement("formFirstInput", "input")
+    const formLastBox = createDomElement("formLastBox", "div")
+    const formLastLabel = createDomElement("formLastLabel", "label")
+    const formLastInput = createDomElement("formLastInput", "input")
+    const formEmailBox = createDomElement("formEmailBox", "div")
+    const formEmailLabel = createDomElement("formEmailLabel", "label")
+    const formEmailInput = createDomElement("formEmailInput", "input")
+    const formMsgBox = createDomElement("formEmailBox", "div")
+    const formMsgLabel = createDomElement("formEmailLabel", "label")
+    const formMsgInput = createDomElement("formMsgInput", "textarea")
+    const formValidBtn = createDomElement("formValidBtn", "button")
+
+    // Ajout des attributs
+    formFirstLabel.setAttribute("for", "formFirstInput")
+    formLastLabel.setAttribute("for", "formLastInput")
+    formEmailLabel.setAttribute("for", "formEmailInput")
+    formMsgLabel.setAttribute("for", "formMsgInput")
+    formFirstInput.setAttribute("placeholder", "Prénom")
+    formFirstInput.setAttribute("id", "formFirstInput")
+    formLastInput.setAttribute("placeholder", "Nom")
+    formLastInput.setAttribute("id", "formLastInput")
+    formEmailInput.setAttribute("placeholder", "Email")
+    formEmailInput.setAttribute("id", "formEmailInput")
+    formMsgInput.setAttribute("placeholder", "Votre message...")
+    formMsgInput.setAttribute("id", "formMsgInput")
+
+    formCloseIcone.classList.add("fa-times");
+
+    formFirstLabel.innerHTML = "Prénom"
+    formLastLabel.innerHTML = "Nom"
+    formEmailLabel.innerHTML = "Email"
+    formMsgLabel.innerHTML = "Votre message"
+    formValidBtn.innerHTML = "Envoyer"
+
+    // Attacher les DomElements entre eux
+    // mainPhotograph.append(contactMe)
+    mainPhotograph.append(formPage)
+    formPage.append(formContainer)
+    formContainer.append(form)
+    form.append(formHeader)
+    form.append(formFirstBox)
+    form.append(formLastBox)
+    form.append(formEmailBox)
+    form.append(formMsgBox)
+    form.append(formValidBtn)
+    formFirstBox.append(formFirstLabel)
+    formLastBox.append(formLastLabel)
+    formEmailBox.append(formEmailLabel)
+    formMsgBox.append(formMsgLabel)
+    formFirstBox.append(formFirstInput)
+    formLastBox.append(formLastInput)
+    formEmailBox.append(formEmailInput)
+    formMsgBox.append(formMsgInput)
+    formHeader.append(formH1)
+    formHeader.append(formClose)
+    formClose.append(formCloseIcone)
+
+
+    contactMe.addEventListener("click", () => {
+        launch(formPage)
+    })
+
+    formClose.addEventListener("click", () => {
+        closeWindow(formPage)
+    })
+}
+
+export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photos, video) => {
 
     // Creation des DomElements et des classes pour les DomElements
+    const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
     const mediaZone = createDomElement("mediaZone", "div")
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
     const mediaImage = createDomElement("mediaImage", "img")
     const mediaVideo = createDomElement("mediaImage", "video")
     const mediaInfo = createDomElement("mediaInfo", "div")
-        // const mediaTitle = createDomElement("mediaTitle", "h2")
+    const mediaTitle = createDomElement("mediaTitle", "h2")
     const mediaPrice = createDomElement("mediaPrice", "span")
     const mediaLike = createDomElement("mediaLike", "div")
     const mediaNbLike = createDomElement("mediaNbLike", "span")
@@ -158,11 +264,10 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     const lightboxClose = createDomElement("fas", "i")
     const lightboxTitle = createDomElement("lightboxTitle", "div")
 
-    const nnL = parseInt(mediaNbLike.value)
-    const checkURL = /\.(jpeg|jpg|gif|png)$/
+    let nnL = parseInt(dataMedia.likes)
 
-    let imageIndex = 1
-    let translateX = 0
+    // pathMedias(data, data.photographerId, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy)
+    // console.log(urlImage)
 
     const btnLightbox = document.querySelectorAll('.btnLightbox');
     // Ajout d'atributs
@@ -171,9 +276,6 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     mediaVideo.setAttribute("src", urlVideo)
     mediaVideo.setAttribute("type", "video/mp4")
     mediaVideo.controls = true
-
-
-
 
     // Ajout de class
     mediaHeart.classList.add("fa-heart");
@@ -191,64 +293,11 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     mediaHeart2.style.display = 'none'
     lightboxPage.style.display = "none"
 
-    for (let j = 0; j < titleFiltered.length; j++) {
-        if (photographID == 930) {
-            titleFiltered[j]
-            mediaTitle.innerHTML = titleFiltered[j]
-                // console.log(mediaTitle)
-        } else if (photographID == 195) {
-            titleFiltered[j]
-        } else if (photographID == 243) {
-            titleFiltered[j]
-        } else if (photographID == 527) {
-            titleFiltered[j]
-        } else if (photographID == 925) {
-            titleFiltered[j]
-        } else if (photographID == 82) {
-            titleFiltered[j]
-        } else {
-            console.log("Error title !")
-        }
-    }
-
-    // let nextImg = lightboxImg.nextSibling
-
-
-    // const next = (boucle, nextelmt) => {
-    //     for (let i = 1; i < boucle.length; i++) {
-    //         let elmt = nextelmt.id.nextSibling
-    //     }
-
-    // }
-
-    // lightboxNextBtn.addEventListener('click', (event) => {
-    //         next(lightboxPage, lightboxPage)
-    //         console.log(lightboxPage)
-    //     }
-
-    // // fonction qui fait marcher la lightBox
-    // btnLightbox.forEach(button => {
-    //     button.addEventListener('click', (event) => {
-    //         if (event.target.id === 'previous') {
-    //             if (imageIndex !== 1) {
-    //                 imageIndex--;
-    //                 translateX += 300;
-    //             }
-    //         } else {
-    //             if (imageIndex !== mediaImage.length) {
-    //                 imageIndex++;
-    //                 translateX -= 300;
-    //             }
-    //         }
-
-    //         lightboxImg.style.transform = `translateX(${translateX}px)`;
-    //     });
-    // });
 
     // Afficher les informations dans les DomElements
-    // mediaTitle.innerHTML = titleFiltered
-    mediaPrice.innerHTML = price + " €"
-    mediaNbLike.innerHTML = likeInt
+    mediaTitle.innerHTML = dataMedia.title
+    mediaPrice.innerHTML = dataMedia.price + " €"
+    mediaNbLike.innerHTML = dataMedia.likes
 
     // Event
     mediaLike.addEventListener("click", () => {
@@ -270,12 +319,14 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
     mediaZone.append(mediaCard)
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
-    mediaLink.append(mediaImage)
 
-    if (mediaVideo == null) {
-        // mediaLink.remove(mediaVideo)
-        mediaLink.append(mediaVideo)
-        mediaInfo.remove(mediaTitle)
+
+    mediaLink.append(mediaImage)
+        // mediaLink.append(mediaVideo)
+
+    if (dataMedia.video !== undefined) {
+        mediaImage.replaceWith(mediaVideo)
+
     }
 
     mediaInfo.append(mediaTitle)
@@ -295,35 +346,59 @@ export const createMedia = (urlImage, urlVideo, mediaTitle, titleFiltered, price
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// fonction qui va creer et ajouter les photos dans le Dom
-// export const displayMedia = (id, jsonMedia, photos, photosFiltered, videosFiltered, videos, title, price, likeInt) => {
-//     // permet de stocker les bonnes lignes de photos
-//     for (let i = 0; i < jsonMedia.length; i++) {
+export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos) => {
+    for (let j = 0; j < dataMedia.length; j++) {
+        if (photographerID == 930) {
+            urlVideo = pathEllie + dataMedia[j].video
+            urlImage = pathEllie + dataMedia[j].image
+        } else if (photographerID == 195) {
+            urlVideo = pathMarcel + dataMedia[j].video
+            urlImage = pathMarcel + dataMedia[j].image
+        } else if (photographerID == 243) {
+            urlVideo = pathMimi + dataMedia[j].video
+            urlImage = pathMimi + dataMedia[j].image
+        } else if (photographerID == 527) {
+            urlVideo = pathNabeel + dataMedia[j].video
+            urlImage = pathNabeel + dataMedia[j].image
+        } else if (photographerID == 925) {
+            urlVideo = pathRhode + dataMedia[j].video
+            urlImage = pathRhode + dataMedia[j].image
+        } else if (photographerID == 82) {
+            urlVideo = pathTracy + dataMedia[j].video
+            urlImage = pathTracy + dataMedia[j].image
+        } else {
+            console.log("Error medias !")
+        }
 
-//         if (jsonMedia[i].photographerId == id) {
-//             photos.push(jsonMedia[i].image)
-//             photosFiltered = photos.filter(elmt => {
-//                 return elmt != null;
-//             });
-
-//             videos.push(jsonMedia[i].video)
-//             videosFiltered = videos.filter(elmt => {
-//                 return elmt != null;
-//             });
-
-//             title = jsonMedia[i].title
-//             price = jsonMedia[i].price
-//             likeInt = jsonMedia[i].likes
-//                 // console.log(photosFiltered)
-//         }
-
-//         // console.log(videosFiltered)
-//         // console.log(photosFiltered)
-//     }
-
-// }
+        createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph, photos, videos)
+    }
+}
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const pathMedias = (data, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy) => {
+
+        for (let i = 0; i < data; i++) {
+            if (id == 930) {
+                urlImage = pathEllie + data.image
+                console.log(urlImage)
+            } else if (id == 195) {
+                urlImage = pathMarcel + data.image
+            } else if (id == 243) {
+                urlImage = pathMimi + data.image
+            } else if (id == 527) {
+                urlImage = pathNabeel + data.image
+            } else if (id == 925) {
+                urlImage = pathRhode + data.image
+            } else if (id == 82) {
+                urlImage = pathTracy + data.image
+            } else {
+                console.log("Error medias !")
+            }
+        }
+        return urlImage
+    }
+    /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const pathAnddisplayMedia = (
     photographID,
@@ -349,22 +424,16 @@ export const pathAnddisplayMedia = (
     for (let j = 0; j < photosFiltered.length; j++) {
         if (id == 930) {
             urlImage = pathEllie + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 195) {
             urlImage = pathMarcel + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 243) {
             urlImage = pathMimi + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 527) {
             urlImage = pathNabeel + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 925) {
             urlImage = pathRhode + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 82) {
             urlImage = pathTracy + photosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else {
             console.log("Error photos !")
         }
@@ -375,54 +444,20 @@ export const pathAnddisplayMedia = (
         if (id == 930) {
             urlVideo = pathEllie + videosFiltered[j]
             console.log(videosFiltered[j])
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 195) {
             urlVideo = pathMarcel + videosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 243) {
             urlVideo = pathMimi + videosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 527) {
             urlVideo = pathNabeel + videosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 925) {
             urlVideo = pathRhode + videosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else if (id == 82) {
             urlVideo = pathTracy + videosFiltered[j]
-            createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer, photographID, lightboxPage)
         } else {
             console.log("Error videos !")
         }
     }
-
-    // for (let j = 0; j < titleFiltered.length; j++) {
-    //     if (id == 930) {
-    //         titleFiltered[j]
-    //             // createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //         mediaTitle.innerHTML = titleFiltered[j]
-    //         console.log(mediaTitle)
-    //     } else if (id == 195) {
-    //         titleFiltered[j]
-    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //     } else if (id == 243) {
-    //         titleFiltered[j]
-    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //     } else if (id == 527) {
-    //         titleFiltered[j]
-    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //     } else if (id == 925) {
-    //         titleFiltered[j]
-    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //     } else if (id == 82) {
-    //         titleFiltered[j]
-    //         createMedia(urlImage, urlVideo, mediaTitle, titleFiltered, price, likeInt, mediaZoneContainer)
-    //     } else {
-    //         console.log("Error title !")
-    //     }
-    // }
-
-
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
