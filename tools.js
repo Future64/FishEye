@@ -238,7 +238,7 @@ export const createForm = (mainPhotograph) => {
     })
 }
 
-export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photos, video) => {
+export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
@@ -255,6 +255,57 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photo
     const mediaHeart = createDomElement("far", "i")
     const mediaHeart2 = createDomElement("fas", "i")
 
+    let nbLikes = parseInt(dataMedia.likes)
+
+    // Ajout d'atributs
+    mediaImage.setAttribute("src", urlImage)
+    mediaVideo.setAttribute("src", urlVideo)
+    mediaVideo.setAttribute("type", "video/mp4")
+    mediaVideo.controls = true
+
+    // Ajout de class
+    mediaHeart.classList.add("fa-heart");
+    mediaHeart2.classList.add("fa-heart");
+
+    // Affichage par defaut
+    mediaHeart.style.display = 'block'
+    mediaHeart2.style.display = 'none'
+
+    // Afficher les informations dans les DomElements
+    mediaTitle.innerHTML = dataMedia.title
+    mediaPrice.innerHTML = dataMedia.price + " €"
+    mediaNbLike.innerHTML = dataMedia.likes
+
+    // Event
+    mediaLike.addEventListener("click", () => {
+        displayHeart(mediaHeart, mediaHeart2, nbLikes)
+    })
+
+    // Attacher les DomElements entre eux
+    mediaZoneContainer.append(mediaZone)
+    mediaZone.append(mediaCard)
+    mediaCard.append(mediaLink)
+    mediaCard.append(mediaInfo)
+    mediaLink.append(mediaImage)
+
+    if (dataMedia.video !== undefined) {
+        mediaImage.replaceWith(mediaVideo)
+    }
+
+    mediaInfo.append(mediaTitle)
+    mediaInfo.append(mediaLike)
+    mediaLike.append(mediaPrice)
+    mediaLike.append(mediaNbLike)
+    mediaLike.append(mediaHeart, mediaHeart2)
+
+    createLightbox(mainPhotograph, urlImage, mediaLink)
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
+
+    const btnLightbox = document.querySelectorAll('.btnLightbox');
 
     const lightboxPage = createDomElement("lightboxPage", "div")
     const lightboxContainer = createDomElement("lightboxContainer", "div")
@@ -264,22 +315,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photo
     const lightboxClose = createDomElement("fas", "i")
     const lightboxTitle = createDomElement("lightboxTitle", "div")
 
-    let nnL = parseInt(dataMedia.likes)
-
-    // pathMedias(data, data.photographerId, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy)
-    // console.log(urlImage)
-
-    const btnLightbox = document.querySelectorAll('.btnLightbox');
-    // Ajout d'atributs
-    mediaImage.setAttribute("src", urlImage)
     lightboxImg.setAttribute("src", urlImage)
-    mediaVideo.setAttribute("src", urlVideo)
-    mediaVideo.setAttribute("type", "video/mp4")
-    mediaVideo.controls = true
-
-    // Ajout de class
-    mediaHeart.classList.add("fa-heart");
-    mediaHeart2.classList.add("fa-heart");
 
     lightboxPreviousBtn.classList.add("fa-chevron-left")
     lightboxPreviousBtn.classList.add("btnLightbox")
@@ -288,21 +324,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photo
     lightboxClose.classList.add("fa-times");
     lightboxClose.classList.add("lightboxClose");
 
-    // Affichage par defaut
-    mediaHeart.style.display = 'block'
-    mediaHeart2.style.display = 'none'
     lightboxPage.style.display = "none"
-
-
-    // Afficher les informations dans les DomElements
-    mediaTitle.innerHTML = dataMedia.title
-    mediaPrice.innerHTML = dataMedia.price + " €"
-    mediaNbLike.innerHTML = dataMedia.likes
-
-    // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, nnL)
-    })
 
     // Events
     mediaLink.addEventListener("click", () => {
@@ -313,27 +335,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photo
     lightboxClose.addEventListener("click", () => {
         closeWindow(lightboxPage)
     })
-
-    // Attacher les DomElements entre eux
-    mediaZoneContainer.append(mediaZone)
-    mediaZone.append(mediaCard)
-    mediaCard.append(mediaLink)
-    mediaCard.append(mediaInfo)
-
-
-    mediaLink.append(mediaImage)
-        // mediaLink.append(mediaVideo)
-
-    if (dataMedia.video !== undefined) {
-        mediaImage.replaceWith(mediaVideo)
-
-    }
-
-    mediaInfo.append(mediaTitle)
-    mediaInfo.append(mediaLike)
-    mediaLike.append(mediaPrice)
-    mediaLike.append(mediaNbLike)
-    mediaLike.append(mediaHeart, mediaHeart2)
 
     mainPhotograph.append(lightboxPage)
     lightboxPage.append(lightboxContainer)
@@ -346,7 +347,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph, photo
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos) => {
+export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph) => {
     for (let j = 0; j < dataMedia.length; j++) {
         if (photographerID == 930) {
             urlVideo = pathEllie + dataMedia[j].video
@@ -370,94 +371,13 @@ export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlI
             console.log("Error medias !")
         }
 
-        createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph, photos, videos)
+        createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
     }
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const pathMedias = (data, id, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy) => {
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-        for (let i = 0; i < data; i++) {
-            if (id == 930) {
-                urlImage = pathEllie + data.image
-                console.log(urlImage)
-            } else if (id == 195) {
-                urlImage = pathMarcel + data.image
-            } else if (id == 243) {
-                urlImage = pathMimi + data.image
-            } else if (id == 527) {
-                urlImage = pathNabeel + data.image
-            } else if (id == 925) {
-                urlImage = pathRhode + data.image
-            } else if (id == 82) {
-                urlImage = pathTracy + data.image
-            } else {
-                console.log("Error medias !")
-            }
-        }
-        return urlImage
-    }
-    /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-export const pathAnddisplayMedia = (
-    photographID,
-    photosFiltered,
-    videosFiltered,
-    id,
-    urlImage,
-    urlVideo,
-    pathEllie,
-    pathMarcel,
-    pathMimi,
-    pathNabeel,
-    pathRhode,
-    pathTracy,
-    mediaTitle,
-    titleFiltered,
-    price,
-    likeInt,
-    mediaZoneContainer,
-    lightboxPage
-) => {
-    // Boucle sur photosFilter et assigne le bon chemin relatif pour les medias
-    for (let j = 0; j < photosFiltered.length; j++) {
-        if (id == 930) {
-            urlImage = pathEllie + photosFiltered[j]
-        } else if (id == 195) {
-            urlImage = pathMarcel + photosFiltered[j]
-        } else if (id == 243) {
-            urlImage = pathMimi + photosFiltered[j]
-        } else if (id == 527) {
-            urlImage = pathNabeel + photosFiltered[j]
-        } else if (id == 925) {
-            urlImage = pathRhode + photosFiltered[j]
-        } else if (id == 82) {
-            urlImage = pathTracy + photosFiltered[j]
-        } else {
-            console.log("Error photos !")
-        }
-    }
-
-    // Boucle sur videosFilter et assigne le bon chemin relatif pour les medias
-    for (let j = 0; j < videosFiltered.length; j++) {
-        if (id == 930) {
-            urlVideo = pathEllie + videosFiltered[j]
-            console.log(videosFiltered[j])
-        } else if (id == 195) {
-            urlVideo = pathMarcel + videosFiltered[j]
-        } else if (id == 243) {
-            urlVideo = pathMimi + videosFiltered[j]
-        } else if (id == 527) {
-            urlVideo = pathNabeel + videosFiltered[j]
-        } else if (id == 925) {
-            urlVideo = pathRhode + videosFiltered[j]
-        } else if (id == 82) {
-            urlVideo = pathTracy + videosFiltered[j]
-        } else {
-            console.log("Error videos !")
-        }
-    }
-}
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/

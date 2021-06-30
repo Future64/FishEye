@@ -1,4 +1,4 @@
-import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createMedia, createTag, createHeaderPH, createForm, pathMedias, pathMediasPhotographer } from './tools.js'
+import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createMedia, createTag, createHeaderPH, createForm, pathMediasPhotographer } from './tools.js'
 
 export const initPhotograph = async() => {
     const data = await initCache()
