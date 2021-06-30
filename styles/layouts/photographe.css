@@ -63,8 +63,9 @@
 }
 
 .dropdownContent {
-    display: flex;
+    display: none;
     flex-direction: column;
+    z-index: 20;
 }
 
 .spanSort {
@@ -85,7 +86,8 @@
     height: 18.75rem;
     width: 21.875rem;
     object-fit: cover;
-    z-index: 10
+    z-index: 10;
+    cursor: pointer;
 }
 
 .mediaZoneContainer {
@@ -116,7 +118,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 18px 0;
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 .far {
@@ -130,6 +132,14 @@
 .fa-chevron-down,
 .fa-chevron-up {
     margin-left: 20px;
+}
+
+.fa-chevron-up {
+    display: none;
+}
+
+.fa-chevron-down {
+    display: block;
 }
 
 .mediaNbLike {
@@ -256,6 +266,7 @@
 
 .formPage {
     position: absolute;
+    display: none;
     /* display: flex;
     justify-content: center;
     align-items: center;
