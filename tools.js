@@ -56,24 +56,6 @@ export const createHeader = (obj) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// Fonction qui créer les coeurs pour incrémenter les likes
-export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAndPriceLike) => {
-    if (firstElt.style.display == 'block') {
-        closeWindow(firstElt)
-        launch(secondtElt)
-        nbLikes += 1
-        mediaNbLike.innerHTML = nbLikes
-        likeAndPriceLike.innerHTML = nbLikes * 10
-    } else {
-        closeWindow(secondtElt)
-        launch(firstElt)
-        mediaNbLike.innerHTML = nbLikes
-        likeAndPriceLike.innerHTML = nbLikes * 10
-    }
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
 // Fonction qui permet de fermer une fenêtre
 export const closeWindow = (elt) => {
     elt.style.display = 'none'
@@ -245,6 +227,34 @@ export const createForm = (mainPhotograph) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui créer les coeurs pour incrémenter les likes
+export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAndPriceLike, totalNbLikes) => {
+    if (firstElt.style.display == 'block') {
+
+        closeWindow(firstElt)
+        launch(secondtElt)
+        nbLikes += 1
+        mediaNbLike.innerHTML = nbLikes
+
+    } else {
+
+        closeWindow(secondtElt)
+        launch(firstElt)
+        mediaNbLike.innerHTML = nbLikes
+    }
+}
+
+export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) => {
+    if (firstElt.style.display == 'block') {
+        likeAndPriceLike.innerHTML = totalNbLikes
+    } else {
+        totalNbLikes += 1
+        likeAndPriceLike.innerHTML = totalNbLikes
+    }
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
 // Fonction qui créer et affiche les médias de la page photographe
 export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
@@ -265,7 +275,15 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     const mediaHeart2 = createDomElement("fas", "i")
 
     let nbLikes = parseInt(dataMedia.likes)
-    console.log(dataMedia.likes.length)
+    let calcNbLikes = []
+    calcNbLikes.push(dataMedia.likes)
+
+    let totalNbLikes = calcNbLikes.reduce((a, b) => {
+        return a + b
+    })
+
+    console.log(totalNbLikes)
+
 
     // Ajout d'atributs
     mediaImage.setAttribute("src", urlImage)
@@ -280,17 +298,18 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     // Affichage par defaut
     mediaHeart.style.display = 'block'
     mediaHeart2.style.display = 'none'
+    likeAndPriceLike.innerHTML = totalNbLikes
 
     // Event
     mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes, likeAndPriceLike)
+        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
+        incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
     })
 
     // Afficher les informations dans les DomElements
     mediaTitle.innerHTML = dataMedia.title
     mediaPrice.innerHTML = dataMedia.price + " €"
     mediaNbLike.innerHTML = nbLikes
-    likeAndPriceLike.innerHTML = nbLikes * 10
 
 
 
@@ -311,25 +330,29 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaLike.append(mediaNbLike)
     mediaLike.append(mediaHeart, mediaHeart2)
 
-    createLightbox(mainPhotograph, urlImage, mediaLink)
+    createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui créer et affiche la lightbox dans la page photographe
-export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
+export const createLightbox = (data, mainPhotograph, urlImage, urlVideo, mediaLink) => {
 
     const btnLightbox = document.querySelectorAll('.btnLightbox');
 
     const lightboxPage = createDomElement("lightboxPage", "div")
     const lightboxContainer = createDomElement("lightboxContainer", "div")
     const lightboxImg = createDomElement("lightboxImg", "img")
+    const lightboxVideo = createDomElement("lightboxImg", "video")
     const lightboxPreviousBtn = createDomElement("fas", "i")
     const lightboxNextBtn = createDomElement("fas", "i")
     const lightboxClose = createDomElement("fas", "i")
     const lightboxTitle = createDomElement("lightboxTitle", "div")
 
     lightboxImg.setAttribute("src", urlImage)
+    lightboxVideo.setAttribute("src", urlVideo)
+    lightboxVideo.setAttribute("type", "video/mp4")
+    lightboxVideo.controls = true
 
     lightboxPreviousBtn.classList.add("fa-chevron-left")
     lightboxPreviousBtn.classList.add("btnLightbox")
@@ -356,6 +379,12 @@ export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
     lightboxPage.append(lightboxContainer)
     lightboxContainer.append(lightboxPreviousBtn)
     lightboxContainer.append(lightboxImg)
+
+    if (data !== undefined) {
+        lightboxImg.replaceWith(lightboxVideo)
+    }
+
+    // lightboxContainer.append(lightboxVideo)
     lightboxContainer.append(lightboxNextBtn)
     lightboxContainer.append(lightboxClose)
     lightboxContainer.append(lightboxTitle)

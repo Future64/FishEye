@@ -68,7 +68,6 @@ export const initPhotograph = async() => {
             photos = mediaLine.image
             videos = mediaLine.video
 
-            // likeAndPriceLike.innerHTML = mediaLine.likes * mediaLine.likes
             likeAndPricePrice.innerHTML = mediaLine.price + " €/jour"
         }
     })
