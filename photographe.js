@@ -12,7 +12,7 @@ export const initPhotograph = async() => {
     const likeAndPriceBox = document.querySelector(".likeAndPriceBox")
     const likeAndPriceZoneLike = document.querySelector(".likeAndPriceZoneLike")
     const likeAndPriceZonePrice = document.querySelector(".likeAndPriceZonePrice")
-    const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
+        // const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
     const likeAndPriceHeart = document.querySelector(".fas")
     const likeAndPricePrice = document.querySelector(".likeAndPricePrice")
     const mediaTitle = document.querySelector(".mediaTitle")
@@ -68,7 +68,7 @@ export const initPhotograph = async() => {
             photos = mediaLine.image
             videos = mediaLine.video
 
-            likeAndPriceLike.innerHTML = mediaLine.likes * mediaLine.likes
+            // likeAndPriceLike.innerHTML = mediaLine.likes * mediaLine.likes
             likeAndPricePrice.innerHTML = mediaLine.price + " €/jour"
         }
     })

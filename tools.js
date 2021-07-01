@@ -57,15 +57,18 @@ export const createHeader = (obj) => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui créer les coeurs pour incrémenter les likes
-export const displayHeart = (firstElt, secondtElt, nbLikes) => {
+export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAndPriceLike) => {
     if (firstElt.style.display == 'block') {
         closeWindow(firstElt)
         launch(secondtElt)
-        nbLikes++
+        nbLikes += 1
+        mediaNbLike.innerHTML = nbLikes
+        likeAndPriceLike.innerHTML = nbLikes * 10
     } else {
         closeWindow(secondtElt)
         launch(firstElt)
-        nbLikes--
+        mediaNbLike.innerHTML = nbLikes
+        likeAndPriceLike.innerHTML = nbLikes * 10
     }
 }
 
@@ -247,6 +250,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
+    const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
     const mediaZone = createDomElement("mediaZone", "div")
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
@@ -261,6 +265,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     const mediaHeart2 = createDomElement("fas", "i")
 
     let nbLikes = parseInt(dataMedia.likes)
+    console.log(dataMedia.likes.length)
 
     // Ajout d'atributs
     mediaImage.setAttribute("src", urlImage)
@@ -276,15 +281,18 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaHeart.style.display = 'block'
     mediaHeart2.style.display = 'none'
 
+    // Event
+    mediaLike.addEventListener("click", () => {
+        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes, likeAndPriceLike)
+    })
+
     // Afficher les informations dans les DomElements
     mediaTitle.innerHTML = dataMedia.title
     mediaPrice.innerHTML = dataMedia.price + " €"
-    mediaNbLike.innerHTML = dataMedia.likes
+    mediaNbLike.innerHTML = nbLikes
+    likeAndPriceLike.innerHTML = nbLikes * 10
 
-    // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, nbLikes)
-    })
+
 
     // Attacher les DomElements entre eux
     mediaZoneContainer.append(mediaZone)
