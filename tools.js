@@ -37,6 +37,7 @@ export const createDomElement = (className, DomElem) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui créer et affiche le header 
 export const createHeader = (obj) => {
     // Selection de la balise Hml avec sa classe
     const headerNavTags = document.querySelector(".navTags")
@@ -55,46 +56,51 @@ export const createHeader = (obj) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const displayHeart = (firstElt, secondtElt, nnL) => {
+// Fonction qui créer les coeurs pour incrémenter les likes
+export const displayHeart = (firstElt, secondtElt, nbLikes) => {
     if (firstElt.style.display == 'block') {
         closeWindow(firstElt)
         launch(secondtElt)
-        nnL++
+        nbLikes++
     } else {
         closeWindow(secondtElt)
         launch(firstElt)
-        nnL--
+        nbLikes--
     }
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui permet de fermer une fenêtre
 export const closeWindow = (elt) => {
     elt.style.display = 'none'
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui permet d'ouvrir une fenêtre
 export const launch = (elt) => {
     elt.style.display = 'block'
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const displayDropdown = (firstElt, secondtElt, thirdtElt) => {
-    if (firstElt.style.display == 'none') {
-        launch(firstElt)
-        closeWindow(thirdtElt)
-        launch(secondtElt)
+// Fontion qui replie et déplie et affiche les fleches down et up si le dropdown est ouvert ou fermé
+export const displayDropdown = (dropdownContent, spanArrowUp, spanArrowDown) => {
+    if (dropdownContent.style.display == 'none') {
+        launch(dropdownContent)
+        launch(spanArrowUp)
+        closeWindow(spanArrowDown)
     } else {
-        closeWindow(firstElt)
-        launch(thirdtElt)
-        closeWindow(secondtElt)
+        closeWindow(dropdownContent)
+        closeWindow(spanArrowUp)
+        launch(spanArrowDown)
     }
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui créer et affiche les tags 
 export const createTag = (tagArray) => {
 
     const navTagsPhotograph = document.querySelector(".navTags-photograph")
@@ -114,41 +120,36 @@ export const createTag = (tagArray) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// fonction de création du header
-export const createHeaderPH = (data, tagArray, urlImage) => {
+// Fonction de création et d'affichage du header de la page photographe
+export const createHeaderPH = (data, urlImage) => {
 
     const photoProfilPhotograh = document.querySelector(".photoProfil-photograph")
     const nameHeaderPhotograph = document.querySelector(".name--header-card-photograph")
     const locationBodyCardPhotograph = document.querySelector(".location--body-card-photograph")
     const citationBodyCardPhotograph = document.querySelector(".citation")
 
-
     photoProfilPhotograh.innerHTML = urlImage
     nameHeaderPhotograph.innerHTML = data.name
     locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
     citationBodyCardPhotograph.innerHTML = data.tagline
-        // formH1.innerHTML = "Contactez-moi " + data.name
-
 
     // Initialisation de la variable url
     let urlPortrait = "./medias/PhotographersID-Photos/" + data.portrait
-        // Assigne la variable url pour les chemins des photos de profils
+
+    // Assigne la variable url pour les chemins des photos de profils
     photoProfilPhotograh.style.backgroundImage = `url(${urlPortrait})`
     photoProfilPhotograh.style.backgroundSize = "cover"
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui déclanche à l'écoute du click sur le dropdow la fonction "displayDropdown"
 export const createSortZone = () => {
-    const sortZone = document.querySelector(".sortZone")
-    const spanSort = document.querySelector(".spanSort")
-    const dropdownContainer = document.querySelector(".dropdownContainer")
+
     const dropdownBtn = document.querySelector(".dropdownBtn")
     const dropdownContent = document.querySelector(".dropdownContent")
-    const dropdownDate = document.querySelector(".dropdownDate")
-    const dropdownTitle = document.querySelector(".dropdownTitle")
-    const spanArrowDown = document.querySelector(".fas fa-chevron-down")
-    const spanArrowUp = document.querySelector(".fas fa-chevron-up")
+    const spanArrowDown = document.querySelector(".fa-chevron-down")
+    const spanArrowUp = document.querySelector(".fa-chevron-up")
 
     // Events
     dropdownBtn.addEventListener("click", () => {
@@ -158,6 +159,7 @@ export const createSortZone = () => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui créer et affiche le formulaire
 export const createForm = (mainPhotograph) => {
 
     const contactMe = document.querySelector(".contactMe")
@@ -206,7 +208,6 @@ export const createForm = (mainPhotograph) => {
     formValidBtn.innerHTML = "Envoyer"
 
     // Attacher les DomElements entre eux
-    // mainPhotograph.append(contactMe)
     mainPhotograph.append(formPage)
     formPage.append(formContainer)
     formContainer.append(form)
@@ -229,6 +230,7 @@ export const createForm = (mainPhotograph) => {
     formClose.append(formCloseIcone)
 
 
+    // Events -------------------------------------
     contactMe.addEventListener("click", () => {
         launch(formPage)
     })
@@ -238,6 +240,9 @@ export const createForm = (mainPhotograph) => {
     })
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+// Fonction qui créer et affiche les médias de la page photographe
 export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
     // Creation des DomElements et des classes pour les DomElements
@@ -303,6 +308,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui créer et affiche la lightbox dans la page photographe
 export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
 
     const btnLightbox = document.querySelectorAll('.btnLightbox');
@@ -326,16 +332,18 @@ export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
 
     lightboxPage.style.display = "none"
 
-    // Events
+
+    // Events -------------------------------------
     mediaLink.addEventListener("click", () => {
         launch(lightboxPage)
     })
 
-    // Events
     lightboxClose.addEventListener("click", () => {
         closeWindow(lightboxPage)
     })
 
+
+    // Attacher les éléments entre eux dans le Dom 
     mainPhotograph.append(lightboxPage)
     lightboxPage.append(lightboxContainer)
     lightboxContainer.append(lightboxPreviousBtn)
@@ -347,6 +355,7 @@ export const createLightbox = (mainPhotograph, urlImage, mediaLink) => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+// Fonction qui assigne les bon chemins relatif au medias puis déclanche createMedia
 export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph) => {
     for (let j = 0; j < dataMedia.length; j++) {
         if (photographerID == 930) {
@@ -374,10 +383,5 @@ export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlI
         createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
     }
 }
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/

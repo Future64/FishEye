@@ -8,8 +8,6 @@ export const initPhotograph = async() => {
     const mainPhotograph = document.querySelector('.mainPhotograph')
     const containerCardPhotograph = document.querySelector(".containerCardPhotograph")
     const indexCardPhotograph = document.querySelector(".index--card-photograph")
-
-
     const likeAndPriceBottom = document.querySelector(".likeAndPriceBottom")
     const likeAndPriceBox = document.querySelector(".likeAndPriceBox")
     const likeAndPriceZoneLike = document.querySelector(".likeAndPriceZoneLike")
@@ -28,6 +26,7 @@ export const initPhotograph = async() => {
 
     /* =====================================*/
 
+    // Initialisation de l'objet de réçeption des donées du Json
     const photographerDetail = {
         resume: {},
         medias: []
@@ -75,16 +74,16 @@ export const initPhotograph = async() => {
     })
 
     /* =====================================*/
+    //        FONCTIONS D' AFFICHAGE         \\
+    /* =====================================*/
 
     tagArray = photographerDetail.resume.tags
 
-    createHeaderPH(photographerDetail.resume, tagArray, urlImage)
+    createHeaderPH(photographerDetail.resume, urlImage)
     createTag(tagArray)
     createSortZone()
     createForm(mainPhotograph)
-
     pathMediasPhotographer(photographerID, photographerDetail.medias, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos)
-
 
 }
 
