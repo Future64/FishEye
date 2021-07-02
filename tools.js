@@ -72,7 +72,7 @@ export const launch = (elt) => {
 
 // Fontion qui replie et déplie et affiche les fleches down et up si le dropdown est ouvert ou fermé
 export const displayDropdown = (dropdownContent, spanArrowUp, spanArrowDown) => {
-    if (dropdownContent.style.display == 'none') {
+    if (dropdownContent.style.display === 'none') {
         launch(dropdownContent)
         launch(spanArrowUp)
         closeWindow(spanArrowDown)
@@ -229,7 +229,7 @@ export const createForm = (mainPhotograph) => {
 
 // Fonction qui créer les coeurs pour incrémenter les likes
 export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAndPriceLike, totalNbLikes) => {
-    if (firstElt.style.display == 'block') {
+    if (firstElt.style.display === 'block') {
 
         closeWindow(firstElt)
         launch(secondtElt)
@@ -245,7 +245,7 @@ export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAnd
 }
 
 export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) => {
-    if (firstElt.style.display == 'block') {
+    if (firstElt.style.display === 'block') {
         likeAndPriceLike.innerHTML = totalNbLikes
     } else {
         totalNbLikes += 1
