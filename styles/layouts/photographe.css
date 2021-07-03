@@ -417,6 +417,15 @@ form {
     margin-left: 35px;
 }
 
+.missFirst,
+.missLast,
+.missEmail,
+.missMsg {
+    color: rgb(194, 20, 52);
+    font-size: 18px;
+    margin-top: 5px;
+}
+
 .lightboxPage {
     position: fixed;
     height: 100vh;
