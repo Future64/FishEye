@@ -1,4 +1,5 @@
 // import { createForm } from './form.js'
+import { createMedia } from './media.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET
@@ -146,87 +147,6 @@ export const createSortZone = () => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// // Fonction qui créer et affiche le formulaire
-// export const createForm = (mainPhotograph) => {
-
-//     const contactMe = document.querySelector(".contactMe")
-
-//     const formPage = createDomElement("formPage", "div")
-//     const formContainer = createDomElement("formContainer", "div")
-//     const form = createDomElement("form", "form")
-//     const formHeader = createDomElement("formHeader", "div")
-//     const formH1 = createDomElement("formH1", "h1")
-//     const formClose = createDomElement("formClose", "div")
-//     const formCloseIcone = createDomElement("fas", "i")
-//     const formFirstBox = createDomElement("formFirstBox", "div")
-//     const formFirstLabel = createDomElement("formFirstLabel", "label")
-//     const formFirstInput = createDomElement("formFirstInput", "input")
-//     const formLastBox = createDomElement("formLastBox", "div")
-//     const formLastLabel = createDomElement("formLastLabel", "label")
-//     const formLastInput = createDomElement("formLastInput", "input")
-//     const formEmailBox = createDomElement("formEmailBox", "div")
-//     const formEmailLabel = createDomElement("formEmailLabel", "label")
-//     const formEmailInput = createDomElement("formEmailInput", "input")
-//     const formMsgBox = createDomElement("formEmailBox", "div")
-//     const formMsgLabel = createDomElement("formEmailLabel", "label")
-//     const formMsgInput = createDomElement("formMsgInput", "textarea")
-//     const formValidBtn = createDomElement("formValidBtn", "button")
-
-//     // Ajout des attributs
-//     formFirstLabel.setAttribute("for", "formFirstInput")
-//     formLastLabel.setAttribute("for", "formLastInput")
-//     formEmailLabel.setAttribute("for", "formEmailInput")
-//     formMsgLabel.setAttribute("for", "formMsgInput")
-//     formFirstInput.setAttribute("placeholder", "Prénom")
-//     formFirstInput.setAttribute("id", "formFirstInput")
-//     formLastInput.setAttribute("placeholder", "Nom")
-//     formLastInput.setAttribute("id", "formLastInput")
-//     formEmailInput.setAttribute("placeholder", "Email")
-//     formEmailInput.setAttribute("id", "formEmailInput")
-//     formMsgInput.setAttribute("placeholder", "Votre message...")
-//     formMsgInput.setAttribute("id", "formMsgInput")
-
-//     formCloseIcone.classList.add("fa-times");
-
-//     formFirstLabel.innerHTML = "Prénom"
-//     formLastLabel.innerHTML = "Nom"
-//     formEmailLabel.innerHTML = "Email"
-//     formMsgLabel.innerHTML = "Votre message"
-//     formValidBtn.innerHTML = "Envoyer"
-
-//     // Attacher les DomElements entre eux
-//     mainPhotograph.append(formPage)
-//     formPage.append(formContainer)
-//     formContainer.append(form)
-//     form.append(formHeader)
-//     form.append(formFirstBox)
-//     form.append(formLastBox)
-//     form.append(formEmailBox)
-//     form.append(formMsgBox)
-//     form.append(formValidBtn)
-//     formFirstBox.append(formFirstLabel)
-//     formLastBox.append(formLastLabel)
-//     formEmailBox.append(formEmailLabel)
-//     formMsgBox.append(formMsgLabel)
-//     formFirstBox.append(formFirstInput)
-//     formLastBox.append(formLastInput)
-//     formEmailBox.append(formEmailInput)
-//     formMsgBox.append(formMsgInput)
-//     formHeader.append(formH1)
-//     formHeader.append(formClose)
-//     formClose.append(formCloseIcone)
-
-
-//     // Events -------------------------------------
-//     contactMe.addEventListener("click", () => {
-//         launch(formPage)
-//     })
-
-//     formClose.addEventListener("click", () => {
-//         closeWindow(formPage)
-//     })
-// }
-
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui créer les coeurs pour incrémenter les likes
@@ -257,83 +177,83 @@ export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) 
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// Fonction qui créer et affiche les médias de la page photographe
-export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
+// // Fonction qui créer et affiche les médias de la page photographe
+// export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
-    // Creation des DomElements et des classes pour les DomElements
-    const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
-    const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
-    const mediaZone = createDomElement("mediaZone", "div")
-    const mediaCard = createDomElement("mediaCard", "div")
-    const mediaLink = createDomElement("mediaLink", "a")
-    const mediaImage = createDomElement("mediaImage", "img")
-    const mediaVideo = createDomElement("mediaImage", "video")
-    const mediaInfo = createDomElement("mediaInfo", "div")
-    const mediaTitle = createDomElement("mediaTitle", "h2")
-    const mediaPrice = createDomElement("mediaPrice", "span")
-    const mediaLike = createDomElement("mediaLike", "div")
-    const mediaNbLike = createDomElement("mediaNbLike", "span")
-    const mediaHeart = createDomElement("far", "i")
-    const mediaHeart2 = createDomElement("fas", "i")
+//     // Creation des DomElements et des classes pour les DomElements
+//     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
+//     const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
+//     const mediaZone = createDomElement("mediaZone", "div")
+//     const mediaCard = createDomElement("mediaCard", "div")
+//     const mediaLink = createDomElement("mediaLink", "a")
+//     const mediaImage = createDomElement("mediaImage", "img")
+//     const mediaVideo = createDomElement("mediaImage", "video")
+//     const mediaInfo = createDomElement("mediaInfo", "div")
+//     const mediaTitle = createDomElement("mediaTitle", "h2")
+//     const mediaPrice = createDomElement("mediaPrice", "span")
+//     const mediaLike = createDomElement("mediaLike", "div")
+//     const mediaNbLike = createDomElement("mediaNbLike", "span")
+//     const mediaHeart = createDomElement("far", "i")
+//     const mediaHeart2 = createDomElement("fas", "i")
 
-    let nbLikes = parseInt(dataMedia.likes)
-    let calcNbLikes = []
-    calcNbLikes.push(dataMedia.likes)
+//     let nbLikes = parseInt(dataMedia.likes)
+//     let calcNbLikes = []
+//     calcNbLikes.push(dataMedia.likes)
 
-    let totalNbLikes = calcNbLikes.reduce((a, b) => {
-        return a + b
-    })
+//     let totalNbLikes = calcNbLikes.reduce((a, b) => {
+//         return a + b
+//     })
 
-    console.log(totalNbLikes)
-
-
-    // Ajout d'atributs
-    mediaImage.setAttribute("src", urlImage)
-    mediaVideo.setAttribute("src", urlVideo)
-    mediaVideo.setAttribute("type", "video/mp4")
-    mediaVideo.controls = true
-
-    // Ajout de class
-    mediaHeart.classList.add("fa-heart");
-    mediaHeart2.classList.add("fa-heart");
-
-    // Affichage par defaut
-    mediaHeart.style.display = 'block'
-    mediaHeart2.style.display = 'none'
-    likeAndPriceLike.innerHTML = totalNbLikes
-
-    // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
-        incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
-    })
-
-    // Afficher les informations dans les DomElements
-    mediaTitle.innerHTML = dataMedia.title
-    mediaPrice.innerHTML = dataMedia.price + " €"
-    mediaNbLike.innerHTML = nbLikes
+//     console.log(totalNbLikes)
 
 
+//     // Ajout d'atributs
+//     mediaImage.setAttribute("src", urlImage)
+//     mediaVideo.setAttribute("src", urlVideo)
+//     mediaVideo.setAttribute("type", "video/mp4")
+//     mediaVideo.controls = true
 
-    // Attacher les DomElements entre eux
-    mediaZoneContainer.append(mediaZone)
-    mediaZone.append(mediaCard)
-    mediaCard.append(mediaLink)
-    mediaCard.append(mediaInfo)
-    mediaLink.append(mediaImage)
+//     // Ajout de class
+//     mediaHeart.classList.add("fa-heart");
+//     mediaHeart2.classList.add("fa-heart");
 
-    if (dataMedia.video !== undefined) {
-        mediaImage.replaceWith(mediaVideo)
-    }
+//     // Affichage par defaut
+//     mediaHeart.style.display = 'block'
+//     mediaHeart2.style.display = 'none'
+//     likeAndPriceLike.innerHTML = totalNbLikes
 
-    mediaInfo.append(mediaTitle)
-    mediaInfo.append(mediaLike)
-    mediaLike.append(mediaPrice)
-    mediaLike.append(mediaNbLike)
-    mediaLike.append(mediaHeart, mediaHeart2)
+//     // Event
+//     mediaLike.addEventListener("click", () => {
+//         displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
+//         incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
+//     })
 
-    createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
-}
+//     // Afficher les informations dans les DomElements
+//     mediaTitle.innerHTML = dataMedia.title
+//     mediaPrice.innerHTML = dataMedia.price + " €"
+//     mediaNbLike.innerHTML = nbLikes
+
+
+
+//     // Attacher les DomElements entre eux
+//     mediaZoneContainer.append(mediaZone)
+//     mediaZone.append(mediaCard)
+//     mediaCard.append(mediaLink)
+//     mediaCard.append(mediaInfo)
+//     mediaLink.append(mediaImage)
+
+//     if (dataMedia.video !== undefined) {
+//         mediaImage.replaceWith(mediaVideo)
+//     }
+
+//     mediaInfo.append(mediaTitle)
+//     mediaInfo.append(mediaLike)
+//     mediaLike.append(mediaPrice)
+//     mediaLike.append(mediaNbLike)
+//     mediaLike.append(mediaHeart, mediaHeart2)
+
+//     createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
+// }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
