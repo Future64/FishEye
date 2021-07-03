@@ -1,5 +1,5 @@
-import { createDomElement, displayHeart, createLightbox, incrementTotalNbLikes } from './tools.js'
-// import { initPhotograph } from './photographe.js'
+import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.js'
+import { createLightbox } from './lightbox.js'
 
 // Fonction qui créer et affiche les médias de la page photographe
 export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
@@ -56,7 +56,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaTitle.innerHTML = dataMedia.title
     mediaPrice.innerHTML = dataMedia.price + " €"
     mediaNbLike.innerHTML = nbLikes
-
 
 
     // Attacher les DomElements entre eux

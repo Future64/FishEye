@@ -1,6 +1,5 @@
 import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
 import { createForm } from './form.js'
-import { createMedia } from './media.js'
 
 
 export const initPhotograph = async() => {

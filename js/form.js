@@ -1,4 +1,4 @@
-import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
+import { createDomElement, closeWindow, launch } from './tools.js'
 
 // Fonction qui créer et affiche le formulaire
 export const createForm = (mainPhotograph) => {
