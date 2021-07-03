@@ -13,9 +13,18 @@
     <link rel="stylesheet" href="./styles/root/reset.css">
     <link rel="stylesheet" href="./styles/root/init.css">
     <link rel="stylesheet" href="./styles/components/header.css">
+    <link rel="stylesheet" href="./styles/components/dropdown.css">
+    <link rel="stylesheet" href="./styles/components/form.css">
+    <link rel="stylesheet" href="./styles/components/lightbox.css">
+    <link rel="stylesheet" href="./styles/components/likeAndPriceBottom.css">
+    <link rel="stylesheet" href="./styles/components/mediaCard.css">
+    <link rel="stylesheet" href="./styles/components/contactMe.css">
     <link rel="stylesheet" href="./styles/layouts/home-card.css">
     <link rel="stylesheet" href="./styles/layouts/content-card.css">
     <link rel="stylesheet" href="./styles/layouts/photographe.css">
+    <link rel="stylesheet" href="./styles/layouts/mediaZone.css">
+    <link rel="stylesheet" href="./styles/layouts/sortZone.css">
+
     <title>Photographe</title>
 </head>
 
@@ -25,12 +34,54 @@
         <a href="index.html">
             <img src="./medias/logo/logo-fishEye.png" alt="logo FishEye" class="logoPhotographe">
         </a>
+    </header>
 
-        <main class="mainPhotograph">
-            <section class="photographe--section">
-            </section>
-        </main>
-        <script src="./photographe.js" type="module"></script>
+    <main class="mainPhotograph">
+        <section class="photographe--section">
+            <div class="containerCardPhotograph">
+                <div class="index--card-photograph">
+                    <div class="photoProfil-photograph" style="background-image: url(&quot;./medias/PhotographersID-Photos/EllieRoseWilkens.jpg&quot;); background-size: cover;">
+                    </div>
+                </div>
+                <div class="index--body-card-photograph">
+                    <p class="name--header-card-photograph"></p>
+                    <p class="location--body-card-photograph"></p>
+                    <p class="citation"></p>
+                    <nav class="navTags-photograph"></nav>
+                </div>
+            </div>
+            <div class="sortZone">
+                <span class="spanSort">Trier par</span>
+                <div class="dropdownContainer">
+                    <div class="dropdownBtn">Popularité
+                        <i class="fas fa-chevron-down"></i>
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div class="dropdownContent" style="display: none;">
+                        <a class="dropdownDate">Date</a>
+                        <a class="dropdownTitle">Titre</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mediaZoneContainer">
+
+                <div class="likeAndPriceBottom">
+                    <div class="likeAndPriceBox">
+                        <div class="likeAndPriceZoneLike">
+                            <span class="likeAndPriceLike"></span>
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="likeAndPriceZonePrice">
+                            <span class="likeAndPricePrice"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="contactMe">Contactez moi</div>
+    </main>
+    <script src="./js/photographe.js" type="module"></script>
+    <script src="./js/form.js" type="module"></script>
 </body>
 
 </html>

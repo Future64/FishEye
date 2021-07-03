@@ -1,0 +1,174 @@
+.formPage {
+    position: absolute;
+    display: none;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap; */
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 100vh;
+    width: 100%;
+    /* background-color: green; */
+}
+
+.formContainer {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-content: center;
+    align-items: center; */
+    flex-wrap: wrap;
+    top: 100px;
+    /* left: 30vw; */
+    right: 30vw;
+    z-index: 1000;
+    height: 800px;
+    width: 600px;
+    background-color: #db8876;
+    border-radius: .3rem;
+}
+
+.formHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.formH1 {
+    position: relative;
+    width: 290px;
+    height: auto;
+    font-size: 40px;
+    line-height: 50px;
+    margin: 0;
+    color: black;
+    margin-left: 35px;
+    left: 0px;
+}
+
+.formClose {
+    position: absolute;
+    right: 50px;
+    top: 60px;
+}
+
+.fa-times {
+    color: white;
+    font-size: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.formFirstBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    margin-left: 35px;
+}
+
+.formLastBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.formEmailBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.formMsgBox {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-left: 35px;
+}
+
+.formMsgInput {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    min-height: 140px;
+    max-height: 140px;
+    min-width: 520px;
+    max-width: 520px;
+    border-radius: .3rem;
+    border: none;
+    font-size: 20px;
+}
+
+.formFirstInput,
+.formLastInput,
+.formEmailInput {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 520px;
+    height: 35px;
+    border-radius: .3rem;
+    border: none;
+    font-size: 20px;
+}
+
+.formFirstLabel,
+.formLastLabel,
+.formEmailLabel,
+.formMsgLabel {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.formValidBtn {
+    /* position: absolute;
+    bottom: 60px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #901c1c;
+    border: .5px solid var(--color3);
+    border-radius: 5px;
+    border: none;
+    padding: 25px 90px;
+    color: #fff;
+    width: 110px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-left: 35px;
+}
+
+.missFirst,
+.missLast,
+.missEmail,
+.missMsg {
+    color: rgb(194, 20, 52);
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 1312px) {
+    .formContainer {
+        right: 10vw;
+    }
+}
+
+@media screen and (max-width: 1013px) {
+    .formH1 {
+        left: 0px;
+    }
+}

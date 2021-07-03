@@ -1,0 +1,14 @@
+.sortZone {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 40px 0 50px 0;
+}
+
+@media screen and (max-width: 830px) {
+    .sortZone {
+        display: none;
+        z-index: 100;
+    }
+}
