@@ -1,0 +1,58 @@
+.mediaCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.mediaImage {
+    border-radius: .3125rem;
+    height: 18.75rem;
+    width: 21.875rem;
+    object-fit: cover;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.mediaTitle,
+.mediaPrice,
+.mediaLike {
+    font-size: 1.1m;
+    font-weight: 400;
+    color: var(--color1);
+}
+
+.mediaPrice,
+.mediaLike {
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+}
+
+.mediaInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 18px 0;
+    /* margin-left: 50px; */
+}
+
+.mediaNbLike {
+    margin-left: 8px;
+}
+
+@media screen and (max-width: 1312px) {
+    .mediaImage {
+        /* position: relative; */
+        border-radius: .3125rem;
+        height: 11.875rem;
+        object-fit: cover;
+        width: 20.9rem;
+    }
+}
+
+@media screen and (max-width: 1013px) {
+    .mediaImage {
+        position: relative;
+    }
+}

@@ -1,0 +1,14 @@
+.mediaZoneContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin-bottom: 70px;
+}
+
+@media screen and (max-width: 1312px) {
+    .mediaZoneContainer {
+        width: 83vw;
+    }
+}

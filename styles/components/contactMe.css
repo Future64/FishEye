@@ -1,0 +1,39 @@
+.contactMe {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    background: #901c1c;
+    border: .5px solid var(--color3);
+    border-radius: 5px;
+    padding: .625rem 1.25rem;
+    color: #fff;
+    width: 110px;
+    cursor: pointer;
+}
+
+.contactMe:hover {
+    /* width: 125px;
+    height: auto;
+    font-size: 18px; */
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 1013px) {
+    .contactMe {
+        position: fixed;
+        z-index: 18;
+        top: 95.5vh;
+        bottom: 20px;
+        left: 42vw;
+        right: 50vw;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .contactMe {
+        top: 94vh;
+        padding-top: 12px;
+        height: 15px;
+        left: 36vw;
+    }
+}
