@@ -83,7 +83,7 @@ export const initPhotograph = async() => {
     createHeaderPH(photographerDetail.resume, urlImage)
     createTag(tagArray)
     createSortZone()
-    createForm(mainPhotograph)
+    createForm(photographerDetail.resume, mainPhotograph)
     pathMediasPhotographer(photographerID, photographerDetail.medias, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos)
 
 }

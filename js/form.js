@@ -1,7 +1,7 @@
 import { createDomElement, closeWindow, launch } from './tools.js'
 
 // Fonction qui créer et affiche le formulaire
-export const createForm = (mainPhotograph) => {
+export const createForm = (data, mainPhotograph) => {
 
     /* ººººººººººººººººººººººººººººººººººººººººººº */
     /*            INITIALISATION VARIABLE          */
@@ -65,7 +65,6 @@ export const createForm = (mainPhotograph) => {
         Lastname: "",
         Email: "",
         Message: "",
-
     }
 
     /* ººººººººººººººººººººººººººººººººººººººººººº */
@@ -95,6 +94,7 @@ export const createForm = (mainPhotograph) => {
     formEmailLabel.innerHTML = "Email"
     formMsgLabel.innerHTML = "Votre message"
     formValidBtn.innerHTML = "Envoyer"
+    formH1.innerHTML = "Contactez-moi " + data.name
 
     // Attacher les DomElements entre eux
     mainPhotograph.append(formPage)

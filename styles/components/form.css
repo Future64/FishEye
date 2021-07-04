@@ -21,12 +21,13 @@
     /* justify-content: center;
     align-content: center;
     align-items: center; */
-    flex-wrap: wrap;
+    flex-grow: inherit;
     top: 100px;
     /* left: 30vw; */
     right: 30vw;
     z-index: 1000;
-    height: 800px;
+    height: auto;
+    padding-bottom: 20px;
     width: 600px;
     background-color: #db8876;
     border-radius: .3rem;
@@ -99,6 +100,15 @@ form {
     margin-left: 35px;
 }
 
+input:focus {
+    outline: none;
+    background-color: rgb(203, 203, 203);
+}
+
+input:focus::placeholder {
+    color: var(--color1);
+}
+
 .formMsgInput {
     display: flex;
     flex-direction: column;
@@ -110,6 +120,16 @@ form {
     border-radius: .3rem;
     border: none;
     font-size: 20px;
+    color: var(--color1);
+}
+
+.formMsgInput:focus::placeholder {
+    color: var(--color1);
+}
+
+.formMsgInput:focus {
+    outline: none;
+    background-color: rgb(203, 203, 203);
 }
 
 .formFirstInput,
@@ -123,6 +143,7 @@ form {
     border-radius: .3rem;
     border: none;
     font-size: 20px;
+    color: var(--color1);
 }
 
 .formFirstLabel,
@@ -163,12 +184,45 @@ form {
 
 @media screen and (max-width: 1312px) {
     .formContainer {
-        right: 10vw;
+        right: 25vw;
     }
 }
 
 @media screen and (max-width: 1013px) {
     .formH1 {
-        left: 0px;
+        left: 0;
+    }
+    .formContainer {
+        left: 15vw;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .formContainer {
+        left: 0;
+        right: 0;
+        width: 100vw;
+    }
+    .formMsgInput {
+        min-width: 0;
+        max-width: none;
+    }
+    .formFirstInput,
+    .formLastInput,
+    .formEmailInput,
+    .formMsgInput {
+        width: 85vw;
+    }
+    .formH1 {
+        font-size: 30px;
+        max-width: 200px;
+        height: auto;
+    }
+    .formHeader {
+        flex-direction: column;
+        height: auto;
+    }
+    .formClose {
+        right: 8vw;
     }
 }
