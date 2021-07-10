@@ -43,7 +43,16 @@ export const createDomElement = (className, DomElem) => {
 export const createHeader = (obj) => {
     // Selection de la balise Hml avec sa classe
     const headerNavTags = document.querySelector(".navTags")
-    const navTagArray = [obj.photographers[0].tags[0], obj.photographers[2].tags[0], obj.photographers[2].tags[1], obj.photographers[1].tags[1], obj.photographers[0].tags[2], obj.photographers[1].tags[0], obj.photographers[0].tags[3], obj.photographers[0].tags[1]]
+    const navTagArray = [
+        obj.photographers[0].tags[0],
+        obj.photographers[2].tags[0],
+        obj.photographers[2].tags[1],
+        obj.photographers[1].tags[1],
+        obj.photographers[0].tags[2],
+        obj.photographers[1].tags[0],
+        obj.photographers[0].tags[3],
+        obj.photographers[0].tags[1]
+    ]
 
     // Boucle de récpération et de création des l'élements nav-tag 
     for (let n = 0; n < navTagArray.length; n++) {
@@ -147,7 +156,7 @@ export const createSortZone = () => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui créer les coeurs pour incrémenter les likes
-export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes, likeAndPriceLike, totalNbLikes) => {
+export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes) => {
     if (firstElt.style.display === 'block') {
 
         closeWindow(firstElt)
