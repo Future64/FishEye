@@ -1,5 +1,6 @@
-import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createMedia, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
+import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
 import { createForm } from './form.js'
+
 
 export const initPhotograph = async() => {
     const data = await initCache()
@@ -82,7 +83,7 @@ export const initPhotograph = async() => {
     createHeaderPH(photographerDetail.resume, urlImage)
     createTag(tagArray)
     createSortZone()
-    createForm(mainPhotograph)
+    createForm(photographerDetail.resume, mainPhotograph)
     pathMediasPhotographer(photographerID, photographerDetail.medias, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos)
 
 }
