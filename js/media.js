@@ -2,7 +2,7 @@ import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.j
 import { createLightbox } from './lightbox.js'
 
 // Fonction qui créer et affiche les médias de la page photographe
-export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
+export const createMedia = (dataMedia, urlImage, urlVideo) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
@@ -28,15 +28,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
         return a + b
     })
 
-    console.log(totalNbLikes)
-
-
-    // Ajout d'atributs
-    mediaImage.setAttribute("src", urlImage)
-    mediaVideo.setAttribute("src", urlVideo)
-    mediaVideo.setAttribute("type", "video/mp4")
-    mediaVideo.controls = true
-
     // Ajout de class
     mediaHeart.classList.add("fa-heart");
     mediaHeart2.classList.add("fa-heart");
@@ -46,27 +37,28 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaHeart2.style.display = 'none'
     likeAndPriceLike.innerHTML = totalNbLikes
 
-    // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
-        incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
-    })
-
     // Afficher les informations dans les DomElements
     mediaTitle.innerHTML = dataMedia.title
     mediaPrice.innerHTML = dataMedia.price + " €"
     mediaNbLike.innerHTML = nbLikes
-
 
     // Attacher les DomElements entre eux
     mediaZoneContainer.append(mediaZone)
     mediaZone.append(mediaCard)
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
-    mediaLink.append(mediaImage)
 
-    if (dataMedia.video !== undefined) {
-        mediaImage.replaceWith(mediaVideo)
+    // Ajout d'atributs
+    if (urlImage === undefined) {
+        mediaVideo.setAttribute("src", urlVideo)
+        mediaVideo.setAttribute("type", "video/mp4")
+        mediaVideo.controls = true
+
+        mediaLink.append(mediaVideo)
+    } else {
+        mediaImage.setAttribute("src", urlImage)
+
+        mediaLink.append(mediaImage)
     }
 
     mediaInfo.append(mediaTitle)
@@ -75,5 +67,11 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaLike.append(mediaNbLike)
     mediaLike.append(mediaHeart, mediaHeart2)
 
-    createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
+    // Event
+    mediaLike.addEventListener("click", () => {
+        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
+        incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
+    })
+
+    // createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
 }

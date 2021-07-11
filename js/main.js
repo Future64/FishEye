@@ -4,6 +4,7 @@ const initMain = async() => {
     const data = await initCache()
     createHeader(data)
 
+    // affichage des profils
     for (let i = 0; i < data.photographers.length; i++) {
         // Selection de la balise Html avec sa classe
         const section = document.querySelector(".index--section")
@@ -24,11 +25,12 @@ const initMain = async() => {
         citationBodyCard.classList.add("citation");
         // Ajout d'attribut au DomElement
         headerCardLink.setAttribute("href", "./photographe.html?id=" + data.photographers[i].id)
+            // headerCardLink.href = "./photographe.html?id=" + data.photographers[i].id
 
         //Initialisation de la variable url
         let url = "./medias/PhotographersID-Photos/" + data.photographers[i].portrait
 
-        //Récpération tableau des tags dans le json
+        //Récupération tableau des tags dans le json
         let tagArray = data.photographers[i].tags
 
         // Assigne la variable url pour les chemins des photos de profils
@@ -46,7 +48,6 @@ const initMain = async() => {
         }
 
         // Afficher les informations dans les DomElements
-        photoProfil.innerHTML = ""
         nameHeader.innerHTML = data.photographers[i].name
         locationBodyCard.innerHTML = data.photographers[i].city + ", " + data.photographers[i].country
         citationBodyCard.innerHTML = data.photographers[i].tagline

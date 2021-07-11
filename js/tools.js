@@ -117,14 +117,13 @@ export const createTag = (tagArray) => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction de création et d'affichage du header de la page photographe
-export const createHeaderPH = (data, urlImage) => {
+export const createHeaderPH = (data) => {
 
     const photoProfilPhotograh = document.querySelector(".photoProfil-photograph")
     const nameHeaderPhotograph = document.querySelector(".name--header-card-photograph")
     const locationBodyCardPhotograph = document.querySelector(".location--body-card-photograph")
     const citationBodyCardPhotograph = document.querySelector(".citation")
 
-    photoProfilPhotograh.innerHTML = urlImage
     nameHeaderPhotograph.innerHTML = data.name
     locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
     citationBodyCardPhotograph.innerHTML = data.tagline
@@ -184,31 +183,18 @@ export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui assigne les bon chemins relatif au medias puis déclanche createMedia
-export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph) => {
+export const pathMediasPhotographer = (dataMedia, path) => {
     for (let j = 0; j < dataMedia.length; j++) {
-        if (photographerID == 930) {
-            urlVideo = pathEllie + dataMedia[j].video
-            urlImage = pathEllie + dataMedia[j].image
-        } else if (photographerID == 195) {
-            urlVideo = pathMarcel + dataMedia[j].video
-            urlImage = pathMarcel + dataMedia[j].image
-        } else if (photographerID == 243) {
-            urlVideo = pathMimi + dataMedia[j].video
-            urlImage = pathMimi + dataMedia[j].image
-        } else if (photographerID == 527) {
-            urlVideo = pathNabeel + dataMedia[j].video
-            urlImage = pathNabeel + dataMedia[j].image
-        } else if (photographerID == 925) {
-            urlVideo = pathRhode + dataMedia[j].video
-            urlImage = pathRhode + dataMedia[j].image
-        } else if (photographerID == 82) {
-            urlVideo = pathTracy + dataMedia[j].video
-            urlImage = pathTracy + dataMedia[j].image
+        const urlVideo = path + dataMedia[j].video
+        let urlImage
+
+        if (dataMedia[j].image === undefined) {
+            urlImage = undefined
         } else {
-            console.log("Error medias !")
+            urlImage = path + dataMedia[j].image
         }
 
-        createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
+        createMedia(dataMedia[j], urlImage, urlVideo)
     }
 }
 
