@@ -1,12 +1,14 @@
 import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.js'
 import { createLightbox } from './lightbox.js'
 
+
 // Fonction qui créer et affiche les médias de la page photographe
-export const createMedia = (dataMedia, urlImage, urlVideo) => {
+export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
     const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
+
     const mediaZone = createDomElement("mediaZone", "div")
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
@@ -20,13 +22,25 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     const mediaHeart = createDomElement("far", "i")
     const mediaHeart2 = createDomElement("fas", "i")
 
+
+
     let nbLikes = parseInt(dataMedia.likes)
     let calcNbLikes = []
     calcNbLikes.push(dataMedia.likes)
+    const reducer = (a, b) => a + b
 
-    let totalNbLikes = calcNbLikes.reduce((a, b) => {
-        return a + b
-    })
+    // let totalNbLikes = calcNbLikes.reduce((a, b) => {
+    //     return a + b
+    // })
+    let totalNbLikes = 0
+    for (let i = 0; i < calcNbLikes.length; i++) {
+        totalNbLikes += calcNbLikes[i]
+    }
+    console.log(totalNbLikes)
+        // let totalNbLikes = calcNbLikes.reduce(reducer)
+
+
+
 
     // Ajout de class
     mediaHeart.classList.add("fa-heart");
@@ -53,10 +67,12 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
         mediaVideo.setAttribute("src", urlVideo)
         mediaVideo.setAttribute("type", "video/mp4")
         mediaVideo.controls = true
+            // mediaLink.setAttribute("href", urlVideo)
 
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
+            // mediaLink.setAttribute("href", urlImage)
 
         mediaLink.append(mediaImage)
     }
@@ -73,5 +89,5 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
         incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
     })
 
-    // createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
+    createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
 }

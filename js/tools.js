@@ -171,6 +171,8 @@ export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes) => {
     }
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
 export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) => {
     if (firstElt.style.display === 'block') {
         likeAndPriceLike.innerHTML = totalNbLikes
@@ -183,7 +185,7 @@ export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui assigne les bon chemins relatif au medias puis déclanche createMedia
-export const pathMediasPhotographer = (dataMedia, path) => {
+export const pathMediasPhotographer = (dataMedia, path, mainPhotograph) => {
     for (let j = 0; j < dataMedia.length; j++) {
         const urlVideo = path + dataMedia[j].video
         let urlImage
@@ -194,8 +196,22 @@ export const pathMediasPhotographer = (dataMedia, path) => {
             urlImage = path + dataMedia[j].image
         }
 
-        createMedia(dataMedia[j], urlImage, urlVideo)
+        createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
     }
 }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+// export const prev = (e) => {
+//     e.prenventDefault()
+//         let i = gallery.findIndex(image => image === urlImage )
+//         i
+// }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+// export const next = (e) => {
+//     e.prenventDefault()
+// }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
