@@ -25,7 +25,6 @@ export const createLightbox = (data, mainPhotograph, urlImage, urlVideo, mediaLi
     let pathMediaLightbox = ""
 
 
-
     lightboxPreviousBtn.classList.add("fa-chevron-left")
     lightboxPreviousBtn.classList.add("btnLightbox")
     lightboxNextBtn.classList.add("fa-chevron-right")

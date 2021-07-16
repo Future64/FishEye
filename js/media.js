@@ -20,41 +20,17 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     const mediaLike = createDomElement("mediaLike", "div")
     const mediaNbLike = createDomElement("mediaNbLike", "span")
     const mediaHeart = createDomElement("far", "i")
-    const mediaHeart2 = createDomElement("fas", "i")
-
-
-
-    let nbLikes = parseInt(dataMedia.likes)
-    let calcNbLikes = []
-    calcNbLikes.push(dataMedia.likes)
-    const reducer = (a, b) => a + b
-
-    // let totalNbLikes = calcNbLikes.reduce((a, b) => {
-    //     return a + b
-    // })
-    let totalNbLikes = 0
-    for (let i = 0; i < calcNbLikes.length; i++) {
-        totalNbLikes += calcNbLikes[i]
-    }
-    console.log(totalNbLikes)
-        // let totalNbLikes = calcNbLikes.reduce(reducer)
-
-
-
 
     // Ajout de class
-    mediaHeart.classList.add("fa-heart");
-    mediaHeart2.classList.add("fa-heart");
+    mediaHeart.classList.add("fa-heart", "like");
 
     // Affichage par defaut
     mediaHeart.style.display = 'block'
-    mediaHeart2.style.display = 'none'
-    likeAndPriceLike.innerHTML = totalNbLikes
 
     // Afficher les informations dans les DomElements
     mediaTitle.innerHTML = dataMedia.title
     mediaPrice.innerHTML = dataMedia.price + " €"
-    mediaNbLike.innerHTML = nbLikes
+    mediaNbLike.innerHTML = dataMedia.likes
 
     // Attacher les DomElements entre eux
     mediaZoneContainer.append(mediaZone)
@@ -73,7 +49,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     } else {
         mediaImage.setAttribute("src", urlImage)
             // mediaLink.setAttribute("href", urlImage)
-
         mediaLink.append(mediaImage)
     }
 
@@ -81,13 +56,8 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaInfo.append(mediaLike)
     mediaLike.append(mediaPrice)
     mediaLike.append(mediaNbLike)
-    mediaLike.append(mediaHeart, mediaHeart2)
+    mediaLike.append(mediaHeart)
 
     // Event
-    mediaLike.addEventListener("click", () => {
-        displayHeart(mediaHeart, mediaHeart2, mediaNbLike, nbLikes)
-        incrementTotalNbLikes(mediaHeart, likeAndPriceLike, totalNbLikes)
-    })
-
     createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
 }

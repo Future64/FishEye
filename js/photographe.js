@@ -1,4 +1,4 @@
-import { initCache, createSortZone, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
+import { initCache, createSortZone, createTag, createHeaderPH, pathMediasPhotographer, displayHeart, incrementTotalNbLikes } from './tools.js'
 import { createForm } from './form.js'
 
 
@@ -63,6 +63,17 @@ export const initPhotograph = async() => {
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
     pathMediasPhotographer(photographerDetail.medias, path, mainPhotograph)
+
+    // calcule des likes de départ
+    let ttxLikes = 0;
+    for (let i = 0; i < photographerDetail.medias.length; i++) {
+        const pic = photographerDetail.medias[i];
+        ttxLikes += pic.likes
+    }
+    // affiche le total
+    displayHeart(ttxLikes)
+        // on lance la fonction qui se chargera de l'incrémentation des likes
+    incrementTotalNbLikes(ttxLikes)
 }
 
 initPhotograph()
