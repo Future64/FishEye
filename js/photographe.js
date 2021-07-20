@@ -9,6 +9,10 @@ export const initPhotograph = async() => {
     const mainPhotograph = document.querySelector('.mainPhotograph')
     const likeAndPricePrice = document.querySelector(".likeAndPricePrice")
 
+
+
+
+
     /* =====================================*/
 
     // RECUPERATION DES DONNEES A AFFICHER

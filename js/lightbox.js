@@ -1,4 +1,84 @@
-import { createDomElement, closeWindow, launch } from './tools.js'
+import { createDomElement, closeWindow, launch, pathMediasPhotographer } from './tools.js'
+
+
+export class Lightbox {
+
+    static init() {
+        // je  selectionne tous les liens qui menent vers des images
+        const links = Array.from(document.querySelectorAll('video[src$=".mp4"], img[src$=".jpg"]'))
+            // on parcour l'ensemble de nos liens
+            .forEach(link => link.addEventListener('click', e => {
+                e.preventDefault()
+                new Lightbox(e.currentTarget.getAttribute('src'))
+            }))
+
+
+    }
+
+    /**
+     * @param {string} url URL de l'image
+     */
+    constructor(url) {
+        const element = this.buildDOM(url)
+        document.body.appendChild(element)
+    }
+
+    /**
+     * 
+     * @param {string} url URL de l'image
+     * @return {HTMLElement} 
+     */
+    buildDOM(url) {
+        const dom = document.createElement('div')
+        dom.classList.add('lightbox')
+
+        dom.innerHTML = `<div class="lightboxPage">
+        <div class="lightboxContainer">
+        <i class="fas fa-chevron-left btnLightbox"></i>
+        <img class="lightboxImg" src="${url}"></img>
+        <i class="fas fa-chevron-right btnLightbox"></i>
+        <i class="fas fa-times lightboxClose"></i>
+        <div class="lightboxTitle"></div>
+        </div>
+        </div>`
+
+        return dom
+    }
+
+    closeDom() {
+        const lightboxClose = document.querySelector('lightboxClose')
+        const lightboxC = document.querySelector('lightbox')
+        lightboxClose.addEventListener("click", () => {
+            lightboxC.remove()
+        })
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Fonction qui créer et affiche la lightbox dans la page photographe
 export const createLightbox = (data, mainPhotograph, urlImage, urlVideo, mediaLink) => {

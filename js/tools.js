@@ -1,4 +1,5 @@
 import { createMedia } from './media.js'
+import { Lightbox } from './lightbox.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET
@@ -210,6 +211,7 @@ export const pathMediasPhotographer = (dataMedia, path, mainPhotograph) => {
         }
 
         createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
+        Lightbox.init(urlImage)
     }
 }
 
