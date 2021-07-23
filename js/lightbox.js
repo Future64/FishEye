@@ -24,7 +24,7 @@ export class Lightbox {
     constructor(url, images) {
         this.element = this.buildDOM(url)
         this.images = images
-            // this.loadImage(url)
+        this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)
         document.body.appendChild(this.element)
         disableBodyScroll(this.element)
@@ -34,21 +34,17 @@ export class Lightbox {
     /**
      * @param {string} url URL de l'image
      */
-    // loadImage(url) {
-    //     this.url = null
-    //     const image = new Image()
-    //     const container = this.element.querySelector('.lightboxContainer')
-    //     const loader = document.createElement('div')
-    //     loader.classList.add('lightbox__loader')
-    //     container.innerHTML = ''
-    //     container.appendChild(loader)
-    //     image.onload = () => {
-    //         container.removeChild(loader)
-    //         container.appendChild(image)
-    //         this.url = url
-    //     }
-    //     image.src = url
-    // }
+    loadImage(url) {
+        this.url = null
+        const image = new Image()
+        const container = this.element.querySelector('.lightboxImg')
+        container.innerHTML = ''
+        image.onload = () => {
+            container.appendChild(image)
+            this.url = url
+        }
+        image.src = url
+    }
 
     /**
      * @param {KeyboardEvent} e 
@@ -69,10 +65,11 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-        this.element.classList.add('lightboxClose')
+            // this.element.classList.add('lightboxClose')
         enableBodyScroll(this.element)
         window.setTimeout(() => {
             this.element.parentElement.removeChild(this.element)
+                // this.element.parentElement.style.display = "none"
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
@@ -107,15 +104,13 @@ export class Lightbox {
      */
     buildDOM(url) {
         const dom = document.createElement('div')
-        dom.classList.add('lightbox')
-        dom.innerHTML = `<div class="lightboxPage">
-                            <div class="lightboxContainer">
-                                <i class="fas fa-chevron-left btnLightbox"></i>
-                                <img class="lightboxImg" src="${url}"</img>
-                                <i class="fas fa-chevron-right btnLightbox"></i>
-                                <i class="fas fa-times lightboxClose"></i>
-                                <div class="lightboxTitle"></div>
-                            </div>
+        dom.classList.add('lightboxPage')
+        dom.innerHTML = `<div class="lightboxContainer">
+                            <i class="fas fa-chevron-left btnLightbox"></i>
+                            <img class="lightboxImg" src="${url}"</img>
+                            <i class="fas fa-chevron-right btnLightbox"></i>
+                            <i class="fas fa-times lightboxClose"></i>
+                            <div class="lightboxTitle"></div>
                         </div>`
         dom.querySelector('.lightboxClose').addEventListener('click', this.close.bind(this))
         dom.querySelector('.fa-chevron-right').addEventListener('click', this.next.bind(this))

@@ -211,7 +211,7 @@ export const pathMediasPhotographer = (dataMedia, path, mainPhotograph) => {
         }
 
         createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
-            // Lightbox.init(urlImage)
+            // Lightbox.init()
     }
 }
 
