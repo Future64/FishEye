@@ -58,7 +58,7 @@ export const createHeader = (obj) => {
     // Boucle de récpération et de création des l'élements nav-tag 
     for (let n = 0; n < navTagArray.length; n++) {
         const headerLink = createDomElement("nav-tag", "a")
-        headerLink.id = "#" + navTagArray[n]
+        headerLink.id = navTagArray[n]
         headerLink.setAttribute("href", "#")
         headerLink.ariaLabel = ("Tag " + navTagArray[n])
         headerLink.innerHTML += "#" + navTagArray[n]

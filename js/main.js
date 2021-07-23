@@ -40,7 +40,7 @@ const initMain = async() => {
         // Boucle de récpération et de création des l'élements tag 
         for (let t = 0; t < tagArray.length; t++) {
             let tag = createDomElement("nav-tag", "a")
-            tag.id = "#" + tagArray[t]
+            tag.id = tagArray[t]
             tag.setAttribute("href", "#")
             tag.ariaLabel = ("Tag " + tagArray[t])
             tag.innerHTML += "#" + tagArray[t]
@@ -66,6 +66,43 @@ const initMain = async() => {
         indexBodyCard.append(priceBodyCard)
         indexBodyCard.append(navTags)
     }
+    tagHandler()
 }
 
+const tagHandler = () => {
+    // const data = await initCache()
+    const tags = document.querySelectorAll(".header .nav-tag")
+    const cards = document.querySelectorAll(".containerCard")
+    let askedTag = ''
+    // a chaque tags on écoute le clic et on récupère l'ID
+    tags.forEach(tag => {
+            tag.addEventListener("click", () => {
+                askedTag = tag.id
+                cards.forEach( card => {
+                    const cardTags = card.querySelectorAll(".nav-tag")
+                    let listTags = []
+                    cardTags.forEach( tag => {listTags.push(tag.id)})
+                    //indexOf permet de trouver quelque chose dans un tableau
+                    //si il le trouve il r'envoit son index (la position dans le tableau)
+                    // sinon il renvoit -1
+                    if (listTags.indexOf(askedTag) == -1){
+                        card.style.display = "none"
+                    } else {
+                        card.style.display = "block"
+                    }
+
+                });
+            })
+    });
+    // effacer tout les cards qui n'ont pas l'id demandés
+}
+
+
+
 initMain()
+
+
+
+// quand on clic sur les tags ça filtre les cards en questions
+
+
