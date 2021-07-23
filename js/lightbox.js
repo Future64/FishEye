@@ -1,11 +1,12 @@
 import { createDomElement, closeWindow, launch, pathMediasPhotographer } from './tools.js'
+import { enableBodyScroll, disableBodyScroll } from './body-scroll-lock.js'
 
 /**
  * @property {HTMLElement} element
  * @property {string[]} images Chemins des images de la lightbox
  * @property {string} url Image actuellement affichée
  **/
-class Lightbox {
+export class Lightbox {
 
     static init() {
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
@@ -23,7 +24,7 @@ class Lightbox {
     constructor(url, images) {
         this.element = this.buildDOM(url)
         this.images = images
-        this.loadImage(url)
+            // this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)
         document.body.appendChild(this.element)
         disableBodyScroll(this.element)
@@ -33,21 +34,21 @@ class Lightbox {
     /**
      * @param {string} url URL de l'image
      */
-    loadImage(url) {
-        this.url = null
-        const image = new Image()
-        const container = this.element.querySelector('.lightbox__container')
-        const loader = document.createElement('div')
-        loader.classList.add('lightbox__loader')
-        container.innerHTML = ''
-        container.appendChild(loader)
-        image.onload = () => {
-            container.removeChild(loader)
-            container.appendChild(image)
-            this.url = url
-        }
-        image.src = url
-    }
+    // loadImage(url) {
+    //     this.url = null
+    //     const image = new Image()
+    //     const container = this.element.querySelector('.lightboxContainer')
+    //     const loader = document.createElement('div')
+    //     loader.classList.add('lightbox__loader')
+    //     container.innerHTML = ''
+    //     container.appendChild(loader)
+    //     image.onload = () => {
+    //         container.removeChild(loader)
+    //         container.appendChild(image)
+    //         this.url = url
+    //     }
+    //     image.src = url
+    // }
 
     /**
      * @param {KeyboardEvent} e 
@@ -68,7 +69,7 @@ class Lightbox {
      */
     close(e) {
         e.preventDefault()
-        this.element.classList.add('fadeOut')
+        this.element.classList.add('lightboxClose')
         enableBodyScroll(this.element)
         window.setTimeout(() => {
             this.element.parentElement.removeChild(this.element)
@@ -107,19 +108,23 @@ class Lightbox {
     buildDOM(url) {
         const dom = document.createElement('div')
         dom.classList.add('lightbox')
-        dom.innerHTML = `<button class="lightbox__close">Fermer</button>
-          <button class="lightbox__next">Suivant</button>
-          <button class="lightbox__prev">Précédent</button>
-          <div class="lightbox__container"></div>`
-        dom.querySelector('.lightbox__close').addEventListener('click', this.close.bind(this))
-        dom.querySelector('.lightbox__next').addEventListener('click', this.next.bind(this))
-        dom.querySelector('.lightbox__prev').addEventListener('click', this.prev.bind(this))
+        dom.innerHTML = `<div class="lightboxPage">
+                            <div class="lightboxContainer">
+                                <i class="fas fa-chevron-left btnLightbox"></i>
+                                <img class="lightboxImg" src="${url}"</img>
+                                <i class="fas fa-chevron-right btnLightbox"></i>
+                                <i class="fas fa-times lightboxClose"></i>
+                                <div class="lightboxTitle"></div>
+                            </div>
+                        </div>`
+        dom.querySelector('.lightboxClose').addEventListener('click', this.close.bind(this))
+        dom.querySelector('.fa-chevron-right').addEventListener('click', this.next.bind(this))
+        dom.querySelector('.fa-chevron-left').addEventListener('click', this.prev.bind(this))
         return dom
     }
 
 }
 
-Lightbox.init()
 
 
 
@@ -146,96 +151,97 @@ Lightbox.init()
 
 
 
-// Fonction qui créer et affiche la lightbox dans la page photographe
-export const createLightbox = (data, mainPhotograph, urlImage, urlVideo, mediaLink) => {
 
-    const btnLightbox = document.querySelectorAll('.btnLightbox');
+// // Fonction qui créer et affiche la lightbox dans la page photographe
+// export const createLightbox = (data, mainPhotograph, urlImage, urlVideo, mediaLink) => {
 
-    const lightboxPage = createDomElement("lightboxPage", "div")
-    const lightboxContainer = createDomElement("lightboxContainer", "div")
-    const lightboxImg = createDomElement("lightboxImg", "img")
-    const lightboxVideo = createDomElement("lightboxImg", "video")
-    const lightboxPreviousBtn = createDomElement("fas", "i")
-    const lightboxNextBtn = createDomElement("fas", "i")
-    const lightboxClose = createDomElement("fas", "i")
-    const lightboxTitle = createDomElement("lightboxTitle", "div")
+//     const btnLightbox = document.querySelectorAll('.btnLightbox');
 
-    // Recupère les sources des medias puis les stocks dans un tableau 
-    // trié pour ne pas avoir de doublons
-    const links = Array.from(document.querySelectorAll('video[src$=".mp4"], img[src$=".jpg"]'))
-    const gallery = links.map(link => link.getAttribute('src'))
-    let galleryFiltered = [...new Set(gallery)]
-    console.log(galleryFiltered)
+//     const lightboxPage = createDomElement("lightboxPage", "div")
+//     const lightboxContainer = createDomElement("lightboxContainer", "div")
+//     const lightboxImg = createDomElement("lightboxImg", "img")
+//     const lightboxVideo = createDomElement("lightboxImg", "video")
+//     const lightboxPreviousBtn = createDomElement("fas", "i")
+//     const lightboxNextBtn = createDomElement("fas", "i")
+//     const lightboxClose = createDomElement("fas", "i")
+//     const lightboxTitle = createDomElement("lightboxTitle", "div")
 
-    let position = galleryFiltered.findIndex(item => item === urlImage || item === urlVideo)
-    let pathMediaLightbox = ""
+//     // Recupère les sources des medias puis les stocks dans un tableau 
+//     // trié pour ne pas avoir de doublons
+//     const links = Array.from(document.querySelectorAll('video[src$=".mp4"], img[src$=".jpg"]'))
+//     const gallery = links.map(link => link.getAttribute('src'))
+//     let galleryFiltered = [...new Set(gallery)]
+//     console.log(galleryFiltered)
 
-
-    lightboxPreviousBtn.classList.add("fa-chevron-left")
-    lightboxPreviousBtn.classList.add("btnLightbox")
-    lightboxNextBtn.classList.add("fa-chevron-right")
-    lightboxNextBtn.classList.add("btnLightbox")
-    lightboxClose.classList.add("fa-times");
-    lightboxClose.classList.add("lightboxClose");
-
-    lightboxPage.style.display = "none"
+//     let position = galleryFiltered.findIndex(item => item === urlImage || item === urlVideo)
+//     let pathMediaLightbox = ""
 
 
-    // Events -------------------------------------
-    mediaLink.addEventListener("click", () => {
-        launch(lightboxPage)
-    })
+//     lightboxPreviousBtn.classList.add("fa-chevron-left")
+//     lightboxPreviousBtn.classList.add("btnLightbox")
+//     lightboxNextBtn.classList.add("fa-chevron-right")
+//     lightboxNextBtn.classList.add("btnLightbox")
+//     lightboxClose.classList.add("fa-times");
+//     lightboxClose.classList.add("lightboxClose");
 
-    lightboxClose.addEventListener("click", () => {
-        closeWindow(lightboxPage)
-    })
+//     lightboxPage.style.display = "none"
 
-    lightboxPreviousBtn.addEventListener("click", () => {
-        prev()
-    })
 
-    lightboxNextBtn.addEventListener("click", () => {
-        next()
-    })
+//     // Events -------------------------------------
+//     mediaLink.addEventListener("click", () => {
+//         launch(lightboxPage)
+//     })
 
-    lightboxImg.setAttribute("src", urlImage)
-    lightboxVideo.setAttribute("src", urlVideo)
-    lightboxVideo.setAttribute("type", "video/mp4")
-    lightboxVideo.controls = true
+//     lightboxClose.addEventListener("click", () => {
+//         closeWindow(lightboxPage)
+//     })
 
-    // Attacher les éléments entre eux dans le Dom 
-    mainPhotograph.append(lightboxPage)
-    lightboxPage.append(lightboxContainer)
-    lightboxContainer.append(lightboxPreviousBtn)
-    lightboxContainer.append(lightboxImg)
+//     lightboxPreviousBtn.addEventListener("click", () => {
+//         prev()
+//     })
 
-    if (data !== undefined) {
-        lightboxImg.replaceWith(lightboxVideo)
-    }
+//     lightboxNextBtn.addEventListener("click", () => {
+//         next()
+//     })
 
-    // lightboxContainer.append(lightboxVideo)
-    lightboxContainer.append(lightboxNextBtn)
-    lightboxContainer.append(lightboxClose)
-    lightboxContainer.append(lightboxTitle)
+//     lightboxImg.setAttribute("src", urlImage)
+//     lightboxVideo.setAttribute("src", urlVideo)
+//     lightboxVideo.setAttribute("type", "video/mp4")
+//     lightboxVideo.controls = true
 
-    /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-    //               FONCTION
-    /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+//     // Attacher les éléments entre eux dans le Dom 
+//     mainPhotograph.append(lightboxPage)
+//     lightboxPage.append(lightboxContainer)
+//     lightboxContainer.append(lightboxPreviousBtn)
+//     lightboxContainer.append(lightboxImg)
 
-    const next = () => {
-        // e.prenventDefault()
-        console.log(pathMediaLightbox)
-        galleryFiltered[position + 1]
-        pathMediaLightbox = galleryFiltered[position + 1]
-        console.log(pathMediaLightbox)
-    }
+//     if (data !== undefined) {
+//         lightboxImg.replaceWith(lightboxVideo)
+//     }
 
-    const prev = () => {
-        // e.prenventDefault()
-        console.log(pathMediaLightbox)
-        galleryFiltered[position - 1]
-        pathMediaLightbox = galleryFiltered[position - 1]
-        console.log(pathMediaLightbox)
-    }
+//     // lightboxContainer.append(lightboxVideo)
+//     lightboxContainer.append(lightboxNextBtn)
+//     lightboxContainer.append(lightboxClose)
+//     lightboxContainer.append(lightboxTitle)
 
-}
+//     /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+//     //               FONCTION
+//     /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+//     const next = () => {
+//         // e.prenventDefault()
+//         console.log(pathMediaLightbox)
+//         galleryFiltered[position + 1]
+//         pathMediaLightbox = galleryFiltered[position + 1]
+//         console.log(pathMediaLightbox)
+//     }
+
+//     const prev = () => {
+//         // e.prenventDefault()
+//         console.log(pathMediaLightbox)
+//         galleryFiltered[position - 1]
+//         pathMediaLightbox = galleryFiltered[position - 1]
+//         console.log(pathMediaLightbox)
+//     }
+
+// }

@@ -1,5 +1,5 @@
 import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.js'
-
+import { Lightbox } from './lightbox.js'
 
 
 // Fonction qui créer et affiche les médias de la page photographe
@@ -48,7 +48,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
-            // mediaLink.setAttribute("href", urlImage)
         mediaLink.append(mediaImage)
     }
 
@@ -59,6 +58,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaLike.append(mediaHeart)
 
 
+    Lightbox.init()
 
     // Event
     // createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
