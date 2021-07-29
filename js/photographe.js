@@ -78,6 +78,8 @@ export const initPhotograph = async() => {
     displayHeart(ttxLikes)
         // on lance la fonction qui se chargera de l'incrémentation des likes
     incrementTotalNbLikes(ttxLikes)
+
 }
+
 
 initPhotograph()

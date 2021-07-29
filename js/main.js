@@ -69,30 +69,36 @@ const initMain = async() => {
     tagHandler()
 }
 
+// quand on clic sur les tags ça filtre les cards en questions
 const tagHandler = () => {
     // const data = await initCache()
     const tags = document.querySelectorAll(".header .nav-tag")
     const cards = document.querySelectorAll(".containerCard")
     let askedTag = ''
-    // a chaque tags on écoute le clic et on récupère l'ID
+        // a chaque tags on écoute le clic et on récupère l'ID
     tags.forEach(tag => {
-            tag.addEventListener("click", () => {
-                askedTag = tag.id
-                cards.forEach( card => {
-                    const cardTags = card.querySelectorAll(".nav-tag")
-                    let listTags = []
-                    cardTags.forEach( tag => {listTags.push(tag.id)})
+        tag.addEventListener("click", () => {
+            askedTag = tag.id
+            cards.forEach(card => {
+                const cardTags = card.querySelectorAll(".nav-tag")
+                let listTags = []
+                cardTags.forEach(tag => { listTags.push(tag.id) })
                     //indexOf permet de trouver quelque chose dans un tableau
-                    //si il le trouve il r'envoit son index (la position dans le tableau)
+                    //si il le trouve il renvoit son index (la position dans le tableau)
                     // sinon il renvoit -1
-                    if (listTags.indexOf(askedTag) == -1){
-                        card.style.display = "none"
-                    } else {
-                        card.style.display = "block"
-                    }
+                if (listTags.indexOf(askedTag) == -1) {
+                    card.style.display = "none"
+                        // cardTags.onfocus = () => { cardTags.style.backgroundColor = "green" }
+                } else {
+                    card.style.display = "block"
 
-                });
-            })
+                }
+                // cardTags.addEventListener('focus', (e) => {
+                //     e.style.backgroundColor = "green"
+                // });
+
+            });
+        })
     });
     // effacer tout les cards qui n'ont pas l'id demandés
 }
@@ -100,9 +106,3 @@ const tagHandler = () => {
 
 
 initMain()
-
-
-
-// quand on clic sur les tags ça filtre les cards en questions
-
-

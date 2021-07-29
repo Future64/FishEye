@@ -40,7 +40,7 @@ export class Lightbox {
         const container = this.element.querySelector('.lightboxImg')
         container.innerHTML = ''
         image.onload = () => {
-            container.appendChild(image)
+            container.append(image)
             this.url = url
         }
         image.src = url
@@ -65,11 +65,11 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-            // this.element.classList.add('lightboxClose')
+        const totalPage = document.querySelectorAll(".lightboxPage")
         enableBodyScroll(this.element)
         window.setTimeout(() => {
-            this.element.parentElement.removeChild(this.element)
-                // this.element.parentElement.style.display = "none"
+            this.element.remove(totalPage)
+                // this.buildDOM.style.display = "none"
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
@@ -79,6 +79,7 @@ export class Lightbox {
      */
     next(e) {
         e.preventDefault()
+        console.log(this.url)
         let i = this.images.findIndex(image => image === this.url)
         if (i === this.images.length - 1) {
             i = -1
@@ -91,6 +92,7 @@ export class Lightbox {
      */
     prev(e) {
         e.preventDefault()
+        console.log(this.url)
         let i = this.images.findIndex(image => image === this.url)
         if (i === 0) {
             i = this.images.length
@@ -113,8 +115,8 @@ export class Lightbox {
                             <div class="lightboxTitle"></div>
                         </div>`
         dom.querySelector('.lightboxClose').addEventListener('click', this.close.bind(this))
-        dom.querySelector('.fa-chevron-right').addEventListener('click', this.next.bind(this))
-        dom.querySelector('.fa-chevron-left').addEventListener('click', this.prev.bind(this))
+        dom.querySelector('.fas.fa-chevron-right').addEventListener('click', this.next.bind(this))
+        dom.querySelector('.fas.fa-chevron-left').addEventListener('click', this.prev.bind(this))
         return dom
     }
 
