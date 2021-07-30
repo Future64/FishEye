@@ -93,6 +93,20 @@
     color: white;
 }
 
+.tag {
+    border: solid 1px;
+    border-color: var(--color4);
+    border-radius: 15px;
+    padding: 4px 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    margin: 4px;
+    text-decoration: none;
+    color: var(--color1);
+    font-weight: bold;
+    cursor: default;
+}
+
 .index--body-card {
     display: flex;
     flex-direction: column;

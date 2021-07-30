@@ -1,4 +1,4 @@
-import { initCache, createDomElement, displayDropdown, createSortZone, displayHeart, closeWindow, launch, createTag, createHeaderPH, pathMediasPhotographer } from './tools.js'
+import { initCache, createSortZone, createTag, createHeaderPH, pathMediasPhotographer, displayHeart, incrementTotalNbLikes } from './tools.js'
 import { createForm } from './form.js'
 
 
@@ -6,18 +6,12 @@ export const initPhotograph = async() => {
     const data = await initCache()
 
     // Selection de la balise Html avec sa classe
-    const sectionPhotograph = document.querySelector('.photographe--section')
     const mainPhotograph = document.querySelector('.mainPhotograph')
-    const containerCardPhotograph = document.querySelector(".containerCardPhotograph")
-    const indexCardPhotograph = document.querySelector(".index--card-photograph")
-    const likeAndPriceBottom = document.querySelector(".likeAndPriceBottom")
-    const likeAndPriceBox = document.querySelector(".likeAndPriceBox")
-    const likeAndPriceZoneLike = document.querySelector(".likeAndPriceZoneLike")
-    const likeAndPriceZonePrice = document.querySelector(".likeAndPriceZonePrice")
-        // const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
-    const likeAndPriceHeart = document.querySelector(".fas")
     const likeAndPricePrice = document.querySelector(".likeAndPricePrice")
-    const mediaTitle = document.querySelector(".mediaTitle")
+
+
+
+
 
     /* =====================================*/
 
@@ -36,22 +30,8 @@ export const initPhotograph = async() => {
 
     /* =====================================*/
 
-    // Initialisation des chemins relatifs des medias de chaques photographes
-    const pathEllie = "./medias/Ellie-Rose/"
-    const pathMarcel = "./medias/Marcel/"
-    const pathMimi = "./medias/Mimi/"
-    const pathNabeel = "./medias/Nabeel/"
-    const pathRhode = "./medias/Rhode/"
-    const pathTracy = "./medias/Tracy/"
-
-
     // Initialisation des variables qui reçevrons des données de data.media
-    var photos = []
-    var videos = []
     var tagArray = []
-    let urlImage = ""
-    let urlVideo = ""
-
 
     /* =====================================*/
 
@@ -66,13 +46,15 @@ export const initPhotograph = async() => {
     data.media.forEach(mediaLine => {
         if (mediaLine.photographerId == photographerID) {
             photographerDetail.medias.push(mediaLine)
-
-            photos = mediaLine.image
-            videos = mediaLine.video
-
             likeAndPricePrice.innerHTML = mediaLine.price + " €/jour"
         }
     })
+
+    // Initialisation des chemins relatifs des medias de chaques photographes    
+    const nameSplitted = photographerDetail.resume.name.split(' ');
+    const firstName = nameSplitted[0];
+    const path = `./medias/${firstName}/`
+
 
     /* =====================================*/
     //        FONCTIONS D' AFFICHAGE         \\
@@ -80,12 +62,24 @@ export const initPhotograph = async() => {
 
     tagArray = photographerDetail.resume.tags
 
-    createHeaderPH(photographerDetail.resume, urlImage)
+    createHeaderPH(photographerDetail.resume)
     createTag(tagArray)
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
-    pathMediasPhotographer(photographerID, photographerDetail.medias, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph, photos, videos)
+    pathMediasPhotographer(photographerDetail.medias, path, mainPhotograph)
+
+    // calcule des likes de départ
+    let ttxLikes = 0;
+    for (let i = 0; i < photographerDetail.medias.length; i++) {
+        const pic = photographerDetail.medias[i];
+        ttxLikes += pic.likes
+    }
+    // affiche le total
+    displayHeart(ttxLikes)
+        // on lance la fonction qui se chargera de l'incrémentation des likes
+    incrementTotalNbLikes(ttxLikes)
 
 }
+
 
 initPhotograph()

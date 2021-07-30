@@ -56,6 +56,11 @@ header nav {
     font-weight: bold;
 }
 
+.nav-tag:focus {
+    background-color: var(--color1);
+    color: white;
+}
+
 h1 {
     position: absolute;
     display: block;

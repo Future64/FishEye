@@ -1,4 +1,5 @@
 import { createMedia } from './media.js'
+// import { Lightbox } from './lightbox.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET
@@ -57,7 +58,7 @@ export const createHeader = (obj) => {
     // Boucle de récpération et de création des l'élements nav-tag 
     for (let n = 0; n < navTagArray.length; n++) {
         const headerLink = createDomElement("nav-tag", "a")
-        headerLink.id = "#" + navTagArray[n]
+        headerLink.id = navTagArray[n]
         headerLink.setAttribute("href", "#")
         headerLink.ariaLabel = ("Tag " + navTagArray[n])
         headerLink.innerHTML += "#" + navTagArray[n]
@@ -104,7 +105,7 @@ export const createTag = (tagArray) => {
     // Boucle de récpération et de création des l'élements tag 
     for (let t = 0; t < tagArray.length; t++) {
 
-        let tag = createDomElement("nav-tag", "a")
+        let tag = createDomElement("tag", "a")
         tag.id = "#" + tagArray[t]
         tag.setAttribute("href", "#")
         tag.ariaLabel = ("Tag " + tagArray[t])
@@ -117,14 +118,13 @@ export const createTag = (tagArray) => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction de création et d'affichage du header de la page photographe
-export const createHeaderPH = (data, urlImage) => {
+export const createHeaderPH = (data) => {
 
     const photoProfilPhotograh = document.querySelector(".photoProfil-photograph")
     const nameHeaderPhotograph = document.querySelector(".name--header-card-photograph")
     const locationBodyCardPhotograph = document.querySelector(".location--body-card-photograph")
     const citationBodyCardPhotograph = document.querySelector(".citation")
 
-    photoProfilPhotograh.innerHTML = urlImage
     nameHeaderPhotograph.innerHTML = data.name
     locationBodyCardPhotograph.innerHTML = data.city + ", " + data.country
     citationBodyCardPhotograph.innerHTML = data.tagline
@@ -156,60 +156,76 @@ export const createSortZone = () => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui créer les coeurs pour incrémenter les likes
-export const displayHeart = (firstElt, secondtElt, mediaNbLike, nbLikes) => {
-    if (firstElt.style.display === 'block') {
-
-        closeWindow(firstElt)
-        launch(secondtElt)
-        nbLikes += 1
-        mediaNbLike.innerHTML = nbLikes
-
-    } else {
-
-        closeWindow(secondtElt)
-        launch(firstElt)
-        mediaNbLike.innerHTML = nbLikes
-    }
+export const displayHeart = (total) => {
+    const span = document.querySelector('.likeAndPriceLike');
+    span.innerHTML = total
 }
 
-export const incrementTotalNbLikes = (firstElt, likeAndPriceLike, totalNbLikes) => {
-    if (firstElt.style.display === 'block') {
-        likeAndPriceLike.innerHTML = totalNbLikes
-    } else {
-        totalNbLikes += 1
-        likeAndPriceLike.innerHTML = totalNbLikes
-    }
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const incrementTotalNbLikes = (total) => {
+    // on récupère tous les likes
+    const hearts = document.querySelectorAll('.like');
+
+    // on écoute les click sur chaque like
+    hearts.forEach(heart => {
+        heart.addEventListener('click', (event) => {
+            // on récupère le parent comme on peut (grace à l'événement ici)
+            const parent = event.path[1];
+            let picLike = parent.querySelector('.mediaNbLike');
+
+            // si le coeur est vide
+            if (heart.classList.contains('far')) {
+                // on incrémente le nb de like
+                picLike.innerHTML = parseInt(picLike.innerHTML) + 1;
+                // on incrémente le nb de like total
+                total += 1;
+                // on change le coeur
+                heart.classList.replace("far", "fas");
+            } else {
+                // on décrémente le nb de like
+                picLike.innerHTML = parseInt(picLike.innerHTML) - 1;
+                // on décrémente le nb de like total
+                total -= 1;
+                // on change le coeur
+                heart.classList.replace("fas", "far");
+            }
+            // on affiche le total
+            displayHeart(total)
+        })
+    });
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui assigne les bon chemins relatif au medias puis déclanche createMedia
-export const pathMediasPhotographer = (photographerID, dataMedia, urlVideo, urlImage, pathEllie, pathMarcel, pathMimi, pathNabeel, pathRhode, pathTracy, mainPhotograph) => {
+export const pathMediasPhotographer = (dataMedia, path, mainPhotograph) => {
     for (let j = 0; j < dataMedia.length; j++) {
-        if (photographerID == 930) {
-            urlVideo = pathEllie + dataMedia[j].video
-            urlImage = pathEllie + dataMedia[j].image
-        } else if (photographerID == 195) {
-            urlVideo = pathMarcel + dataMedia[j].video
-            urlImage = pathMarcel + dataMedia[j].image
-        } else if (photographerID == 243) {
-            urlVideo = pathMimi + dataMedia[j].video
-            urlImage = pathMimi + dataMedia[j].image
-        } else if (photographerID == 527) {
-            urlVideo = pathNabeel + dataMedia[j].video
-            urlImage = pathNabeel + dataMedia[j].image
-        } else if (photographerID == 925) {
-            urlVideo = pathRhode + dataMedia[j].video
-            urlImage = pathRhode + dataMedia[j].image
-        } else if (photographerID == 82) {
-            urlVideo = pathTracy + dataMedia[j].video
-            urlImage = pathTracy + dataMedia[j].image
+        const urlVideo = path + dataMedia[j].video
+        let urlImage
+
+        if (dataMedia[j].image === undefined) {
+            urlImage = undefined
         } else {
-            console.log("Error medias !")
+            urlImage = path + dataMedia[j].image
         }
 
         createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
     }
 }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+// export const prev = (e) => {
+//     e.prenventDefault()
+//         let i = gallery.findIndex(image => image === urlImage )
+//         i
+// }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+// export const next = (e) => {
+//     e.prenventDefault()
+// }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
