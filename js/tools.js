@@ -105,7 +105,7 @@ export const createTag = (tagArray) => {
     // Boucle de récpération et de création des l'élements tag 
     for (let t = 0; t < tagArray.length; t++) {
 
-        let tag = createDomElement("nav-tag", "a")
+        let tag = createDomElement("tag", "a")
         tag.id = "#" + tagArray[t]
         tag.setAttribute("href", "#")
         tag.ariaLabel = ("Tag " + tagArray[t])
@@ -211,7 +211,6 @@ export const pathMediasPhotographer = (dataMedia, path, mainPhotograph) => {
         }
 
         createMedia(dataMedia[j], urlImage, urlVideo, mainPhotograph)
-            // Lightbox.init()
     }
 }
 

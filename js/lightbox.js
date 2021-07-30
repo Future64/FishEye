@@ -22,11 +22,12 @@ export class Lightbox {
      * @param {string[]} images Chemins des images de la lightbox
      */
     constructor(url, images) {
+        this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
         this.images = images
         this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)
-        document.body.appendChild(this.element)
+        this.lightboxMain.appendChild(this.element)
         disableBodyScroll(this.element)
         document.addEventListener('keyup', this.onKeyUp)
     }
@@ -38,6 +39,7 @@ export class Lightbox {
         this.url = null
         const image = new Image()
         const container = this.element.querySelector('.lightboxImg')
+        this.lightboxMain.style.display = "block"
         container.innerHTML = ''
         image.onload = () => {
             container.append(image)
@@ -68,8 +70,8 @@ export class Lightbox {
         const totalPage = document.querySelectorAll(".lightboxPage")
         enableBodyScroll(this.element)
         window.setTimeout(() => {
-            this.element.remove(totalPage)
-                // this.buildDOM.style.display = "none"
+            // this.element.remove(totalPage)
+            this.lightboxMain.style.display = "none"
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }

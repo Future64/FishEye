@@ -39,7 +39,7 @@ const initMain = async() => {
 
         // Boucle de récpération et de création des l'élements tag 
         for (let t = 0; t < tagArray.length; t++) {
-            let tag = createDomElement("nav-tag", "a")
+            let tag = createDomElement("tag", "a")
             tag.id = tagArray[t]
             tag.setAttribute("href", "#")
             tag.ariaLabel = ("Tag " + tagArray[t])
@@ -80,7 +80,7 @@ const tagHandler = () => {
         tag.addEventListener("click", () => {
             askedTag = tag.id
             cards.forEach(card => {
-                const cardTags = card.querySelectorAll(".nav-tag")
+                const cardTags = card.querySelectorAll(".tag")
                 let listTags = []
                 cardTags.forEach(tag => { listTags.push(tag.id) })
                     //indexOf permet de trouver quelque chose dans un tableau
