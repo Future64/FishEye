@@ -8,15 +8,6 @@ import { enableBodyScroll, disableBodyScroll } from './body-scroll-lock.js'
  **/
 export class Lightbox {
 
-    static init() {
-        const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
-        const gallery = links.map(link => link.getAttribute('src'))
-        links.forEach(link => link.addEventListener('click', e => {
-            e.preventDefault()
-            new Lightbox(e.currentTarget.getAttribute('src'), gallery)
-        }))
-    }
-
     /**
      * @param {string} url URL de l'image
      * @param {string[]} images Chemins des images de la lightbox
@@ -32,13 +23,23 @@ export class Lightbox {
         document.addEventListener('keyup', this.onKeyUp)
     }
 
+    static init() {
+        const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
+        const gallery = links.map(link => link.getAttribute('src'))
+        links.forEach(link => link.addEventListener('click', e => {
+            e.preventDefault()
+            new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+        }))
+    }
+
+
     /**
      * @param {string} url URL de l'image
      */
     loadImage(url) {
         this.url = null
         const image = new Image()
-        const container = this.element.querySelector('.lightboxImg')
+        const container = this.element.querySelector('.lightboxImgContainer')
         this.lightboxMain.style.display = "block"
         container.innerHTML = ''
         image.onload = () => {
@@ -70,8 +71,8 @@ export class Lightbox {
         const totalPage = document.querySelectorAll(".lightboxPage")
         enableBodyScroll(this.element)
         window.setTimeout(() => {
-            // this.element.remove(totalPage)
             this.lightboxMain.style.display = "none"
+                // this.lightboxMain.remove(this.element)
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
@@ -111,7 +112,9 @@ export class Lightbox {
         dom.classList.add('lightboxPage')
         dom.innerHTML = `<div class="lightboxContainer">
                             <i class="fas fa-chevron-left btnLightbox"></i>
-                            <img class="lightboxImg" src="${url}"</img>
+                            <div class="lightboxImgContainer">
+                            <img class="lightboxImg" src="${url}">
+                            </div>
                             <i class="fas fa-chevron-right btnLightbox"></i>
                             <i class="fas fa-times lightboxClose"></i>
                             <div class="lightboxTitle"></div>
