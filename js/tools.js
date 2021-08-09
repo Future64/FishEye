@@ -1,32 +1,66 @@
 import { createMedia } from './media.js'
-// import { Lightbox } from './lightbox.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// async = ON NE SAIT JAMAIS QUAND CA SE TERMINE !
-export const initCache = async() => {
-    //quand on arrive sur le site, on check le localStorage !
-    let data = localStorage.getItem('data') // String
+// Fonction qui créer et affiche le header 
+export const createTagList = (obj) => {
+    // Selection de la balise Hml avec sa classe
+    const headerNavTags = document.querySelector(".navTags")
 
-    // si on a rien trouvé dans le localStorage
-    if (data === null) {
-        fetch('data/bigData.json')
-            // demander de retourner l'objet au format Json
-            .then((response) => {
-                return response.json()
-            })
-            // Fonction de récupération de d'utilisation des informations du Json
-            .then((obj) => {
-                // on a les data et on les mets dans le LocalStorage
-                localStorage.setItem('data', JSON.stringify(obj))
-                return data = JSON.parse(obj) // STRING => OBJ
-            })
-    } else {
-        data = JSON.parse(data) // STRING => OBJ
+    // on récupère tous les tags existant
+    const allTags = [];
+    obj.photographers.forEach(photographer => {
+        photographer.tags.forEach(tag => {
+            allTags.push(tag)
+        });
+    });
+
+    // on filtre les tags
+    const navTagArray = allTags.filter(function(item, pos) {
+        return allTags.indexOf(item) == pos;
+    })
+
+    // Boucle de récupération et de création des l'élements nav-tag 
+    for (let n = 0; n < navTagArray.length; n++) {
+        const headerLink = createDomElement("nav-tag", "a")
+        headerLink.id = navTagArray[n]
+        headerLink.setAttribute("href", "#")
+        headerLink.ariaLabel = ("Tag " + navTagArray[n])
+        headerLink.innerHTML += "#" + navTagArray[n]
+        headerNavTags.append(headerLink)
     }
-    return data
+}
+
+// quand on clic sur les tags ça filtre les cards en questions
+export const tagHandler = () => {
+    // const data = await initCache()
+    const tags = document.querySelectorAll(".header .nav-tag")
+    const cards = document.querySelectorAll(".containerCard")
+    let askedTag = ''
+
+    // a chaque tags on écoute le clic et on récupère l'ID
+    tags.forEach(tag => {
+        tag.addEventListener("click", () => {
+            askedTag = tag.id
+            cards.forEach(card => {
+                const cardTags = card.querySelectorAll(".tag")
+
+                let listTags = []
+                cardTags.forEach(tag => { listTags.push(tag.id) })
+                    //indexOf permet de trouver quelque chose dans un tableau
+                    //si il le trouve il renvoit son index (la position dans le tableau)
+                    // sinon il renvoit -1
+                if (listTags.indexOf(askedTag) == -1) {
+                    card.style.display = "none"
+                        // cardTags.onfocus = () => { cardTags.style.backgroundColor = "green" }
+                } else {
+                    card.style.display = "block"
+                }
+            });
+        })
+    });
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
@@ -38,33 +72,26 @@ export const createDomElement = (className, DomElem) => {
     return elm
 }
 
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-// Fonction qui créer et affiche le header 
-export const createHeader = (obj) => {
-    // Selection de la balise Hml avec sa classe
-    const headerNavTags = document.querySelector(".navTags")
-    const navTagArray = [
-        obj.photographers[0].tags[0],
-        obj.photographers[2].tags[0],
-        obj.photographers[2].tags[1],
-        obj.photographers[1].tags[1],
-        obj.photographers[0].tags[2],
-        obj.photographers[1].tags[0],
-        obj.photographers[0].tags[3],
-        obj.photographers[0].tags[1]
-    ]
 
-    // Boucle de récpération et de création des l'élements nav-tag 
-    for (let n = 0; n < navTagArray.length; n++) {
-        const headerLink = createDomElement("nav-tag", "a")
-        headerLink.id = navTagArray[n]
-        headerLink.setAttribute("href", "#")
-        headerLink.ariaLabel = ("Tag " + navTagArray[n])
-        headerLink.innerHTML += "#" + navTagArray[n]
-        headerNavTags.append(headerLink)
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
