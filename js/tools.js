@@ -35,7 +35,6 @@ export const createTagList = (obj) => {
 
 // quand on clic sur les tags ça filtre les cards en questions
 export const tagHandler = () => {
-    // const data = await initCache()
     const tags = document.querySelectorAll(".header .nav-tag")
     const cards = document.querySelectorAll(".containerCard")
     let askedTag = ''
@@ -43,22 +42,46 @@ export const tagHandler = () => {
     // a chaque tags on écoute le clic et on récupère l'ID
     tags.forEach(tag => {
         tag.addEventListener("click", () => {
-            askedTag = tag.id
-            cards.forEach(card => {
-                const cardTags = card.querySelectorAll(".tag")
+            const selectedTag = document.querySelector(".selectedTag")
 
-                let listTags = []
-                cardTags.forEach(tag => { listTags.push(tag.id) })
-                    //indexOf permet de trouver quelque chose dans un tableau
-                    //si il le trouve il renvoit son index (la position dans le tableau)
-                    // sinon il renvoit -1
-                if (listTags.indexOf(askedTag) == -1) {
-                    card.style.display = "none"
-                        // cardTags.onfocus = () => { cardTags.style.backgroundColor = "green" }
-                } else {
-                    card.style.display = "block"
+            //Si le tag qu'on a clické est égale au tag qu'on avait déjà clické 
+            if (askedTag == tag.id) {
+                selectedTag.classList.remove("selectedTag")
+                //On affiche toutes les cads
+                cards.forEach(card => {
+                    card.style.display = 'block'
+                })
+            } else {
+                //Si il y a déjà un tag séléctionné on supprime la classe
+                if (selectedTag){
+                    selectedTag.classList.remove("selectedTag")
                 }
-            });
+
+                // Au click sur un tag on lui assigne la classe selectedTag
+                tag.classList.add("selectedTag")
+
+                askedTag = tag.id
+
+                //Gestion de l'affichage des cards
+                cards.forEach(card => {
+                    //Pour chaques cards 
+                    //on récupère tout les tags 
+                    const cardTags = card.querySelectorAll(".tag")
+    
+                    let listTags = []
+                    //On va insérer dans listTags tout les tags de la cards
+                    cardTags.forEach(tag => { listTags.push(tag.id) })
+                        //indexOf permet de trouver quelque chose dans un tableau
+                        //si il le trouve il renvoit son index (la position dans le tableau)
+                        // sinon il renvoit -1
+                    if (listTags.indexOf(askedTag) == -1) {
+                        card.style.display = "none"
+                    } else {
+                        card.style.display = "block"
+                    }
+                });
+
+            }
         })
     });
 }

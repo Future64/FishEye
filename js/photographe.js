@@ -3,7 +3,7 @@ import { createForm } from './form.js'
 
 
 export const initPhotograph = async() => {
-    const data = await initCache()
+    const data = JSON.parse(localStorage.getItem('data'))
 
     // Selection de la balise Html avec sa classe
     const mainPhotograph = document.querySelector('.mainPhotograph')
