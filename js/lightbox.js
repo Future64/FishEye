@@ -26,9 +26,16 @@ export class Lightbox {
     static init() {
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('src'))
+        const totalPage = document.querySelectorAll(".lightboxPage")
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+            if (this.lightboxMain.innerHTML = "") {
+                new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+                console.log("Crée une nouvelle LightBox");
+            } else {
+                // this.lightboxMain.removeChild(totalPage)
+                console.log("A supprimer");
+            }
         }))
     }
 
@@ -68,7 +75,7 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-        const totalPage = document.querySelectorAll(".lightboxPage")
+            // const totalPage = document.querySelectorAll(".lightboxPage")
         enableBodyScroll(this.element)
         window.setTimeout(() => {
             this.lightboxMain.style.display = "none"

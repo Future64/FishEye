@@ -75,6 +75,36 @@ export const initPhotograph = async() => {
         // on lance la fonction qui se chargera de l'incrémentation des likes
     incrementTotalNbLikes(ttxLikes)
 
+
+
+
+
+
+
+
+    /* =====================================*/
+    //             FONCTION SORT
+    /* =====================================*/
+    const sortDate = document.querySelector('.dropdownDate')
+    const sortTitle = document.querySelector('.dropdownTitle')
+
+    for (let i = 0; i < photographerDetail.medias.length; i++) {
+        console.log(photographerDetail.medias[i].date);
+    }
+    // photographerDetail.medias.forEach((media) => {
+
+
+    // })
+    sortDate.addEventListener("click", (e) => {
+        // console.log(sortDate);
+
+
+    })
+    sortTitle.addEventListener("click", (e) => {
+        // console.log(sortTitle);
+    })
+
+    /* =====================================*/
 }
 
 
