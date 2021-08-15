@@ -30,7 +30,7 @@
     z-index: 1000;
     height: auto;
     padding-bottom: 20px;
-    width: 600px;
+    width: 510px;
     background-color: #db8876;
     border-radius: .3rem;
 }
@@ -43,9 +43,9 @@
 
 .formH1 {
     position: relative;
-    width: 290px;
+    width: 230px;
     height: auto;
-    font-size: 40px;
+    font-size: 25px;
     line-height: 50px;
     margin: 0;
     color: black;
@@ -74,7 +74,7 @@ form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 70px;
+    margin-top: 50px;
     margin-left: 35px;
 }
 
@@ -115,13 +115,13 @@ input:focus::placeholder {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    min-height: 140px;
-    max-height: 140px;
-    min-width: 520px;
-    max-width: 520px;
+    min-height: 80px;
+    max-height: 80px;
+    min-width: 420px;
+    max-width: 420px;
     border-radius: .3rem;
     border: none;
-    font-size: 20px;
+    font-size: 15px;
     color: var(--color1);
 }
 
@@ -140,11 +140,11 @@ input:focus::placeholder {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 520px;
-    height: 35px;
+    width: 420px;
+    height: 20px;
     border-radius: .3rem;
     border: none;
-    font-size: 20px;
+    font-size: 15px;
     color: var(--color1);
 }
 
@@ -152,7 +152,7 @@ input:focus::placeholder {
 .formLastLabel,
 .formEmailLabel,
 .formMsgLabel {
-    font-size: 30px;
+    font-size: 15px;
     margin-bottom: 10px;
 }
 
@@ -166,12 +166,12 @@ input:focus::placeholder {
     border: .5px solid var(--color3);
     border-radius: 5px;
     border: none;
-    padding: 25px 90px;
+    padding: 17px 60px;
     color: #fff;
-    width: 110px;
+    width: 80px;
     cursor: pointer;
-    font-size: 20px;
-    margin-top: 40px;
+    font-size: 15px;
+    margin-top: 30px;
     margin-left: 35px;
 }
 
@@ -180,7 +180,7 @@ input:focus::placeholder {
 .missEmail,
 .missMsg {
     color: rgb(194, 20, 52);
-    font-size: 18px;
+    font-size: 12px;
     margin-top: 5px;
 }
 

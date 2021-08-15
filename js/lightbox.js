@@ -24,16 +24,17 @@ export class Lightbox {
     }
 
     static init() {
+        const lightboxMain = document.body.querySelector(".lightbox-main")
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('src'))
         const totalPage = document.querySelectorAll(".lightboxPage")
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            if (this.lightboxMain.innerHTML = "") {
+            if (lightboxMain.innerHTML === "") {
                 new Lightbox(e.currentTarget.getAttribute('src'), gallery)
                 console.log("Crée une nouvelle LightBox");
             } else {
-                // this.lightboxMain.removeChild(totalPage)
+                lightboxMain.removeChild(totalPage)
                 console.log("A supprimer");
             }
         }))
