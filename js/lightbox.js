@@ -53,14 +53,15 @@ export class Lightbox {
         const container = this.element.querySelector('.lightboxImgContainer')
         const img = document.createElement('img')
         const video = document.createElement('video')
+
         container.innerHTML = ''
 
-        if (this.getFileExtension == "jpg") {
+        if (this.getFileExtension(url) === "jpg") {
             img.classList.add('lightboxImg')
             img.setAttribute("src", url)
             container.appendChild(img)
         } else {
-            console.log("truc");
+            console.log(this.getFileExtension(url));
             video.classList.add('lightboxVideo')
             video.setAttribute("src", url)
             video.setAttribute("type", "video/mp3")
@@ -90,11 +91,11 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-        
+
         enableBodyScroll(this.element)
-        window.setTimeout(() => { 
+        window.setTimeout(() => {
             const totalPage = document.querySelectorAll(".lightboxPage")
-            totalPage.forEach( ligtboxPage => {
+            totalPage.forEach(ligtboxPage => {
                 ligtboxPage.remove()
             })
 
