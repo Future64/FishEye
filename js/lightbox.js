@@ -13,6 +13,7 @@ export class Lightbox {
      * @param {string[]} images Chemins des images de la lightbox
      */
     constructor(url, images) {
+        this.getFileExtension(url)
         this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
         this.images = images
@@ -30,14 +31,15 @@ export class Lightbox {
         const totalPage = document.querySelectorAll(".lightboxPage")
         links.forEach(link => link.addEventListener('click', e => {
             e.preventDefault()
-            if (lightboxMain.innerHTML === "") {
-                new Lightbox(e.currentTarget.getAttribute('src'), gallery)
-                console.log("Crée une nouvelle LightBox");
-            } else {
-                lightboxMain.removeChild(totalPage)
-                console.log("A supprimer");
-            }
+            new Lightbox(e.currentTarget.getAttribute('src'), gallery)
         }))
+    }
+
+    /**
+     * @param {string} url URL de l'image
+     */
+    getFileExtension(url) {
+        return url.substring(url.lastIndexOf('.') + 1, url.length) || url
     }
 
 
@@ -48,6 +50,21 @@ export class Lightbox {
         this.url = null
         const image = new Image()
         const container = this.element.querySelector('.lightboxImgContainer')
+        const img = document.createElement('img')
+        const video = document.createElement('video')
+
+        if (this.getFileExtension == "jpg") {
+            img.classList.add('lightboxImg')
+            img.setAttribute("src", url)
+            container.appendChild(img)
+        } else {
+            video.classList.add('lightboxVideo')
+            video.setAttribute("src", url)
+            video.setAttribute("type", "video/mp3")
+            video.controls = true
+            container.appendChild(video)
+        }
+
         this.lightboxMain.style.display = "block"
         container.innerHTML = ''
         image.onload = () => {
@@ -79,8 +96,8 @@ export class Lightbox {
             // const totalPage = document.querySelectorAll(".lightboxPage")
         enableBodyScroll(this.element)
         window.setTimeout(() => {
-            this.lightboxMain.style.display = "none"
-                // this.lightboxMain.remove(this.element)
+            // this.lightboxMain.style.display = "none"
+            this.lightboxMain.remove(this.element)
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
@@ -121,7 +138,7 @@ export class Lightbox {
         dom.innerHTML = `<div class="lightboxContainer">
                             <i class="fas fa-chevron-left btnLightbox"></i>
                             <div class="lightboxImgContainer">
-                            <img class="lightboxImg" src="${url}">
+                                
                             </div>
                             <i class="fas fa-chevron-right btnLightbox"></i>
                             <i class="fas fa-times lightboxClose"></i>
