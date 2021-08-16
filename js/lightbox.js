@@ -30,6 +30,7 @@ export class Lightbox {
         const gallery = links.map(link => link.getAttribute('src'))
         const totalPage = document.querySelectorAll(".lightboxPage")
         links.forEach(link => link.addEventListener('click', e => {
+            console.log("coucou");
             e.preventDefault()
             new Lightbox(e.currentTarget.getAttribute('src'), gallery)
         }))
@@ -52,12 +53,14 @@ export class Lightbox {
         const container = this.element.querySelector('.lightboxImgContainer')
         const img = document.createElement('img')
         const video = document.createElement('video')
+        container.innerHTML = ''
 
         if (this.getFileExtension == "jpg") {
             img.classList.add('lightboxImg')
             img.setAttribute("src", url)
             container.appendChild(img)
         } else {
+            console.log("truc");
             video.classList.add('lightboxVideo')
             video.setAttribute("src", url)
             video.setAttribute("type", "video/mp3")
@@ -66,12 +69,6 @@ export class Lightbox {
         }
 
         this.lightboxMain.style.display = "block"
-        container.innerHTML = ''
-        image.onload = () => {
-            container.append(image)
-            this.url = url
-        }
-        image.src = url
     }
 
     /**
@@ -93,11 +90,15 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-            // const totalPage = document.querySelectorAll(".lightboxPage")
+        
         enableBodyScroll(this.element)
-        window.setTimeout(() => {
-            // this.lightboxMain.style.display = "none"
-            this.lightboxMain.remove(this.element)
+        window.setTimeout(() => { 
+            const totalPage = document.querySelectorAll(".lightboxPage")
+            totalPage.forEach( ligtboxPage => {
+                ligtboxPage.remove()
+            })
+
+            // this.lightboxMain.remove(this.element)
         }, 500)
         document.removeEventListener('keyup', this.onKeyUp)
     }
