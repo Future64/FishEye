@@ -77,24 +77,27 @@ export const initPhotograph = async() => {
 
 
 
-
-
-
-
-
     /* =====================================*/
     //             FONCTION SORT
     /* =====================================*/
     const sortDate = document.querySelector('.dropdownDate')
     const sortTitle = document.querySelector('.dropdownTitle')
+    let dates = []
 
     for (let i = 0; i < photographerDetail.medias.length; i++) {
-        console.log(photographerDetail.medias[i].date);
+        //Pour chaque dates je les ranges dans le tableau "dates"
+        dates.push(photographerDetail.medias[i].date)
+            //Le tableau "dates" est finalement trié du plus vieux au plus récent
+        dates.sort((a, b) => {
+            a = new Date(a.dateModified);
+            b = new Date(b.dateModified);
+            return a > b ? -1 : a < b ? 1 : 0;
+        });
+        console.log(dates);
     }
-    // photographerDetail.medias.forEach((media) => {
 
 
-    // })
+
     sortDate.addEventListener("click", (e) => {
         // console.log(sortDate);
 

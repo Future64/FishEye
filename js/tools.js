@@ -47,13 +47,13 @@ export const tagHandler = () => {
             //Si le tag qu'on a clické est égale au tag qu'on avait déjà clické 
             if (askedTag == tag.id) {
                 selectedTag.classList.remove("selectedTag")
-                //On affiche toutes les cads
+                    //On affiche toutes les cads
                 cards.forEach(card => {
                     card.style.display = 'block'
                 })
             } else {
                 //Si il y a déjà un tag séléctionné on supprime la classe
-                if (selectedTag){
+                if (selectedTag) {
                     selectedTag.classList.remove("selectedTag")
                 }
 
@@ -67,9 +67,9 @@ export const tagHandler = () => {
                     //Pour chaques cards 
                     //on récupère tout les tags 
                     const cardTags = card.querySelectorAll(".tag")
-    
+
                     let listTags = []
-                    //On va insérer dans listTags tout les tags de la cards
+                        //On va insérer dans listTags tout les tags de la cards
                     cardTags.forEach(tag => { listTags.push(tag.id) })
                         //indexOf permet de trouver quelque chose dans un tableau
                         //si il le trouve il renvoit son index (la position dans le tableau)
@@ -80,7 +80,6 @@ export const tagHandler = () => {
                         card.style.display = "block"
                     }
                 });
-
             }
         })
     });
