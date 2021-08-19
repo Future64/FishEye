@@ -70,6 +70,12 @@ export class Lightbox {
         }
 
         this.lightboxMain.style.display = "block"
+
+        image.onload = () => {
+            // container.append(image)
+            this.url = url
+        }
+        image.src = url
     }
 
     /**
@@ -109,12 +115,12 @@ export class Lightbox {
      */
     next(e) {
         e.preventDefault()
-        console.log(this.url)
         let i = this.images.findIndex(image => image === this.url)
         if (i === this.images.length - 1) {
             i = -1
         }
         this.loadImage(this.images[i + 1])
+        console.log(this.images)
     }
 
     /**
