@@ -40,7 +40,8 @@
     transform: scale(1.1);
 }
 
-.lightboxImg {
+.lightboxImg,
+.lightboxVideo {
     position: relative;
     border-radius: .3125rem;
     height: 18.75rem;

@@ -1,8 +1,8 @@
-import { initCache, createHeader, createDomElement } from './tools.js'
+import { createDomElement, createTagList, tagHandler } from "./tools.js"
 
-const initMain = async() => {
-    const data = await initCache()
-    createHeader(data)
+export const createHomePage = async(data) => {
+
+    createTagList(data)
 
     // affichage des profils
     for (let i = 0; i < data.photographers.length; i++) {
@@ -68,41 +68,3 @@ const initMain = async() => {
     }
     tagHandler()
 }
-
-// quand on clic sur les tags ça filtre les cards en questions
-const tagHandler = () => {
-    // const data = await initCache()
-    const tags = document.querySelectorAll(".header .nav-tag")
-    const cards = document.querySelectorAll(".containerCard")
-    let askedTag = ''
-        // a chaque tags on écoute le clic et on récupère l'ID
-    tags.forEach(tag => {
-        tag.addEventListener("click", () => {
-            askedTag = tag.id
-            cards.forEach(card => {
-                const cardTags = card.querySelectorAll(".tag")
-                let listTags = []
-                cardTags.forEach(tag => { listTags.push(tag.id) })
-                    //indexOf permet de trouver quelque chose dans un tableau
-                    //si il le trouve il renvoit son index (la position dans le tableau)
-                    // sinon il renvoit -1
-                if (listTags.indexOf(askedTag) == -1) {
-                    card.style.display = "none"
-                        // cardTags.onfocus = () => { cardTags.style.backgroundColor = "green" }
-                } else {
-                    card.style.display = "block"
-
-                }
-                // cardTags.addEventListener('focus', (e) => {
-                //     e.style.backgroundColor = "green"
-                // });
-
-            });
-        })
-    });
-    // effacer tout les cards qui n'ont pas l'id demandés
-}
-
-
-
-initMain()

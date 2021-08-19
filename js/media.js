@@ -60,7 +60,4 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
 
     Lightbox.init()
 
-    // Event
-    // createLightbox(dataMedia.video, mainPhotograph, urlImage, urlVideo, mediaLink)
-
 }

@@ -56,7 +56,7 @@ header nav {
     font-weight: bold;
 }
 
-.nav-tag:focus {
+.selectedTag {
     background-color: var(--color1);
     color: white;
 }
