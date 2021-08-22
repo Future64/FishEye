@@ -1,4 +1,5 @@
-import { createDomElement, createTagList, tagHandler } from "./tools.js"
+import { createDomElement } from "./tools.js"
+import { createTagList, tagHandler } from "./tagManager.js"
 
 export const createHomePage = async(data) => {
 

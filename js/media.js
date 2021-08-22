@@ -1,9 +1,9 @@
-import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.js'
+import { createDomElement } from './tools.js'
 import { Lightbox } from './lightbox.js'
 
 
 // Fonction qui créer et affiche les médias de la page photographe
-export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
+export const createMedia = (dataMedia, urlImage, urlVideo) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
