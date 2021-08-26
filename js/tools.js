@@ -1,4 +1,5 @@
 import { createMedia } from './media.js'
+import { createSortZone, dateSorted, titleSorted } from "./sortManager.js"
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET
@@ -76,6 +77,9 @@ export const pathMediasPhotographer = (dataMedia, path) => {
         } else {
             urlImage = path + dataMedia[j].image
         }
+
+        // dateSorted(dataMedia[j], urlImage, urlVideo)
+        // titleSorted(dataMedia[j], urlImage, urlVideo)
 
         createMedia(dataMedia[j], urlImage, urlVideo)
     }

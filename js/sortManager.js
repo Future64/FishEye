@@ -1,5 +1,5 @@
-import { displayDropdown } from './tools.js'
-
+import { displayDropdown, pathMediasPhotographer } from './tools.js'
+import { createMedia } from './media.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
@@ -19,7 +19,7 @@ export const createSortZone = () => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const dateSorted = (data) => {
+export const dateSorted = (data, urlImage, urlVideo) => {
     const sortDate = document.querySelector('.dropdownDate')
     let dates = []
     sortDate.addEventListener("click", (e) => {
@@ -33,11 +33,15 @@ export const dateSorted = (data) => {
                 return a > b ? -1 : a < b ? 1 : 0;
             });
         }
-        console.log(dates);
+        // createMedia(data, urlImage, urlVideo)
+        console.table(dates);
     })
 }
 
-export const titleSorted = (data) => {
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const titleSorted = (data, urlImage, urlVideo) => {
     const sortTitle = document.querySelector('.dropdownTitle')
     let titles = []
     sortTitle.addEventListener("click", (e) => {
@@ -47,6 +51,7 @@ export const titleSorted = (data) => {
                 //Le tableau "titles" est finalement trié par odre alphabétique
             titles.sort()
         }
-        console.log(titles);
+        // createMedia(data, urlImage, urlVideo)
+        console.table(titles);
     })
 }

@@ -7,7 +7,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
-    const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
 
     const mediaZone = createDomElement("mediaZone", "div")
     const mediaCard = createDomElement("mediaCard", "div")

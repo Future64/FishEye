@@ -71,6 +71,7 @@ export const initPhotograph = async() => {
 
 
 
+
     // calcule des likes de départ
     let ttxLikes = 0;
     for (let i = 0; i < photographerDetail.medias.length; i++) {
