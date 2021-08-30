@@ -20,6 +20,9 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     const mediaNbLike = createDomElement("mediaNbLike", "span")
     const mediaHeart = createDomElement("far", "i")
 
+    // texte alternatif pour les media
+    const alt = dataMedia.alt
+
     // Ajout de class
     mediaHeart.classList.add("fa-heart", "like");
 
@@ -37,16 +40,20 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
 
+    console.log(alt);
+
     // Ajout d'atributs
     if (urlImage === undefined) {
         mediaVideo.setAttribute("src", urlVideo)
         mediaVideo.setAttribute("type", "video/mp4")
+        mediaVideo.setAttribute("alt", alt)
         mediaVideo.controls = true
             // mediaLink.setAttribute("href", urlVideo)
 
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
+        mediaImage.setAttribute("alt", alt)
         mediaLink.append(mediaImage)
     }
 
