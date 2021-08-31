@@ -19,7 +19,7 @@ export const createSortZone = () => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const dateSorted = (data, urlImage, urlVideo) => {
+export const dateSorted = (data) => {
     const sortDate = document.querySelector('.dropdownDate')
     let dates = []
     sortDate.addEventListener("click", (e) => {
@@ -41,7 +41,7 @@ export const dateSorted = (data, urlImage, urlVideo) => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 
-export const titleSorted = (data, urlImage, urlVideo) => {
+export const titleSorted = (data, path) => {
     const sortTitle = document.querySelector('.dropdownTitle')
     let titles = []
     sortTitle.addEventListener("click", (e) => {
@@ -51,7 +51,35 @@ export const titleSorted = (data, urlImage, urlVideo) => {
                 //Le tableau "titles" est finalement trié par odre alphabétique
             titles.sort()
         }
-        // createMedia(data, urlImage, urlVideo)
-        console.table(titles);
+
+        
+        let sortedData = []
+        for (let i = 0; i < titles.length; i++){
+            for (let j = 0; j < data.length; j++){
+                if (titles[i] === data[j].title){
+                    sortedData.push(data[j])
+                }
+            }
+        }
+
+        // On supprime les images qui sont affichés pour mieux les réafficher derrière avec createMedia
+        const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
+        mediaZoneContainer.innerHTML = ""
+
+        for (let k = 0; k < sortedData.length; k++) {
+            const urlVideo = path + sortedData[k].video
+            let urlImage
+    
+            if (sortedData[k].image === undefined) {
+                urlImage = undefined
+            } else {
+                urlImage = path + sortedData[k].image
+            }
+            // dateSorted(dataMedia[j], urlImage, urlVideo)
+            // titleSorted(dataMedia[j], urlImage, urlVideo)
+            
+            createMedia(sortedData[k], urlImage, urlVideo)
+        }
+
     })
 }
