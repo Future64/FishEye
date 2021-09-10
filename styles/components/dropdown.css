@@ -1,8 +1,11 @@
 .selectContainer {
     position: relative;
+    display: flex;
 }
 
 .dropdown {
+    position: relative;
+    top: -10px;
     background-color: #901c1c;
     font-weight: bold;
     font-size: 16px;
@@ -10,9 +13,9 @@
     padding: 10px 40px 10px 10px;
     border: none;
     border-radius: 5px;
-    position: relative;
     width: 90px;
     height: 16px;
+    margin-left: 20px;
 }
 
 .optionContainer {
@@ -23,7 +26,8 @@
     transition: 0.3s;
     background-color: #901c1c;
     z-index: 11;
-    border-radius: 0 0 5px 5px
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
 }
 
 .closeOptions {
@@ -31,10 +35,12 @@
     height: 0;
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
 }
 
 .openOptions {
     top: 32px;
+    cursor: pointer;
 }
 
 .option {
@@ -42,10 +48,14 @@
     border-top: 1px solid #fff;
 }
 
+.option:hover {
+    opacity: 70%;
+}
+
 .fa-chevron-down {
     position: absolute;
     color: #fff;
-    top: 27px;
+    top: 0;
     height: 16px;
     width: 14px;
     right: 13px;

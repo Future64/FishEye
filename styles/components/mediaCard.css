@@ -39,6 +39,7 @@
 
 .mediaNbLike {
     margin-left: 8px;
+    margin-right: 4px;
 }
 
 @media screen and (max-width: 1312px) {
