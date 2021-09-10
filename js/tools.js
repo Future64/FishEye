@@ -1,5 +1,4 @@
 import { createMedia } from './media.js'
-import { createSortZone, dateSorted, titleSorted } from "./sortManager.js"
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 //                          TOUTES LES FONCTIONS DU PROJET

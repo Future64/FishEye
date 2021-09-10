@@ -1,129 +1,151 @@
-import { displayDropdown, pathMediasPhotographer } from './tools.js'
 import { createMedia } from './media.js'
-import { displayHeart, incrementTotalNbLikes } from "./heart.js"
-
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Fonction qui déclanche à l'écoute du click sur le dropdow la fonction "displayDropdown"
 export const createSortZone = () => {
 
-    const dropdownBtn = document.querySelector(".dropdownBtn")
-    const dropdownContent = document.querySelector(".dropdownContent")
-    const spanArrowDown = document.querySelector(".fa-chevron-down")
-    const spanArrowUp = document.querySelector(".fa-chevron-up")
+    const select = document.querySelector(".dropdown")
+    const arrow = document.querySelector(".fa-chevron-down")
+    const optionContainer = document.querySelector(".optionContainer")
+    const optionSelected = document.querySelector(".optionSelected")
+    const options = document.querySelectorAll(".option")
+
+    options.forEach(option => {
+        option.addEventListener('click', (e) => {
+            const value = option.getAttribute('data-value')
+            optionSelected.innerHTML = value
+
+            const reorganizedMedia = sortBy(value)
+            reOrganizeMedia(reorganizedMedia)
+        })
+    });
 
     // Events
-    dropdownBtn.addEventListener("click", () => {
-        displayDropdown(dropdownContent, spanArrowUp, spanArrowDown)
-    })
-}
+    select.addEventListener("click", () => {
+        if (arrow.classList.contains('open')) {
+            arrow.classList.add('close')
+            optionContainer.classList.add('closeOptions')
 
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-export const dateSorted = (data, path) => {
-    const sortDate = document.querySelector('.dropdownDate')
-    let dates = []
-    sortDate.addEventListener("click", (e) => {
-        //Pour chaque dates je les ranges dans le tableau "dates"
-        for (let i = 0; i < data.length; i++) {
-            dates.push(data[i].date)
-                //Le tableau "dates" est finalement trié du plus vieux au plus récent
-            dates.sort((a, b) => {
-                a = new Date(a.dateModified);
-                b = new Date(b.dateModified);
-                return a > b ? -1 : a < b ? 1 : 0;
-            });
-        }
-
-        let sortedData = []
-        for (let i = 0; i < dates.length; i++) {
-            for (let j = 0; j < data.length; j++) {
-                if (dates[i] === data[j].date) {
-                    sortedData.push(data[j])
-                }
-            }
-        }
-
-        // On supprime les images qui sont affichés pour mieux les réafficher derrière avec createMedia
-        const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
-        mediaZoneContainer.innerHTML = ""
-
-        for (let k = 0; k < sortedData.length; k++) {
-            const urlVideo = path + sortedData[k].video
-            let urlImage
-
-            if (sortedData[k].image === undefined) {
-                urlImage = undefined
-            } else {
-                urlImage = path + sortedData[k].image
-            }
-
-            if (mediaZoneContainer.innerHTML = "") {
-
-                createMedia(sortedData[k], urlImage, urlVideo)
-            } else {
-                mediaZoneContainer.innerHTML = ""
-            }
-
-        }
-    })
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-
-export const titleSorted = (data, path) => {
-    const sortTitle = document.querySelector('.dropdownTitle')
-    let titles = []
-    let compteur = 0
-
-    sortTitle.addEventListener("click", (e) => {
-        console.log(compteur);
-        if (compteur === 0) {
-            //Pour chaque title je les ranges dans le tableau "titles"
-
-            for (let i = 0; i < data.length; i++) {
-                titles.push(data[i].title)
-                    //Le tableau "titles" est finalement trié par odre alphabétique
-                titles.sort()
-            }
-
-
-            let sortedData = []
-            for (let i = 0; i < titles.length; i++) {
-                for (let j = 0; j < data.length; j++) {
-                    if (titles[i] === data[j].title) {
-                        sortedData.push(data[j])
-                    }
-                }
-            }
-
-            // On supprime les images qui sont affichés pour mieux les réafficher derrière avec createMedia
-            const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
-            const mediaZone = document.querySelector(".mediaZone")
-
-            mediaZoneContainer.innerHTML = ""
-
-            pathMediasPhotographer(sortedData, path)
-                // for (let k = 0; k < sortedData.length; k++) {
-                //     const urlVideo = path + sortedData[k].video
-                //     let urlImage
-
-            //     if (sortedData[k].image === undefined) {
-            //         urlImage = undefined
-            //     } else {
-            //         urlImage = path + sortedData[k].image
-            //     }
-
-            //     createMedia(sortedData[k], urlImage, urlVideo)
-            // }
-
+            arrow.classList.remove('open')
+            optionContainer.classList.remove('openOptions')
         } else {
-            sortTitle.addEventListener("click", (e) => {
-                console.log("truc");
-            })
+            arrow.classList.add('open')
+            optionContainer.classList.add('openOptions')
+
+            arrow.classList.remove('close')
+            optionContainer.classList.remove('closeOptions')
         }
-        compteur++
     })
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+const sortBy = value => {
+    switch (value) {
+        case 'Titre':
+            return titleSorted();
+
+        case 'Date':
+            return dateSorted()
+
+        default:
+            return popularitySorted()
+    }
+}
+
+
+
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const dateSorted = () => {
+    const mediasZone = document.querySelectorAll('.mediaZone');
+    const sortedMediaZone = [];
+    const sortedDate = [];
+
+
+
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const titleSorted = () => {
+    const mediasZone = document.querySelectorAll('.mediaZone');
+    const sortedMediaZone = [];
+    const sortedTitle = [];
+
+    mediasZone.forEach(mediaZone => {
+        const title = mediaZone.querySelector('.mediaTitle').innerHTML
+        sortedTitle.push(title)
+    });
+
+    sortedTitle.sort((a, b) => {
+        const titleA = a.toLowerCase();
+        const titleB = b.toLowerCase();
+
+        if (titleA < titleB) return -1;
+        if (titleA > titleB) return 1;
+        return 0;
+    });
+
+    sortedTitle.forEach(title => {
+        mediasZone.forEach(mediaZone => {
+            const titleMedia = mediaZone.querySelector('.mediaTitle').innerHTML
+            if (title === titleMedia) {
+                sortedMediaZone.push(mediaZone)
+            }
+        });
+    });
+
+    return sortedMediaZone;
+}
+
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+const popularitySorted = () => {
+    const mediasZone = document.querySelectorAll('.mediaZone');
+    const sortedMediaZone = [];
+    const sortedPopularity = [];
+
+    mediasZone.forEach(mediaZone => {
+        const likes = mediaZone.querySelector('.mediaNbLike').innerHTML
+        sortedPopularity.push(likes)
+    });
+
+    sortedPopularity.sort((a, b) => {
+        const titleA = parseInt(a);
+        const titleB = parseInt(b);
+
+        if (titleA > titleB) return -1;
+        if (titleA < titleB) return 1;
+        return 0;
+    });
+
+    sortedPopularity.forEach(like => {
+        mediasZone.forEach(mediaZone => {
+            const likeMedia = mediaZone.querySelector('.mediaNbLike').innerHTML
+            if (like === likeMedia) {
+                sortedMediaZone.push(mediaZone)
+            }
+        });
+    });
+
+    return sortedMediaZone;
+}
+
+
+
+
+const reOrganizeMedia = (reorganizedMedia) => {
+    const mediaZoneContainer = document.querySelector('.mediaZoneContainer');
+    const mediasZone = document.querySelectorAll('.mediaZone');
+
+    mediasZone.forEach(el => { el.remove() });
+
+    reorganizedMedia.forEach(media => {
+        mediaZoneContainer.append(media)
+    });
 }

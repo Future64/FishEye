@@ -1,7 +1,7 @@
 import { createHeaderPH, pathMediasPhotographer } from './tools.js'
 import { createForm } from './form.js'
 import { createTag } from "./tagManager.js"
-import { createSortZone, dateSorted, titleSorted } from "./sortManager.js"
+import { createSortZone } from "./sortManager.js"
 import { displayHeart, incrementTotalNbLikes } from "./heart.js"
 
 
@@ -66,10 +66,6 @@ export const initPhotograph = async() => {
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
     pathMediasPhotographer(photographerDetail.medias, path)
-    dateSorted(photographerDetail.medias, path)
-    titleSorted(photographerDetail.medias, path)
-
-
 
 
     // calcule des likes de départ

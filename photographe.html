@@ -51,24 +51,20 @@
                 </div>
             </div>
             <div class="sortZone">
-                <!-- <label for="sort_by" class="labelSort">Trier par</label>
-                <select class="dropdownContainer" name="sort_by" id="sort_by">
-                    <option class="dropdownBtn" value="popularité">Popularité</option>
-                    <option class="ddropdownBtn" value="date">Date</option>
-                    <option class="dropdownBtn" value="titre">Titre</option>
-                </select> -->
-                <!-- <span class="spanSort">Trier par</span> -->
-                <label for="sort_by" class="labelSort">Trier par</label>
-                <div class="dropdownContainer" id="sort_by">
-                    <div class="dropdownBtn" value="popularité">Popularité
-                        <i class="fas fa-chevron-down"></i>
-                        <i class="fas fa-chevron-up"></i>
+
+                <div class="selectContainer">
+                    <label for="sort_by" class="labelSort">Trier par</label>
+                    <div class="dropdown" name="sort_by" id="sort_by">
+                        <div class="optionSelected">Popularité</div>
+                        <div class="optionContainer closeOptions">
+                            <div class="option" data-value="Popularité">Popularité</div>
+                            <div class="option" data-value="Date">Date</div>
+                            <div class="option" data-value="Titre">Titre</div>
+                        </div>
                     </div>
-                    <div class="dropdownContent" style="display: none;">
-                        <a class="dropdownDate" value="date">Date</a>
-                        <a class="dropdownTitle" value="titre">Titre</a>
-                    </div>
+                    <i class="fas fa-chevron-down close"></i>
                 </div>
+
             </div>
             <div class="mediaZoneContainer">
 
