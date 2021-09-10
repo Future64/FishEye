@@ -65,9 +65,9 @@ export const initPhotograph = async() => {
     createTag(tagArray)
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
-    dateSorted(photographerDetail.medias)
-    titleSorted(photographerDetail.medias, path)
     pathMediasPhotographer(photographerDetail.medias, path)
+    dateSorted(photographerDetail.medias, path)
+    titleSorted(photographerDetail.medias, path)
 
 
 

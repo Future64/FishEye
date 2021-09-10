@@ -1,5 +1,7 @@
 import { displayDropdown, pathMediasPhotographer } from './tools.js'
 import { createMedia } from './media.js'
+import { displayHeart, incrementTotalNbLikes } from "./heart.js"
+
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
@@ -19,7 +21,7 @@ export const createSortZone = () => {
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
-export const dateSorted = (data) => {
+export const dateSorted = (data, path) => {
     const sortDate = document.querySelector('.dropdownDate')
     let dates = []
     sortDate.addEventListener("click", (e) => {
@@ -33,30 +35,11 @@ export const dateSorted = (data) => {
                 return a > b ? -1 : a < b ? 1 : 0;
             });
         }
-        // createMedia(data, urlImage, urlVideo)
-        console.table(dates);
-    })
-}
 
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-
-export const titleSorted = (data, path) => {
-    const sortTitle = document.querySelector('.dropdownTitle')
-    let titles = []
-    sortTitle.addEventListener("click", (e) => {
-        //Pour chaque title je les ranges dans le tableau "titles"
-        for (let i = 0; i < data.length; i++) {
-            titles.push(data[i].title)
-                //Le tableau "titles" est finalement trié par odre alphabétique
-            titles.sort()
-        }
-
-        
         let sortedData = []
-        for (let i = 0; i < titles.length; i++){
-            for (let j = 0; j < data.length; j++){
-                if (titles[i] === data[j].title){
+        for (let i = 0; i < dates.length; i++) {
+            for (let j = 0; j < data.length; j++) {
+                if (dates[i] === data[j].date) {
                     sortedData.push(data[j])
                 }
             }
@@ -69,17 +52,78 @@ export const titleSorted = (data, path) => {
         for (let k = 0; k < sortedData.length; k++) {
             const urlVideo = path + sortedData[k].video
             let urlImage
-    
+
             if (sortedData[k].image === undefined) {
                 urlImage = undefined
             } else {
                 urlImage = path + sortedData[k].image
             }
-            // dateSorted(dataMedia[j], urlImage, urlVideo)
-            // titleSorted(dataMedia[j], urlImage, urlVideo)
-            
-            createMedia(sortedData[k], urlImage, urlVideo)
-        }
 
+            if (mediaZoneContainer.innerHTML = "") {
+
+                createMedia(sortedData[k], urlImage, urlVideo)
+            } else {
+                mediaZoneContainer.innerHTML = ""
+            }
+
+        }
+    })
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const titleSorted = (data, path) => {
+    const sortTitle = document.querySelector('.dropdownTitle')
+    let titles = []
+    let compteur = 0
+
+    sortTitle.addEventListener("click", (e) => {
+        console.log(compteur);
+        if (compteur === 0) {
+            //Pour chaque title je les ranges dans le tableau "titles"
+
+            for (let i = 0; i < data.length; i++) {
+                titles.push(data[i].title)
+                    //Le tableau "titles" est finalement trié par odre alphabétique
+                titles.sort()
+            }
+
+
+            let sortedData = []
+            for (let i = 0; i < titles.length; i++) {
+                for (let j = 0; j < data.length; j++) {
+                    if (titles[i] === data[j].title) {
+                        sortedData.push(data[j])
+                    }
+                }
+            }
+
+            // On supprime les images qui sont affichés pour mieux les réafficher derrière avec createMedia
+            const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
+            const mediaZone = document.querySelector(".mediaZone")
+
+            mediaZoneContainer.innerHTML = ""
+
+            pathMediasPhotographer(sortedData, path)
+                // for (let k = 0; k < sortedData.length; k++) {
+                //     const urlVideo = path + sortedData[k].video
+                //     let urlImage
+
+            //     if (sortedData[k].image === undefined) {
+            //         urlImage = undefined
+            //     } else {
+            //         urlImage = path + sortedData[k].image
+            //     }
+
+            //     createMedia(sortedData[k], urlImage, urlVideo)
+            // }
+
+        } else {
+            sortTitle.addEventListener("click", (e) => {
+                console.log("truc");
+            })
+        }
+        compteur++
     })
 }

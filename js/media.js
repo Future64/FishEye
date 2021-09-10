@@ -40,7 +40,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
 
-    console.log(alt);
 
     // Ajout d'atributs
     if (urlImage === undefined) {
@@ -48,8 +47,6 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
         mediaVideo.setAttribute("type", "video/mp4")
         mediaVideo.setAttribute("alt", alt)
         mediaVideo.controls = true
-            // mediaLink.setAttribute("href", urlVideo)
-
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
