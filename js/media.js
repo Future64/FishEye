@@ -46,13 +46,13 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
         mediaVideo.setAttribute("src", urlVideo)
         mediaVideo.setAttribute("type", "video/mp4")
         mediaVideo.setAttribute("alt", alt)
-        mediaVideo.setAttribute("Date", dataMedia.date)
+        mediaZone.setAttribute("Date", dataMedia.date)
         mediaVideo.controls = true
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
         mediaImage.setAttribute("alt", alt)
-        mediaImage.setAttribute("Date", dataMedia.date)
+        mediaZone.setAttribute("Date", dataMedia.date)
         mediaLink.append(mediaImage)
     }
 

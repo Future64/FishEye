@@ -12,14 +12,14 @@ export const createSortZone = () => {
     const options = document.querySelectorAll(".option")
 
     options.forEach(option => {
-        option.addEventListener('click', (e) => {
+        option.addEventListener('click', () => {
             const value = option.getAttribute('data-value')
             optionSelected.innerHTML = value
 
             const reorganizedMedia = sortBy(value)
             reOrganizeMedia(reorganizedMedia)
         })
-    });
+    })
 
     // Events
     select.addEventListener("click", () => {
@@ -43,7 +43,7 @@ export const createSortZone = () => {
 const sortBy = value => {
     switch (value) {
         case 'Titre':
-            return titleSorted();
+            return titleSorted()
 
         case 'Date':
             return dateSorted()
@@ -53,64 +53,38 @@ const sortBy = value => {
     }
 }
 
-
-
-
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+const reOrganizeMedia = (reorganizedMedia) => {
+    const mediaZoneContainer = document.querySelector('.mediaZoneContainer')
+    const mediasZone = document.querySelectorAll('.mediaZone')
 
-export const titleSorted = () => {
-    const mediasZone = document.querySelectorAll('.mediaZone');
-    const sortedMediaZone = [];
-    const sortedTitle = [];
+    mediasZone.forEach(el => { el.remove() })
 
-    mediasZone.forEach(mediaZone => {
-        const title = mediaZone.querySelector('.mediaTitle').innerHTML
-        sortedTitle.push(title)
-    });
-
-    sortedTitle.sort((a, b) => {
-        const titleA = a.toLowerCase();
-        const titleB = b.toLowerCase();
-
-        if (titleA < titleB) return -1;
-        if (titleA > titleB) return 1;
-        return 0;
-    });
-
-    sortedTitle.forEach(title => {
-        mediasZone.forEach(mediaZone => {
-            const titleMedia = mediaZone.querySelector('.mediaTitle').innerHTML
-            if (title === titleMedia) {
-                sortedMediaZone.push(mediaZone)
-            }
-        });
-    });
-
-    return sortedMediaZone;
+    reorganizedMedia.forEach(media => {
+        mediaZoneContainer.append(media)
+    })
 }
-
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 const popularitySorted = () => {
-    const mediasZone = document.querySelectorAll('.mediaZone');
-    const sortedMediaZone = [];
-    const sortedPopularity = [];
+    const mediasZone = document.querySelectorAll('.mediaZone')
+    const sortedMediaZone = []
+    const sortedPopularity = []
 
     mediasZone.forEach(mediaZone => {
         const likes = mediaZone.querySelector('.mediaNbLike').innerHTML
         sortedPopularity.push(likes)
-    });
+    })
 
     sortedPopularity.sort((a, b) => {
-        const titleA = parseInt(a);
-        const titleB = parseInt(b);
-
-        if (titleA > titleB) return -1;
-        if (titleA < titleB) return 1;
+        const titleA = parseInt(a)
+        const titleB = parseInt(b)
+        if (titleA > titleB) return -1
+        if (titleA < titleB) return 1
         return 0;
-    });
+    })
 
     sortedPopularity.forEach(like => {
         mediasZone.forEach(mediaZone => {
@@ -118,56 +92,75 @@ const popularitySorted = () => {
             if (like === likeMedia) {
                 sortedMediaZone.push(mediaZone)
             }
-        });
-    });
+        })
+    })
 
-    return sortedMediaZone;
+    return sortedMediaZone
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const titleSorted = () => {
+    const mediasZone = document.querySelectorAll('.mediaZone')
+    const sortedMediaZone = []
+    const sortedTitle = []
+
+    mediasZone.forEach(mediaZone => {
+        const title = mediaZone.querySelector('.mediaTitle').innerHTML
+        sortedTitle.push(title)
+    })
+
+    sortedTitle.sort((a, b) => {
+        const titleA = a.toLowerCase()
+        const titleB = b.toLowerCase()
+
+        if (titleA < titleB) return -1
+        if (titleA > titleB) return 1
+        return 0
+    })
+
+    sortedTitle.forEach(title => {
+        mediasZone.forEach(mediaZone => {
+            const titleMedia = mediaZone.querySelector('.mediaTitle').innerHTML
+            if (title === titleMedia) {
+                sortedMediaZone.push(mediaZone)
+            }
+        })
+    })
+
+    return sortedMediaZone
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const dateSorted = () => {
-    const mediaImage = document.querySelectorAll('.mediaImage');
-    const sortedMediaZone = [];
-    const sortedDate = [];
+    const mediasZone = document.querySelectorAll('.mediaZone')
+    const sortedMediaZone = []
+    const sortedDate = []
 
-    mediaImage.forEach(mediaZone => {
+    mediasZone.forEach(mediaZone => {
         const dates = mediaZone.getAttribute('date')
-        console.log(dates);
         sortedDate.push(dates)
-    });
+    })
+
 
     sortedDate.sort((a, b) => {
-        const titleA = parseInt(a);
-        const titleB = parseInt(b);
+        a = new Date(a.dateModified)
+        b = new Date(b.dateModified)
+        return a > b ? -1 : a < b ? 1 : 0
+    })
 
-        if (titleA > titleB) return -1;
-        if (titleA < titleB) return 1;
-        return 0;
-    });
 
     sortedDate.forEach(date => {
-        mediaImage.forEach(mediaImage => {
-            const dateMedia = mediaImage.getAttribute('date')
+        mediasZone.forEach(mediaZone => {
+            const dateMedia = mediaZone.getAttribute('date')
             if (date === dateMedia) {
-                sortedMediaZone.push(mediaImage)
+                sortedMediaZone.push(mediaZone)
             }
-        });
-    });
+        })
+    })
 
-    return sortedMediaZone;
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-
-const reOrganizeMedia = (reorganizedMedia) => {
-    const mediaZoneContainer = document.querySelector('.mediaZoneContainer');
-    const mediasZone = document.querySelectorAll('.mediaZone');
-
-    mediasZone.forEach(el => { el.remove() });
-
-    reorganizedMedia.forEach(media => {
-        mediaZoneContainer.append(media)
-    });
+    console.log(sortedDate)
+    return sortedMediaZone
 }
