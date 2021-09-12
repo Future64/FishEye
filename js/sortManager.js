@@ -59,18 +59,6 @@ const sortBy = value => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 
-export const dateSorted = () => {
-    const mediasZone = document.querySelectorAll('.mediaZone');
-    const sortedMediaZone = [];
-    const sortedDate = [];
-
-
-
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-
 export const titleSorted = () => {
     const mediasZone = document.querySelectorAll('.mediaZone');
     const sortedMediaZone = [];
@@ -136,7 +124,41 @@ const popularitySorted = () => {
     return sortedMediaZone;
 }
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
+export const dateSorted = () => {
+    const mediaImage = document.querySelectorAll('.mediaImage');
+    const sortedMediaZone = [];
+    const sortedDate = [];
+
+    mediaImage.forEach(mediaZone => {
+        const dates = mediaZone.getAttribute('date')
+        console.log(dates);
+        sortedDate.push(dates)
+    });
+
+    sortedDate.sort((a, b) => {
+        const titleA = parseInt(a);
+        const titleB = parseInt(b);
+
+        if (titleA > titleB) return -1;
+        if (titleA < titleB) return 1;
+        return 0;
+    });
+
+    sortedDate.forEach(date => {
+        mediaImage.forEach(mediaImage => {
+            const dateMedia = mediaImage.getAttribute('date')
+            if (date === dateMedia) {
+                sortedMediaZone.push(mediaImage)
+            }
+        });
+    });
+
+    return sortedMediaZone;
+}
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 
 const reOrganizeMedia = (reorganizedMedia) => {
