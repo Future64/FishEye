@@ -16,6 +16,7 @@
     width: 90px;
     height: 16px;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .optionContainer {
@@ -27,7 +28,6 @@
     background-color: #901c1c;
     z-index: 11;
     border-radius: 0 0 5px 5px;
-    cursor: pointer;
 }
 
 .closeOptions {

@@ -37,7 +37,25 @@ export const createSortZone = () => {
             optionContainer.classList.remove('closeOptions')
         }
     })
+
+    optionContainer.addEventListener("focusout", () => {
+        if (arrow.classList.contains('open')) {
+            arrow.classList.add('close')
+            optionContainer.classList.add('closeOptions')
+
+            arrow.classList.remove('open')
+            optionContainer.classList.remove('openOptions')
+        } else {
+            arrow.classList.add('open')
+            optionContainer.classList.add('openOptions')
+
+            arrow.classList.remove('close')
+            optionContainer.classList.remove('closeOptions')
+        }
+    })
 }
+
+
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 const sortBy = value => {
@@ -94,7 +112,43 @@ const popularitySorted = () => {
             }
         })
     })
+    console.log(sortedPopularity);
+    return sortedMediaZone
+}
 
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+export const dateSorted = () => {
+    const mediasZone = document.querySelectorAll('.mediaZone')
+    const sortedMediaZone = []
+    const sortedDate = []
+
+    mediasZone.forEach(mediaZone => {
+        const dates = mediaZone.getAttribute('date')
+        sortedDate.push(dates)
+    })
+
+    sortedDate.sort((a, b) => {
+        return new Date(a.DateTime) - new Date(b.DateTime)
+    })
+
+    // sortedDate.sort((a, b) => {
+    //     a = new Date(a.dateModified)
+    //     b = new Date(b.dateModified)
+    //     return a > b ? -1 : a < b ? 1 : 0
+    // })
+
+
+    sortedDate.forEach(date => {
+        mediasZone.forEach(mediaZone => {
+            const dateMedia = mediaZone.getAttribute('date')
+            if (date === dateMedia) {
+                sortedMediaZone.push(mediaZone)
+            }
+        })
+    })
+
+    console.log(sortedDate)
     return sortedMediaZone
 }
 
@@ -128,39 +182,6 @@ export const titleSorted = () => {
             }
         })
     })
-
-    return sortedMediaZone
-}
-
-/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-export const dateSorted = () => {
-    const mediasZone = document.querySelectorAll('.mediaZone')
-    const sortedMediaZone = []
-    const sortedDate = []
-
-    mediasZone.forEach(mediaZone => {
-        const dates = mediaZone.getAttribute('date')
-        sortedDate.push(dates)
-    })
-
-
-    sortedDate.sort((a, b) => {
-        a = new Date(a.dateModified)
-        b = new Date(b.dateModified)
-        return a > b ? -1 : a < b ? 1 : 0
-    })
-
-
-    sortedDate.forEach(date => {
-        mediasZone.forEach(mediaZone => {
-            const dateMedia = mediaZone.getAttribute('date')
-            if (date === dateMedia) {
-                sortedMediaZone.push(mediaZone)
-            }
-        })
-    })
-
-    console.log(sortedDate)
+    console.log(sortedTitle);
     return sortedMediaZone
 }
