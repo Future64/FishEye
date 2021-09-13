@@ -78,13 +78,13 @@ export const createForm = (data, mainPhotograph) => {
     formLastLabel.setAttribute("for", "formLastInput")
     formEmailLabel.setAttribute("for", "formEmailInput")
     formMsgLabel.setAttribute("for", "formMsgInput")
-    formFirstInput.setAttribute("placeholder", "Prénom")
+        // formFirstInput.setAttribute("placeholder", "Prénom")
     formFirstInput.setAttribute("id", "formFirstInput")
-    formLastInput.setAttribute("placeholder", "Nom")
+        // formLastInput.setAttribute("placeholder", "Nom")
     formLastInput.setAttribute("id", "formLastInput")
-    formEmailInput.setAttribute("placeholder", "Email")
+        // formEmailInput.setAttribute("placeholder", "Email")
     formEmailInput.setAttribute("id", "formEmailInput")
-    formMsgInput.setAttribute("placeholder", "Votre message...")
+        // formMsgInput.setAttribute("placeholder", "Votre message...")
     formMsgInput.setAttribute("id", "formMsgInput")
 
     formCloseIcone.classList.add("fa-times");

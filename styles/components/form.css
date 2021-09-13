@@ -15,7 +15,7 @@
 
 .formContainer {
     width: 90%;
-    max-width: 510px;
+    max-width: 410px;
     display: flex;
     flex-direction: column;
     background-color: #db8876;
@@ -23,7 +23,7 @@
 }
 
 .form {
-    padding: 30px;
+    padding: 10px 20px 20px 20px;
 }
 
 .formHeader {
@@ -39,8 +39,9 @@
 }
 
 .formH3 {
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 30px;
+    line-height: 35px;
+    margin-bottom: 20px;
 }
 
 .formInputContainer {
@@ -50,24 +51,33 @@
 
 .formInputContainer label {
     padding: 5px 0;
+    font-size: 20px;
 }
 
 .formInputContainer input,
 .formInputContainer textarea {
     border: none;
     border-radius: 3px;
-    padding: 5px;
+    padding: 10px;
+}
+
+textarea {
+    min-width: 94.6%;
+    max-width: 94.6%;
+    min-height: 80px;
+    max-height: 80px;
 }
 
 .formValidBtn {
     display: block;
     background-color: #901c1c;
     color: #fff;
-    padding: 5px;
-    margin-top: 10px;
+    padding: 13px 25px;
+    margin-top: 20px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    font-size: 10px;
 }
 
 .missFirst,
@@ -75,5 +85,6 @@
 .missEmail,
 .missMsg {
     color: #901c1c;
-    font-size: 10px;
+    font-size: 15px;
+    margin-top: 5px;
 }
