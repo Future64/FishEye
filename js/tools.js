@@ -85,3 +85,8 @@ export const pathMediasPhotographer = (dataMedia, path) => {
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const retireLesTirets = (dateString) => {
+    return parseInt(dateString.split('-').join(''))
+}

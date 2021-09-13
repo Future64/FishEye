@@ -12,19 +12,19 @@ export const createForm = (data, mainPhotograph) => {
     const formContainer = createDomElement("formContainer", "div")
     const form = createDomElement("form", "form")
     const formHeader = createDomElement("formHeader", "div")
-    const formH1 = createDomElement("formH1", "h1")
+    const formH3 = createDomElement("formH3", "h3")
     const formClose = createDomElement("formClose", "div")
     const formCloseIcone = createDomElement("fas", "i")
-    const formFirstBox = createDomElement("formFirstBox", "div")
+    const formFirstBox = createDomElement("formInputContainer", "div")
     const formFirstLabel = createDomElement("formFirstLabel", "label")
     const formFirstInput = createDomElement("formFirstInput", "input")
-    const formLastBox = createDomElement("formLastBox", "div")
+    const formLastBox = createDomElement("formInputContainer", "div")
     const formLastLabel = createDomElement("formLastLabel", "label")
     const formLastInput = createDomElement("formLastInput", "input")
-    const formEmailBox = createDomElement("formEmailBox", "div")
+    const formEmailBox = createDomElement("formInputContainer", "div")
     const formEmailLabel = createDomElement("formEmailLabel", "label")
     const formEmailInput = createDomElement("formEmailInput", "input")
-    const formMsgBox = createDomElement("formEmailBox", "div")
+    const formMsgBox = createDomElement("formInputContainer", "div")
     const formMsgLabel = createDomElement("formEmailLabel", "label")
     const formMsgInput = createDomElement("formMsgInput", "textarea")
     const formValidBtn = createDomElement("formValidBtn", "button")
@@ -94,7 +94,7 @@ export const createForm = (data, mainPhotograph) => {
     formEmailLabel.innerHTML = "Email"
     formMsgLabel.innerHTML = "Votre message"
     formValidBtn.innerHTML = "Envoyer"
-    formH1.innerHTML = "Contactez-moi " + data.name
+    formH3.innerHTML = "Contactez-moi <br>" + data.name
 
     // Attacher les DomElements entre eux
     mainPhotograph.append(formPage)
@@ -118,7 +118,7 @@ export const createForm = (data, mainPhotograph) => {
     formEmailBox.append(missEmail)
     formMsgBox.append(formMsgInput)
     formMsgBox.append(missMsg)
-    formHeader.append(formH1)
+    formHeader.append(formH3)
     formHeader.append(formClose)
     formClose.append(formCloseIcone)
 
@@ -127,7 +127,7 @@ export const createForm = (data, mainPhotograph) => {
 
     // Events -------------------------------------
     contactMe.addEventListener("click", () => {
-        launch(formPage)
+        formPage.style.display = 'flex';
     })
 
     formClose.addEventListener("click", () => {

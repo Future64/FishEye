@@ -1,4 +1,5 @@
 import { createMedia } from './media.js'
+import { retireLesTirets } from './tools.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
@@ -119,30 +120,28 @@ const popularitySorted = () => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const dateSorted = () => {
+
     const mediasZone = document.querySelectorAll('.mediaZone')
     const sortedMediaZone = []
     const sortedDate = []
 
     mediasZone.forEach(mediaZone => {
         const dates = mediaZone.getAttribute('date')
-        sortedDate.push(dates)
+        sortedDate.push(retireLesTirets(dates))
     })
 
     sortedDate.sort((a, b) => {
-        return new Date(a.DateTime) - new Date(b.DateTime)
+        const titleA = parseInt(a)
+        const titleB = parseInt(b)
+        if (titleA > titleB) return -1
+        if (titleA < titleB) return 1
+        return 0;
     })
-
-    // sortedDate.sort((a, b) => {
-    //     a = new Date(a.dateModified)
-    //     b = new Date(b.dateModified)
-    //     return a > b ? -1 : a < b ? 1 : 0
-    // })
-
 
     sortedDate.forEach(date => {
         mediasZone.forEach(mediaZone => {
             const dateMedia = mediaZone.getAttribute('date')
-            if (date === dateMedia) {
+            if (date === retireLesTirets(dateMedia)) {
                 sortedMediaZone.push(mediaZone)
             }
         })
