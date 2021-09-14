@@ -23,33 +23,48 @@ export const createSortZone = () => {
     })
 
     // Events
-    select.addEventListener("click", () => {
-        if (arrow.classList.contains('open')) {
-            arrow.classList.add('close')
-            optionContainer.classList.add('closeOptions')
-
-            arrow.classList.remove('open')
-            optionContainer.classList.remove('openOptions')
-        } else {
-            arrow.classList.add('open')
-            optionContainer.classList.add('openOptions')
-
-            arrow.classList.remove('close')
-            optionContainer.classList.remove('closeOptions')
-        }
-    })
-
-    // window.addEventListener("click", (e) => {
-    //     if (e.target == options || e.target !== optionSelected) {
-    //         console.log(e.target);
+    // select.addEventListener("click", () => {
+    //     if (arrow.classList.contains('open')) {
     //         arrow.classList.add('close')
     //         optionContainer.classList.add('closeOptions')
 
     //         arrow.classList.remove('open')
     //         optionContainer.classList.remove('openOptions')
-    //     }
+    //     } else {
+    //         arrow.classList.add('open')
+    //         optionContainer.classList.add('openOptions')
 
+    //         arrow.classList.remove('close')
+    //         optionContainer.classList.remove('closeOptions')
+    //     }
     // })
+
+    window.addEventListener("click", (e) => {
+
+        if (e.target === select || e.target === optionSelected) {
+            console.log(e.target);
+            console.log(select);
+            if (arrow.classList.contains('open')) {
+                arrow.classList.add('close')
+                optionContainer.classList.add('closeOptions')
+
+                arrow.classList.remove('open')
+                optionContainer.classList.remove('openOptions')
+            } else {
+                arrow.classList.add('open')
+                optionContainer.classList.add('openOptions')
+
+                arrow.classList.remove('close')
+                optionContainer.classList.remove('closeOptions')
+            }
+        } else {
+            arrow.classList.add('close')
+            optionContainer.classList.add('closeOptions')
+
+            arrow.classList.remove('open')
+            optionContainer.classList.remove('openOptions')
+        }
+    })
 }
 
 
