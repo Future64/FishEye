@@ -36,6 +36,8 @@
     right: 10px;
     color: #fff;
     font-size: 30px;
+    border: none;
+    background-color: transparent;
 }
 
 .formH3 {
@@ -87,4 +89,19 @@ textarea {
     color: #901c1c;
     font-size: 15px;
     margin-top: 5px;
+}
+
+@media screen and (max-width: 425px) {
+    .formValidBtn {
+        position: relative;
+        left: 35%;
+        /* right: 0px; */
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .formClose {
+        right: -10px;
+        font-size: 15px;
+    }
 }

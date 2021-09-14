@@ -13,7 +13,7 @@ export const createForm = (data, mainPhotograph) => {
     const form = createDomElement("form", "form")
     const formHeader = createDomElement("formHeader", "div")
     const formH3 = createDomElement("formH3", "h3")
-    const formClose = createDomElement("formClose", "div")
+    const formClose = createDomElement("formClose", "button")
     const formCloseIcone = createDomElement("fas", "i")
     const formFirstBox = createDomElement("formInputContainer", "div")
     const formFirstLabel = createDomElement("formFirstLabel", "label")
@@ -74,20 +74,17 @@ export const createForm = (data, mainPhotograph) => {
     form.setAttribute("action", "photographe.html")
     form.setAttribute("method", "post")
     form.setAttribute("onsubmit", "return validate();")
+    formCloseIcone.classList.add("fa-times");
     formFirstLabel.setAttribute("for", "formFirstInput")
     formLastLabel.setAttribute("for", "formLastInput")
     formEmailLabel.setAttribute("for", "formEmailInput")
     formMsgLabel.setAttribute("for", "formMsgInput")
-        // formFirstInput.setAttribute("placeholder", "Prénom")
     formFirstInput.setAttribute("id", "formFirstInput")
-        // formLastInput.setAttribute("placeholder", "Nom")
     formLastInput.setAttribute("id", "formLastInput")
-        // formEmailInput.setAttribute("placeholder", "Email")
     formEmailInput.setAttribute("id", "formEmailInput")
-        // formMsgInput.setAttribute("placeholder", "Votre message...")
     formMsgInput.setAttribute("id", "formMsgInput")
-
-    formCloseIcone.classList.add("fa-times");
+    formClose.setAttribute("type", "button")
+    formValidBtn.setAttribute("type", "submit")
 
     formFirstLabel.innerHTML = "Prénom"
     formLastLabel.innerHTML = "Nom"

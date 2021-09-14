@@ -39,21 +39,17 @@ export const createSortZone = () => {
         }
     })
 
-    optionContainer.addEventListener("focusout", () => {
-        if (arrow.classList.contains('open')) {
-            arrow.classList.add('close')
-            optionContainer.classList.add('closeOptions')
+    // window.addEventListener("click", (e) => {
+    //     if (e.target == options || e.target !== optionSelected) {
+    //         console.log(e.target);
+    //         arrow.classList.add('close')
+    //         optionContainer.classList.add('closeOptions')
 
-            arrow.classList.remove('open')
-            optionContainer.classList.remove('openOptions')
-        } else {
-            arrow.classList.add('open')
-            optionContainer.classList.add('openOptions')
+    //         arrow.classList.remove('open')
+    //         optionContainer.classList.remove('openOptions')
+    //     }
 
-            arrow.classList.remove('close')
-            optionContainer.classList.remove('closeOptions')
-        }
-    })
+    // })
 }
 
 
