@@ -14,6 +14,15 @@
     cursor: pointer;
 }
 
+video {
+    border-radius: .3125rem;
+    height: 18.75rem;
+    width: 10.875rem;
+    object-fit: cover;
+    z-index: 10;
+    cursor: pointer;
+}
+
 .mediaTitle,
 .mediaPrice,
 .mediaLike {

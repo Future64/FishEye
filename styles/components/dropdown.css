@@ -13,15 +13,21 @@
     padding: 10px 40px 10px 10px;
     border: none;
     border-radius: 5px;
-    width: 90px;
-    height: 16px;
+    width: 140px;
+    /* height: 16px; */
     margin-left: 20px;
     cursor: pointer;
 }
 
+.optionSelected {
+    display: flex;
+    position: relative;
+    margin-left: 10px;
+}
+
 .optionContainer {
     position: absolute;
-    width: calc(100% - 20px);
+    width: 120px;
     left: 0;
     padding: 10px;
     transition: 0.3s;
@@ -44,8 +50,11 @@
 }
 
 .option {
+    display: flex;
     padding: 10px;
     border-top: 1px solid #fff;
+    position: relative;
+    left: 0px;
 }
 
 .option:hover {
