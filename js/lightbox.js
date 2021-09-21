@@ -12,11 +12,7 @@ export class Lightbox {
      * @param {string[]} medias Chemins des medias de la lightbox
      */
     constructor(url, medias) {
-        // this.data = JSON.parse(localStorage.getItem('data'))
-        // this.photographerDetail = {
-        //     resume: {},
-        //     medias: []
-        // }
+
 
         this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
@@ -38,14 +34,7 @@ export class Lightbox {
             new Lightbox(e.currentTarget.getAttribute('src'), gallery)
         }))
     }
-
-    // getDataMedia() {
-    //     this.data.media.forEach(mediaLine => {
-    //         if (mediaLine.photographerId == photographerID) {
-    //             photographerDetail.medias.push(mediaLine)
-    //         }
-    //     })
-    // }
+    
 
     /**
      * @param {string} url URL de l'image
@@ -59,7 +48,7 @@ export class Lightbox {
      * @param {string} url URL de l'image
      */
     loadImage(url) {
-        this.url = null
+        this.url = url
         const container = this.element.querySelector('.lightboxImgContainer')
         const img = document.createElement('img')
         const video = document.createElement('video')

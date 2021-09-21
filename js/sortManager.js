@@ -1,4 +1,3 @@
-import { createMedia } from './media.js'
 import { retireLesTirets } from './tools.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
@@ -14,14 +13,16 @@ export const createSortZone = () => {
 
     options.forEach(option => {
 
+
         option.addEventListener('click', () => {
             const value = option.getAttribute('data-value')
             optionSelected.innerHTML = value
-            option.classList.add('displayNone')
 
-            if (optionSelected.innerHTML !== value) {
-                options.classList.add('displayFlex')
-            }
+            const optionContainer = document.querySelector('.optionContainer')
+            const allreadyClickedOption = optionContainer.querySelector('.displayNone')
+            allreadyClickedOption.classList.remove('displayNone')
+            
+            option.classList.add('displayNone')
 
             const reorganizedMedia = sortBy(value)
             reOrganizeMedia(reorganizedMedia)
