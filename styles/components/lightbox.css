@@ -93,8 +93,15 @@
     }
     .lightboxClose {
         position: relative;
-        top: -140px;
-        right: 25px;
+        top: -150px;
+        right: 23px;
+        font-size: 35px;
+    }
+    .fa-chevron-right {
+        margin-left: 25px;
+    }
+    .fa-chevron-left {
+        margin-right: 25px;
     }
 }
 
@@ -109,16 +116,15 @@
     }
     .lightboxClose {
         position: relative;
-        top: -125px;
-        right: 25px;
+        top: -142px;
+        right: 23px;
+        font-size: 30px;
     }
     .fa-chevron-right {
-        right: 0;
         margin-left: 15px;
     }
     .fa-chevron-left {
-        left: 0;
-        margin-right: 5px;
+        margin-right: 15px;
     }
 }
 
@@ -131,20 +137,19 @@
         height: 8.75rem;
         width: 8.875rem;
     }
+    .lightboxClose {
+        position: relative;
+        font-size: 25px;
+        top: -95px;
+        right: 15px;
+    }
     .fa-chevron-right {
-        right: 0;
-        margin-left: 5px;
+        margin-left: -9px;
         font-size: 25px;
     }
     .fa-chevron-left {
         left: 0;
-        margin-right: -3px;
+        margin-right: -8px;
         font-size: 25px;
-    }
-    .lightboxClose {
-        position: relative;
-        font-size: 25px;
-        top: -80px;
-        right: 25px;
     }
 }

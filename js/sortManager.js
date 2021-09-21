@@ -21,7 +21,7 @@ export const createSortZone = () => {
             const optionContainer = document.querySelector('.optionContainer')
             const allreadyClickedOption = optionContainer.querySelector('.displayNone')
             allreadyClickedOption.classList.remove('displayNone')
-            
+
             option.classList.add('displayNone')
 
             const reorganizedMedia = sortBy(value)
@@ -29,7 +29,6 @@ export const createSortZone = () => {
         })
 
     })
-
 
 
     window.addEventListener("click", (e) => {

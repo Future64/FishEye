@@ -12,8 +12,6 @@ export class Lightbox {
      * @param {string[]} medias Chemins des medias de la lightbox
      */
     constructor(url, medias) {
-
-
         this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
         this.medias = medias
@@ -34,7 +32,7 @@ export class Lightbox {
             new Lightbox(e.currentTarget.getAttribute('src'), gallery)
         }))
     }
-    
+
 
     /**
      * @param {string} url URL de l'image
