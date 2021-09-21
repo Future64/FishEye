@@ -75,16 +75,25 @@ export const createForm = (data, mainPhotograph) => {
     form.setAttribute("method", "post")
     form.setAttribute("onsubmit", "return validate();")
     formCloseIcone.classList.add("fa-times");
+    formPage.setAttribute("aria-labelledby", "formFirstInput")
+    formPage.setAttribute("alt", `"Contact me ${data.name}"`)
     formFirstLabel.setAttribute("for", "formFirstInput")
     formLastLabel.setAttribute("for", "formLastInput")
     formEmailLabel.setAttribute("for", "formEmailInput")
     formMsgLabel.setAttribute("for", "formMsgInput")
     formFirstInput.setAttribute("id", "formFirstInput")
+    formFirstInput.setAttribute("alt", "First name")
     formLastInput.setAttribute("id", "formLastInput")
+    formLastInput.setAttribute("alt", "Last name")
     formEmailInput.setAttribute("id", "formEmailInput")
+    formEmailInput.setAttribute("alt", "Email")
     formMsgInput.setAttribute("id", "formMsgInput")
+    formMsgInput.setAttribute("alt", "Your message")
     formClose.setAttribute("type", "button")
+    formClose.setAttribute("alt", "Close Contact form")
+
     formValidBtn.setAttribute("type", "submit")
+    formValidBtn.setAttribute("alt", "Send")
 
     formFirstLabel.innerHTML = "Prénom"
     formLastLabel.innerHTML = "Nom"

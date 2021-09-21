@@ -61,6 +61,10 @@
     opacity: 70%;
 }
 
+.option:focus {
+    opacity: 70%;
+}
+
 .fa-chevron-down {
     position: absolute;
     color: #fff;
@@ -78,6 +82,14 @@
 
 .open {
     transform: rotate(180deg);
+}
+
+.displayNone {
+    display: none;
+}
+
+.displayFlex {
+    display: flex;
 }
 
 @media screen and (max-width: 830px) {

@@ -12,7 +12,12 @@ export class Lightbox {
      * @param {string[]} medias Chemins des medias de la lightbox
      */
     constructor(url, medias) {
-        // this.getFileExtension(url)
+        // this.data = JSON.parse(localStorage.getItem('data'))
+        // this.photographerDetail = {
+        //     resume: {},
+        //     medias: []
+        // }
+
         this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
         this.medias = medias
@@ -33,6 +38,14 @@ export class Lightbox {
             new Lightbox(e.currentTarget.getAttribute('src'), gallery)
         }))
     }
+
+    // getDataMedia() {
+    //     this.data.media.forEach(mediaLine => {
+    //         if (mediaLine.photographerId == photographerID) {
+    //             photographerDetail.medias.push(mediaLine)
+    //         }
+    //     })
+    // }
 
     /**
      * @param {string} url URL de l'image
@@ -132,11 +145,11 @@ export class Lightbox {
     buildDOM(url) {
         const dom = document.createElement('div')
         dom.classList.add('lightboxPage')
-        dom.innerHTML = `<div class="lightboxContainer">
-                            <i class="fas fa-chevron-left btnLightbox"></i>
+        dom.innerHTML = `<div class="lightboxContainer" aria-label="image closeup view">
+                            <i class="fas fa-chevron-left btnLightbox" alt="Previous image"></i>
                             <div class="lightboxImgContainer"></div>
-                            <i class="fas fa-chevron-right btnLightbox"></i>
-                            <i class="fas fa-times lightboxClose"></i>
+                            <i class="fas fa-chevron-right btnLightbox" alt="Next image"></i>
+                            <i class="fas fa-times lightboxClose" alt="Close dialog"></i>
                             <div class="lightboxTitle"></div>
                         </div>`
         dom.querySelector('.lightboxClose').addEventListener('click', this.close.bind(this))

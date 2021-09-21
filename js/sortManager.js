@@ -13,13 +13,20 @@ export const createSortZone = () => {
     const options = document.querySelectorAll(".option")
 
     options.forEach(option => {
+
         option.addEventListener('click', () => {
             const value = option.getAttribute('data-value')
             optionSelected.innerHTML = value
+            option.classList.add('displayNone')
+
+            if (optionSelected.innerHTML !== value) {
+                options.classList.add('displayFlex')
+            }
 
             const reorganizedMedia = sortBy(value)
             reOrganizeMedia(reorganizedMedia)
         })
+
     })
 
 
@@ -142,7 +149,6 @@ export const dateSorted = () => {
         })
     })
 
-    console.log(sortedDate)
     return sortedMediaZone
 }
 
