@@ -5,10 +5,12 @@
     background: #901c1c;
     border: .5px solid var(--color3);
     border-radius: 5px;
-    padding: .625rem 1.25rem;
+    padding: .625rem 1.10rem;
     color: #fff;
-    width: 110px;
+    width: 140px;
     cursor: pointer;
+    font-size: 15px;
+    font-weight: bolder;
 }
 
 .contactMe:hover {
@@ -31,9 +33,16 @@
 
 @media screen and (max-width: 830px) {
     .contactMe {
-        top: 94vh;
-        padding-top: 12px;
-        height: 15px;
+        /* top: 94vh; */
+        padding-top: 9px;
+        height: 40px;
         left: 36vw;
+        /* right: 25%; */
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .contactMe {
+        right: 25%;
     }
 }

@@ -8,12 +8,30 @@
     z-index: 100;
 }
 
+.btnLightboxFAS {
+    border: none;
+    background-color: transparent;
+}
+
 .lightboxClose {
     position: relative;
-    top: -210px;
-    right: 25px;
+    /* top: -210px;
+    right: 25px; */
     color: var(--color1);
     font-size: 40px;
+}
+
+.lightboxContainer :nth-child(2n) {
+    background-color: transparent;
+    border: none;
+}
+
+.lightboxContainer :nth-child(4n) {
+    position: relative;
+    top: -210px;
+    right: 40px;
+    background-color: transparent;
+    border: none;
 }
 
 .fa-chevron-right,
@@ -27,12 +45,12 @@
 
 .fa-chevron-right {
     right: 0;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .fa-chevron-left {
     left: 0;
-    margin-right: 50px;
+    margin-right: 40px;
 }
 
 .fa-chevron-right:hover,
@@ -98,15 +116,17 @@
     }
     .lightboxClose {
         position: relative;
-        top: -150px;
-        right: 23px;
         font-size: 35px;
     }
+    .lightboxContainer :nth-child(4n) {
+        top: -150px;
+        right: 40px;
+    }
     .fa-chevron-right {
-        margin-left: 25px;
+        margin-left: 12px;
     }
     .fa-chevron-left {
-        margin-right: 25px;
+        margin-right: 12px;
     }
 }
 
@@ -125,15 +145,17 @@
     }
     .lightboxClose {
         position: relative;
-        top: -142px;
-        right: 23px;
         font-size: 30px;
     }
+    .lightboxContainer :nth-child(4n) {
+        top: -142px;
+        right: 45px;
+    }
     .fa-chevron-right {
-        margin-left: 15px;
+        margin-left: 8px;
     }
     .fa-chevron-left {
-        margin-right: 15px;
+        margin-right: 8px;
     }
 }
 
@@ -153,16 +175,18 @@
     .lightboxClose {
         position: relative;
         font-size: 25px;
+    }
+    .lightboxContainer :nth-child(4n) {
         top: -95px;
-        right: 15px;
+        right: 30px;
     }
     .fa-chevron-right {
-        margin-left: -9px;
+        margin-left: -16px;
         font-size: 25px;
     }
     .fa-chevron-left {
         left: 0;
-        margin-right: -8px;
+        margin-right: -15px;
         font-size: 25px;
     }
 }

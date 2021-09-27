@@ -12,13 +12,18 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
     const mediaImage = createDomElement("mediaImage", "img")
-    const mediaVideo = createDomElement("mediaImage", "video")
+    const mediaVideo = createDomElement("mediaVideo", "video")
     const mediaInfo = createDomElement("mediaInfo", "div")
     const mediaTitle = createDomElement("mediaTitle", "h2")
     const mediaPrice = createDomElement("mediaPrice", "span")
     const mediaLike = createDomElement("mediaLike", "div")
     const mediaNbLike = createDomElement("mediaNbLike", "span")
     const mediaHeart = createDomElement("far", "i")
+
+    mediaLink.setAttribute("role", "link")
+    mediaLink.setAttribute("tabindex", "0")
+    mediaImage.setAttribute("aria-label", "image closeup view")
+    mediaHeart.setAttribute("tabindex", "0")
 
     // texte alternatif pour les media
     const alt = dataMedia.alt

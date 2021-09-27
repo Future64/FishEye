@@ -133,9 +133,13 @@ export class Lightbox {
         const dom = document.createElement('div')
         dom.classList.add('lightboxPage')
         dom.innerHTML = `<div class="lightboxContainer" aria-label="image closeup view">
-                            <i class="fas fa-chevron-left btnLightbox" alt="Previous image"></i>
+                            <button type="button" class="btnLightboxFAS">
+                                <i class="fas fa-chevron-left btnLightbox" alt="Previous image"></i>
+                            <button/>
                             <div class="lightboxImgContainer"></div>
-                            <i class="fas fa-chevron-right btnLightbox" alt="Next image"></i>
+                            <button type="button" class="btnLightboxFAS">
+                                <i class="fas fa-chevron-right btnLightbox" alt="Next image"></i>
+                            <button/>
                             <i class="fas fa-times lightboxClose" alt="Close dialog"></i>
                             <div class="lightboxTitle"></div>
                         </div>`
