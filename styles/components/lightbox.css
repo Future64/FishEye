@@ -15,8 +15,8 @@
 
 .lightboxClose {
     position: relative;
-    /* top: -210px;
-    right: 25px; */
+    top: -210px;
+    right: 30px;
     color: var(--color1);
     font-size: 40px;
 }
@@ -28,8 +28,6 @@
 
 .lightboxContainer :nth-child(4n) {
     position: relative;
-    top: -210px;
-    right: 40px;
     background-color: transparent;
     border: none;
 }
@@ -101,6 +99,19 @@
     height: auto;
 }
 
+.lightboxTitleContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 33.875rem;
+    bottom: -70px;
+}
+
+.lightboxTitle {
+    font-size: 25px;
+    color: var(--color2);
+}
+
 @media screen and (max-width: 1013px) {
     .lightboxImgContainer img {
         height: 13.75rem;
@@ -115,18 +126,24 @@
         width: 15.875rem;
     }
     .lightboxClose {
-        position: relative;
         font-size: 35px;
     }
     .lightboxContainer :nth-child(4n) {
-        top: -150px;
-        right: 40px;
+        top: -153px;
+        right: 28px;
     }
     .fa-chevron-right {
         margin-left: 12px;
     }
     .fa-chevron-left {
         margin-right: 12px;
+    }
+    .lightboxTitleContainer {
+        width: 25.3rem;
+        bottom: -40px;
+    }
+    .lightboxTitle {
+        font-size: 22px;
     }
 }
 
@@ -149,13 +166,20 @@
     }
     .lightboxContainer :nth-child(4n) {
         top: -142px;
-        right: 45px;
+        right: 32px;
     }
     .fa-chevron-right {
         margin-left: 8px;
     }
     .fa-chevron-left {
         margin-right: 8px;
+    }
+    .lightboxTitleContainer {
+        width: 21.875rem;
+        bottom: -30px;
+    }
+    .lightboxTitle {
+        font-size: 18px;
     }
 }
 
@@ -177,8 +201,8 @@
         font-size: 25px;
     }
     .lightboxContainer :nth-child(4n) {
-        top: -95px;
-        right: 30px;
+        top: -97px;
+        right: 22px;
     }
     .fa-chevron-right {
         margin-left: -16px;
@@ -188,5 +212,12 @@
         left: 0;
         margin-right: -15px;
         font-size: 25px;
+    }
+    .lightboxTitleContainer {
+        width: 14.2rem;
+        bottom: -10px;
+    }
+    .lightboxTitle {
+        font-size: 16px;
     }
 }

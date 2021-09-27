@@ -1,0 +1,28 @@
+{
+    "name": "fisheye",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prefixer": "npx postcss styles/*/*.css --use autoprefixer -d build/ -w --verbose",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Future64/FishEye.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Future64/FishEye/issues"
+    },
+    "homepage": "https://github.com/Future64/FishEye#readme",
+    "devDependencies": {
+        "postcss": "^8.3.8",
+        "postcss-cli": "^9.0.0"
+    },
+    "dependencies": {
+        "autoprefixer": "^10.3.6"
+    },
+    "browserslist": "last 50 version"
+}
