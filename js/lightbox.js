@@ -2,20 +2,20 @@ import { enableBodyScroll, disableBodyScroll } from './body-scroll-lock.js'
 
 /**
  * @property {HTMLElement} element
- * @property {string[]} images Chemins des images de la lightbox
- * @property {string} url Image actuellement affichée
+ * @property {string[]} uri Chemins des uri de la lightbox
+ * @property {string} url Media actuellement affichée
  **/
 export class Lightbox {
 
     /**
-     * @param {string} url URL de l'image
-     * @param {string[]} images Chemins des images de la lightbox
+     * @param {string} url URL du media
+     * @param {string[]} uri Chemins des uri de la lightbox
      */
-    constructor(url, images) {
-        this.getFileExtension(url)
+    constructor(url, uri) {
+        this.data = JSON.parse(localStorage.getItem('data'))
         this.lightboxMain = document.body.querySelector(".lightbox-main")
         this.element = this.buildDOM(url)
-        this.images = images
+        this.uri = uri
         this.loadImage(url)
         this.onKeyUp = this.onKeyUp.bind(this)
         this.lightboxMain.appendChild(this.element)
@@ -26,11 +26,23 @@ export class Lightbox {
     static init() {
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('src'))
-        links.forEach(link => link.addEventListener('click', e => {
-            e.preventDefault()
-            new Lightbox(e.currentTarget.getAttribute('src'), gallery)
-        }))
+        links.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault()
+                new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+            })
+
+            // link.addEventListener('keydown', e => {
+            //     e.preventDefault()
+            //     if (e.key === "Enter") {
+            //         console.log("prout");
+            //         new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+            //     }
+            // })
+
+        })
     }
+
 
     /**
      * @param {string} url URL de l'image
@@ -44,11 +56,21 @@ export class Lightbox {
      * @param {string} url URL de l'image
      */
     loadImage(url) {
-        this.url = null
-            // const image = new Image()
+        this.url = url
         const container = this.element.querySelector('.lightboxImgContainer')
+        const lightboxTitle = this.element.querySelector('.lightboxTitle')
         const img = document.createElement('img')
         const video = document.createElement('video')
+
+        const splitUrl = this.url.split('/')
+        const mediaName = splitUrl[splitUrl.length - 1];
+        let metaMedia = null
+
+        this.data.media.forEach(media => {
+            if (media.image == mediaName) {
+                metaMedia = media
+            }
+        });
 
         container.innerHTML = ''
 
@@ -57,7 +79,12 @@ export class Lightbox {
             img.setAttribute("src", url)
             container.appendChild(img)
             img.onload = () => { this.url = url }
-                // img.src = url
+
+            this.data.media.forEach(media => {
+                if (media.image == mediaName) {
+                    metaMedia = media
+                }
+            });
         } else {
             video.classList.add('lightboxVideo')
             video.setAttribute("src", url)
@@ -65,8 +92,14 @@ export class Lightbox {
             video.controls = true
             container.appendChild(video)
             video.onload = () => { this.url = url }
-                // video.src = url
+            this.data.media.forEach(media => {
+                if (media.video == mediaName) {
+                    metaMedia = media
+                }
+            });
         }
+
+        lightboxTitle.innerHTML = metaMedia.title
 
         this.lightboxMain.style.display = "block"
 
@@ -107,11 +140,11 @@ export class Lightbox {
      */
     next(e) {
         e.preventDefault()
-        let i = this.images.findIndex(image => image === this.url)
-        if (i === this.images.length - 1) {
+        let i = this.uri.findIndex(media => media === this.url)
+        if (i === this.uri.length - 1) {
             i = -1
         }
-        this.loadImage(this.images[i + 1])
+        this.loadImage(this.uri[i + 1])
     }
 
     /**
@@ -119,11 +152,11 @@ export class Lightbox {
      */
     prev(e) {
         e.preventDefault()
-        let i = this.images.findIndex(image => image === this.url)
+        let i = this.uri.findIndex(media => media === this.url)
         if (i === 0) {
-            i = this.images.length
+            i = this.uri.length
         }
-        this.loadImage(this.images[i - 1])
+        this.loadImage(this.uri[i - 1])
     }
 
     /**
@@ -133,12 +166,18 @@ export class Lightbox {
     buildDOM(url) {
         const dom = document.createElement('div')
         dom.classList.add('lightboxPage')
-        dom.innerHTML = `<div class="lightboxContainer">
-                            <i class="fas fa-chevron-left btnLightbox"></i>
+        dom.innerHTML = `<div class="lightboxContainer" aria-label="image closeup view">
+                            <button type="button" class="btnLightboxFAS">
+                                <i class="fas fa-chevron-left btnLightbox" alt="Previous image"></i>
+                            </button>
                             <div class="lightboxImgContainer"></div>
-                            <i class="fas fa-chevron-right btnLightbox"></i>
-                            <i class="fas fa-times lightboxClose"></i>
-                            <div class="lightboxTitle"></div>
+                            <button type="button" class="btnLightboxFAS">
+                                <i class="fas fa-chevron-right btnLightbox" alt="Next image"></i>
+                            </button>
+                            <i class="fas fa-times lightboxClose" alt="Close dialog"></i>
+                            <div class="lightboxTitleContainer">
+                                <div class="lightboxTitle"></div>
+                            </div>
                         </div>`
         dom.querySelector('.lightboxClose').addEventListener('click', this.close.bind(this))
         dom.querySelector('.fas.fa-chevron-right').addEventListener('click', this.next.bind(this))

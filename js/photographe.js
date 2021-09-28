@@ -1,5 +1,8 @@
-import { createSortZone, createTag, createHeaderPH, pathMediasPhotographer, displayHeart, incrementTotalNbLikes } from './tools.js'
+import { createHeaderPH, pathMediasPhotographer } from './tools.js'
 import { createForm } from './form.js'
+import { createTag } from "./tagManager.js"
+import { createSortZone } from "./sortManager.js"
+import { displayHeart, incrementTotalNbLikes } from "./heart.js"
 
 
 export const initPhotograph = async() => {
@@ -8,6 +11,8 @@ export const initPhotograph = async() => {
     // Selection de la balise Html avec sa classe
     const mainPhotograph = document.querySelector('.mainPhotograph')
     const likeAndPricePrice = document.querySelector(".likeAndPricePrice")
+    const mediaIMG = document.querySelectorAll(".mediaImage")
+
 
     /* =====================================*/
 
@@ -62,7 +67,8 @@ export const initPhotograph = async() => {
     createTag(tagArray)
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
-    pathMediasPhotographer(photographerDetail.medias, path, mainPhotograph)
+    pathMediasPhotographer(photographerDetail.medias, path)
+
 
     // calcule des likes de départ
     let ttxLikes = 0;
@@ -74,37 +80,6 @@ export const initPhotograph = async() => {
     displayHeart(ttxLikes)
         // on lance la fonction qui se chargera de l'incrémentation des likes
     incrementTotalNbLikes(ttxLikes)
-
-
-
-
-
-
-
-
-    /* =====================================*/
-    //             FONCTION SORT
-    /* =====================================*/
-    const sortDate = document.querySelector('.dropdownDate')
-    const sortTitle = document.querySelector('.dropdownTitle')
-
-    for (let i = 0; i < photographerDetail.medias.length; i++) {
-        console.log(photographerDetail.medias[i].date);
-    }
-    // photographerDetail.medias.forEach((media) => {
-
-
-    // })
-    sortDate.addEventListener("click", (e) => {
-        // console.log(sortDate);
-
-
-    })
-    sortTitle.addEventListener("click", (e) => {
-        // console.log(sortTitle);
-    })
-
-    /* =====================================*/
 }
 
 

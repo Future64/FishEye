@@ -104,7 +104,7 @@
     text-decoration: none;
     color: var(--color1);
     font-weight: bold;
-    cursor: default;
+    /* cursor: default; */
 }
 
 .index--body-card {

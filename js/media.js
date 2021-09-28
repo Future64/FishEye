@@ -1,25 +1,33 @@
-import { createDomElement, displayHeart, incrementTotalNbLikes } from './tools.js'
+import { createDomElement } from './tools.js'
 import { Lightbox } from './lightbox.js'
 
 
 // Fonction qui créer et affiche les médias de la page photographe
-export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
+export const createMedia = (dataMedia, urlImage, urlVideo) => {
 
     // Creation des DomElements et des classes pour les DomElements
     const mediaZoneContainer = document.querySelector(".mediaZoneContainer")
-    const likeAndPriceLike = document.querySelector(".likeAndPriceLike")
 
     const mediaZone = createDomElement("mediaZone", "div")
     const mediaCard = createDomElement("mediaCard", "div")
     const mediaLink = createDomElement("mediaLink", "a")
     const mediaImage = createDomElement("mediaImage", "img")
-    const mediaVideo = createDomElement("mediaImage", "video")
+    const mediaVideo = createDomElement("mediaVideo", "video")
     const mediaInfo = createDomElement("mediaInfo", "div")
     const mediaTitle = createDomElement("mediaTitle", "h2")
     const mediaPrice = createDomElement("mediaPrice", "span")
     const mediaLike = createDomElement("mediaLike", "div")
     const mediaNbLike = createDomElement("mediaNbLike", "span")
     const mediaHeart = createDomElement("far", "i")
+
+
+    mediaLink.setAttribute("role", "link")
+    mediaLink.setAttribute("tabindex", "0")
+    mediaImage.setAttribute("aria-label", "image closeup view")
+    mediaHeart.setAttribute("tabindex", "0")
+
+    // texte alternatif pour les media
+    const alt = dataMedia.alt
 
     // Ajout de class
     mediaHeart.classList.add("fa-heart", "like");
@@ -38,16 +46,19 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaCard.append(mediaLink)
     mediaCard.append(mediaInfo)
 
+
     // Ajout d'atributs
     if (urlImage === undefined) {
         mediaVideo.setAttribute("src", urlVideo)
         mediaVideo.setAttribute("type", "video/mp4")
+        mediaVideo.setAttribute("alt", alt)
+        mediaZone.setAttribute("Date", dataMedia.date)
         mediaVideo.controls = true
-            // mediaLink.setAttribute("href", urlVideo)
-
         mediaLink.append(mediaVideo)
     } else {
         mediaImage.setAttribute("src", urlImage)
+        mediaImage.setAttribute("alt", alt)
+        mediaZone.setAttribute("Date", dataMedia.date)
         mediaLink.append(mediaImage)
     }
 
@@ -58,6 +69,12 @@ export const createMedia = (dataMedia, urlImage, urlVideo, mainPhotograph) => {
     mediaLike.append(mediaHeart)
 
 
+
     Lightbox.init()
+    mediaLink.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            Lightbox.init()
+        }
+    })
 
 }

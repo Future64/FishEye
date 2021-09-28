@@ -1,18 +1,35 @@
 .lightboxPage {
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     left: 0;
+    top: 0;
     background-color: white;
     z-index: 100;
+}
+
+.btnLightboxFAS {
+    border: none;
+    background-color: transparent;
 }
 
 .lightboxClose {
     position: relative;
     top: -210px;
-    right: 25px;
+    right: 30px;
     color: var(--color1);
     font-size: 40px;
+}
+
+.lightboxContainer :nth-child(2n) {
+    background-color: transparent;
+    border: none;
+}
+
+.lightboxContainer :nth-child(4n) {
+    position: relative;
+    background-color: transparent;
+    border: none;
 }
 
 .fa-chevron-right,
@@ -26,12 +43,12 @@
 
 .fa-chevron-right {
     right: 0;
-    margin-left: 50px;
+    margin-left: 40px;
 }
 
 .fa-chevron-left {
     left: 0;
-    margin-right: 50px;
+    margin-right: 40px;
 }
 
 .fa-chevron-right:hover,
@@ -82,6 +99,19 @@
     height: auto;
 }
 
+.lightboxTitleContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 33.875rem;
+    bottom: -70px;
+}
+
+.lightboxTitle {
+    font-size: 25px;
+    color: var(--color2);
+}
+
 @media screen and (max-width: 1013px) {
     .lightboxImgContainer img {
         height: 13.75rem;
@@ -91,10 +121,29 @@
         height: 13.75rem;
         width: 15.875rem;
     }
+    .lightboxVideo {
+        height: 13.75rem;
+        width: 15.875rem;
+    }
     .lightboxClose {
-        position: relative;
-        top: -140px;
-        right: 25px;
+        font-size: 35px;
+    }
+    .lightboxContainer :nth-child(4n) {
+        top: -153px;
+        right: 28px;
+    }
+    .fa-chevron-right {
+        margin-left: 12px;
+    }
+    .fa-chevron-left {
+        margin-right: 12px;
+    }
+    .lightboxTitleContainer {
+        width: 25.3rem;
+        bottom: -40px;
+    }
+    .lightboxTitle {
+        font-size: 22px;
     }
 }
 
@@ -107,18 +156,30 @@
         height: 12.75rem;
         width: 13.875rem;
     }
+    .lightboxVideo {
+        height: 12.75rem;
+        width: 13.875rem;
+    }
     .lightboxClose {
         position: relative;
-        top: -125px;
-        right: 25px;
+        font-size: 30px;
+    }
+    .lightboxContainer :nth-child(4n) {
+        top: -142px;
+        right: 32px;
     }
     .fa-chevron-right {
-        right: 0;
-        margin-left: 15px;
+        margin-left: 8px;
     }
     .fa-chevron-left {
-        left: 0;
-        margin-right: 5px;
+        margin-right: 8px;
+    }
+    .lightboxTitleContainer {
+        width: 21.875rem;
+        bottom: -30px;
+    }
+    .lightboxTitle {
+        font-size: 18px;
     }
 }
 
@@ -131,20 +192,32 @@
         height: 8.75rem;
         width: 8.875rem;
     }
-    .fa-chevron-right {
-        right: 0;
-        margin-left: 5px;
-        font-size: 25px;
-    }
-    .fa-chevron-left {
-        left: 0;
-        margin-right: -3px;
-        font-size: 25px;
+    .lightboxVideo {
+        height: 8.75rem;
+        width: 8.875rem;
     }
     .lightboxClose {
         position: relative;
         font-size: 25px;
-        top: -80px;
-        right: 25px;
+    }
+    .lightboxContainer :nth-child(4n) {
+        top: -97px;
+        right: 22px;
+    }
+    .fa-chevron-right {
+        margin-left: -16px;
+        font-size: 25px;
+    }
+    .fa-chevron-left {
+        left: 0;
+        margin-right: -15px;
+        font-size: 25px;
+    }
+    .lightboxTitleContainer {
+        width: 14.2rem;
+        bottom: -10px;
+    }
+    .lightboxTitle {
+        font-size: 16px;
     }
 }
