@@ -13,7 +13,6 @@ export const createSortZone = () => {
 
     options.forEach(option => {
 
-
         option.addEventListener('click', () => {
             const value = option.getAttribute('data-value')
             optionSelected.innerHTML = value
@@ -28,6 +27,13 @@ export const createSortZone = () => {
             reOrganizeMedia(reorganizedMedia)
         })
 
+        option.addEventListener('keydown', (e) => {
+            if (e.key === "Enter") {
+                const value = option.getAttribute('data-value')
+                const reorganizedMedia = sortBy(value)
+                reOrganizeMedia(reorganizedMedia)
+            }
+        })
     })
 
 
@@ -41,6 +47,7 @@ export const createSortZone = () => {
 
                 arrow.classList.remove('open')
                 optionContainer.classList.remove('openOptions')
+
             } else {
                 arrow.classList.add('open')
                 optionContainer.classList.add('openOptions')

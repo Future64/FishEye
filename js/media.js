@@ -20,6 +20,7 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     const mediaNbLike = createDomElement("mediaNbLike", "span")
     const mediaHeart = createDomElement("far", "i")
 
+
     mediaLink.setAttribute("role", "link")
     mediaLink.setAttribute("tabindex", "0")
     mediaImage.setAttribute("aria-label", "image closeup view")
@@ -68,6 +69,12 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     mediaLike.append(mediaHeart)
 
 
+
     Lightbox.init()
+    mediaLink.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            Lightbox.init()
+        }
+    })
 
 }

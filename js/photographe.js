@@ -11,6 +11,8 @@ export const initPhotograph = async() => {
     // Selection de la balise Html avec sa classe
     const mainPhotograph = document.querySelector('.mainPhotograph')
     const likeAndPricePrice = document.querySelector(".likeAndPricePrice")
+    const mediaIMG = document.querySelectorAll(".mediaImage")
+
 
     /* =====================================*/
 

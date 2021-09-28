@@ -72,7 +72,7 @@ export const tagHandler = () => {
             //Si le tag qu'on a clické est égale au tag qu'on avait déjà clické 
             if (askedTag == tag.id) {
                 selectedTag.classList.remove("selectedTag")
-                    //On affiche toutes les cads
+                    //On affiche toutes les cards
                 cards.forEach(card => {
                     card.style.display = 'block'
                 })
