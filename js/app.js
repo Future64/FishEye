@@ -6,7 +6,7 @@ let data = localStorage.getItem('data') // String
 
 // si on a rien trouvé dans le localStorage
 if (data === null) {
-    fetch('/data/bigData.json')
+    fetch('./data/bigData.json')
         // demander de retourner l'objet au format Json
         .then((response) => {
             return response.json()
