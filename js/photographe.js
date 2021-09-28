@@ -1,4 +1,4 @@
-import { createHeaderPH, pathMediasPhotographer } from './tools.js'
+import { createHeaderPH, pathMediasPhotographer, goHomePage } from './tools.js'
 import { createForm } from './form.js'
 import { createTag } from "./tagManager.js"
 import { createSortZone } from "./sortManager.js"
@@ -63,11 +63,13 @@ export const initPhotograph = async() => {
 
     tagArray = photographerDetail.resume.tags
 
+    goHomePage()
     createHeaderPH(photographerDetail.resume)
     createTag(tagArray)
     createSortZone()
     createForm(photographerDetail.resume, mainPhotograph)
     pathMediasPhotographer(photographerDetail.medias, path)
+
 
 
     // calcule des likes de départ

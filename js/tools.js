@@ -90,3 +90,16 @@ export const pathMediasPhotographer = (dataMedia, path) => {
 export const retireLesTirets = (dateString) => {
     return parseInt(dateString.split('-').join(''))
 }
+
+/*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
+
+
+export const goHomePage = () => {
+    // Revenir sur la page d'acceuil avec la touche Enter
+    const logoPhotographeLink = document.querySelector(".logoPhotographeLink")
+    logoPhotographeLink.addEventListener('keydown', e => {
+        if (e.key === "Enter") {
+            window.location = "index.html"
+        }
+    })
+}

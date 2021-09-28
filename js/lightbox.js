@@ -24,22 +24,24 @@ export class Lightbox {
     }
 
     static init() {
+        const mediaLink = document.querySelectorAll('.mediaLink')
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('src'))
+
         links.forEach(link => {
+
             link.addEventListener('click', e => {
                 e.preventDefault()
                 new Lightbox(e.currentTarget.getAttribute('src'), gallery)
             })
 
-            // link.addEventListener('keydown', e => {
-            //     e.preventDefault()
-            //     if (e.key === "Enter") {
-            //         console.log("prout");
-            //         new Lightbox(e.currentTarget.getAttribute('src'), gallery)
+            // link.addEventListener('keyup', (event) => {
+            //     event.preventDefault()
+            //     console.log(this);
+            //     if (event.key === "Enter") {
+            //         new Lightbox(event.currentTarget.getAttribute('src'), gallery)
             //     }
             // })
-
         })
     }
 
@@ -124,7 +126,6 @@ export class Lightbox {
      */
     close(e) {
         e.preventDefault()
-
         enableBodyScroll(this.element)
         window.setTimeout(() => {
             const totalPage = document.querySelectorAll(".lightboxPage")
