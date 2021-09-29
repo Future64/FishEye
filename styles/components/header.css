@@ -30,6 +30,13 @@ header img {
     margin-left: 50px;
 }
 
+.logoPhotographeIMG {
+    position: absolute;
+    top: 15px;
+    left: 5px;
+    margin-left: 50px;
+}
+
 .header {
     display: flex;
     flex-direction: row;
