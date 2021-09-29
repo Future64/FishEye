@@ -22,7 +22,9 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
 
 
     mediaLink.setAttribute("role", "link")
-    mediaLink.setAttribute("tabindex", "0")
+    mediaImage.setAttribute("tabindex", "0")
+    mediaVideo.setAttribute("tabindex", "0")
+
     mediaImage.setAttribute("aria-label", "image closeup view")
     mediaHeart.setAttribute("tabindex", "0")
 

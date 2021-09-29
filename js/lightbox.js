@@ -24,24 +24,21 @@ export class Lightbox {
     }
 
     static init() {
-        const mediaLink = document.querySelectorAll('.mediaLink')
         const links = Array.from(document.querySelectorAll('img[src$=".jpg"], video[src$=".mp4"]'))
         const gallery = links.map(link => link.getAttribute('src'))
+        links.KeyPreview = true;
 
         links.forEach(link => {
-
             link.addEventListener('click', e => {
                 e.preventDefault()
                 new Lightbox(e.currentTarget.getAttribute('src'), gallery)
             })
 
-            // link.addEventListener('keyup', (event) => {
-            //     event.preventDefault()
-            //     console.log(this);
-            //     if (event.key === "Enter") {
-            //         new Lightbox(event.currentTarget.getAttribute('src'), gallery)
-            //     }
-            // })
+            link.addEventListener('keyup', (event) => {
+                if (event.key === "Enter") {
+                    new Lightbox(event.currentTarget.getAttribute('src'), gallery)
+                }
+            })
         })
     }
 

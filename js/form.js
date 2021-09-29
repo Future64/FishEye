@@ -70,6 +70,7 @@ export const createForm = (data, mainPhotograph) => {
     /* ººººººººººººººººººººººººººººººººººººººººººº */
 
     // Ajout des attributs
+    contactMe.setAttribute("tabindex", "0")
     form.setAttribute("name", "contact")
     form.setAttribute("action", "photographe.html")
     form.setAttribute("method", "post")
@@ -134,6 +135,12 @@ export const createForm = (data, mainPhotograph) => {
     // Events -------------------------------------
     contactMe.addEventListener("click", () => {
         formPage.style.display = 'flex';
+    })
+
+    contactMe.addEventListener("keydown", (e) => {
+        if (e.key === 'Enter') {
+            formPage.style.display = 'flex';
+        }
     })
 
     formClose.addEventListener("click", () => {
