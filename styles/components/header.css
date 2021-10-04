@@ -50,24 +50,6 @@ header nav {
     margin-top: 45px;
 }
 
-.nav-tag {
-    border: solid 1px;
-    border-color: var(--color4);
-    border-radius: 15px;
-    padding: 4px 10px;
-    margin-bottom: 10px;
-    font-size: 12px;
-    margin: 4px;
-    text-decoration: none;
-    color: var(--color1);
-    font-weight: bold;
-}
-
-.selectedTag {
-    background-color: var(--color1);
-    color: white;
-}
-
 h1 {
     position: absolute;
     display: block;
