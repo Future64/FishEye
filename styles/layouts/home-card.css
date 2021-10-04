@@ -107,7 +107,7 @@
     color: white;
 }
 
-.selectedTag {
+nav a.selectedTag {
     background-color: var(--color1);
     color: white;
 }

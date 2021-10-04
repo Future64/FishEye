@@ -1,5 +1,5 @@
 import { createDomElement, goHomePage } from "./tools.js"
-import { createTagList, tagHandler } from "./tagManager.js"
+import { createTagList, mainTagHandler, secondaryTagHandler } from "./tagManager.js"
 
 
 export const createHomePage = async(data) => {
@@ -70,5 +70,6 @@ export const createHomePage = async(data) => {
     }
 
     goHomePage()
-    tagHandler()
+    mainTagHandler()
+    secondaryTagHandler()
 }
