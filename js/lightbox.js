@@ -66,7 +66,7 @@ export class Lightbox {
         let metaMedia = null
 
         this.data.media.forEach(media => {
-            if (media.image == mediaName) {
+            if (media.image === mediaName) {
                 metaMedia = media
             }
         });
@@ -92,7 +92,7 @@ export class Lightbox {
             container.appendChild(video)
             video.onload = () => { this.url = url }
             this.data.media.forEach(media => {
-                if (media.video == mediaName) {
+                if (media.video === mediaName) {
                     metaMedia = media
                 }
             });
