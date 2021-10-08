@@ -1,7 +1,7 @@
 import { createMedia } from './media.js'
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-//                          TOUTES LES FONCTIONS DU PROJET
+//                          FONCTIONS UTILES DU PROJET
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 // Créer un DOM Element
@@ -76,9 +76,6 @@ export const pathMediasPhotographer = (dataMedia, path) => {
         } else {
             urlImage = path + dataMedia[j].image
         }
-
-        // dateSorted(dataMedia[j], urlImage, urlVideo)
-        // titleSorted(dataMedia[j], urlImage, urlVideo)
 
         createMedia(dataMedia[j], urlImage, urlVideo)
     }

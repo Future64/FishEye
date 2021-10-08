@@ -34,7 +34,6 @@ export const createForm = (data, mainPhotograph) => {
     const missEmail = createDomElement("missEmail", "span");
     const missMsg = createDomElement("missMsg", "span");
 
-
     // Create ERROR MESSAGE :
     const noGoodFirst = "Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
     const noGoodLast = "Veuillez entrer 2 caractères ou plus pour le champ du nom.";
@@ -56,8 +55,6 @@ export const createForm = (data, mainPhotograph) => {
     // Create variable for input border color change :
     const colorBorderNoGood = "#f45165 solid 3px";
     const colorBorderGood = "#199e9a solid 3px";
-
-
 
     // Initialisation object for save input value :
     let response = {
@@ -230,7 +227,6 @@ export const createForm = (data, mainPhotograph) => {
             displayError(formMsgInput, missMsg, noGoodMsg);
         } else {
             displayValid(formMsgInput, missMsg, ["Message"]);
-            // response.Message = formMsgInput.value;
         }
 
     }
@@ -242,7 +238,6 @@ export const createForm = (data, mainPhotograph) => {
     const checkValidForm = () => {
         console.log(nbValidForm + nbValidationText);
         if (nbValidForm <= 3) {
-            // confirmationbg.style.display = "none";
 
             console.log(response);
 
@@ -250,9 +245,6 @@ export const createForm = (data, mainPhotograph) => {
             closeWindow(formPage)
             console.log(nbValidForm)
             console.log(response);
-            // confirmationbg.style.display = "flex";
-            // btnSubmit.style.display = 'none';
-            // btnValid.style.display = 'block';
         }
     }
 

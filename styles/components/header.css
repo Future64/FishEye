@@ -10,7 +10,6 @@ header {
 header a {
     width: auto;
     height: auto;
-    /* margin-right: 30px; */
     cursor: pointer;
 }
 
@@ -24,7 +23,6 @@ header img {
 }
 
 .logoPhotographe {
-    /* position: absolute; */
     top: 15px;
     left: 5px;
     margin-left: 50px;
@@ -121,7 +119,6 @@ h1 {
         top: 25px;
     }
     nav {
-        /* margin-top: 25px; */
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -136,6 +133,13 @@ h1 {
         top: 30px;
     }
     header img {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .logoPhotographe {
+        left: 0;
         margin-left: 0;
     }
 }

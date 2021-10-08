@@ -18,6 +18,12 @@
     }
 }
 
+@media screen and (max-width: 673px) {
+    .containerCard {
+        margin-top: 170px;
+    }
+}
+
 .containerCard {
     width: 30%;
 }
@@ -84,11 +90,6 @@
     box-shadow: 0 0 10px rgba(165, 165, 165, 0.461);
 }
 
-
-/* .nav-tag {
-    cursor: pointer;
-} */
-
 .nav-tag:hover {
     background-color: var(--color1);
     color: white;
@@ -137,7 +138,6 @@ nav a.selectedTag {
     text-decoration: none;
     font-weight: bold;
     color: var(--color1);
-    /* cursor: default; */
 }
 
 .index--body-card {

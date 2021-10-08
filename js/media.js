@@ -70,17 +70,5 @@ export const createMedia = (dataMedia, urlImage, urlVideo) => {
     mediaLike.append(mediaNbLike)
     mediaLike.append(mediaHeart)
 
-    // const linky = document.querySelectorAll('.mediaLink')
-    // linky.forEach(linky => {
-    //     linky.addEventListener("keydown", e => {
-    //         if (e.key === "Enter") {
-    //             console.log(mediaLink);
-    //             Lightbox.init()
-    //         }
-    //     })
-    // })
-
     Lightbox.init()
-
-
 }

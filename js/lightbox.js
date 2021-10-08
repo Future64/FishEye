@@ -80,7 +80,7 @@ export class Lightbox {
             img.onload = () => { this.url = url }
 
             this.data.media.forEach(media => {
-                if (media.image == mediaName) {
+                if (media.image === mediaName) {
                     metaMedia = media
                 }
             });

@@ -4,7 +4,6 @@ import { retireLesTirets } from './tools.js'
 
 // Fonction qui déclanche à l'écoute du click sur le dropdow la fonction "displayDropdown"
 export const createSortZone = () => {
-
     const select = document.querySelector(".dropdown")
     const arrow = document.querySelector(".fa-chevron-down")
     const optionContainer = document.querySelector(".optionContainer")
@@ -12,7 +11,6 @@ export const createSortZone = () => {
     const options = document.querySelectorAll(".option")
 
     options.forEach(option => {
-
         option.addEventListener('click', () => {
             const value = option.getAttribute('data-value')
             optionSelected.innerHTML = value
@@ -35,7 +33,6 @@ export const createSortZone = () => {
             }
         })
     })
-
 
     window.addEventListener("click", (e) => {
 
@@ -129,7 +126,6 @@ const popularitySorted = () => {
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
 
 export const dateSorted = () => {
-
     const mediasZone = document.querySelectorAll('.mediaZone')
     const sortedMediaZone = []
     const sortedDate = []
@@ -155,13 +151,10 @@ export const dateSorted = () => {
             }
         })
     })
-
     return sortedMediaZone
 }
 
 /*®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®®*/
-
-
 export const titleSorted = () => {
     const mediasZone = document.querySelectorAll('.mediaZone')
     const sortedMediaZone = []
@@ -175,7 +168,6 @@ export const titleSorted = () => {
     sortedTitle.sort((a, b) => {
         const titleA = a.toLowerCase()
         const titleB = b.toLowerCase()
-
         if (titleA < titleB) return -1
         if (titleA > titleB) return 1
         return 0
